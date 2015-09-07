@@ -1,0 +1,12 @@
+{
+  "name": "townomatic",
+  "dependencies": {
+    "underscore": "~1.8.2",
+    "backbone": "~1.1.2",
+    "backbone-modal": "1.1.5",
+    "d3": "~3.0",
+    "elasticsearch": "6.0.0",
+    "jquery.fileDownload": "1.4.2"
+
+  }
+}
