@@ -1,0 +1,35 @@
+{
+  "name": "townomatic",
+  "version": "0.0.1",
+  "description": "RPG aid",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script/register -R spec -u bdd -w",
+    "start": "(coffee --compile --output dist --watch src &);./node_modules/nodemon/bin/nodemon.js ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slabgorb/townomatic.git"
+  },
+  "keywords": [
+    "RPG"
+  ],
+  "author": "Keith Avery",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slabgorb/townomatic/issues"
+  },
+  "homepage": "https://github.com/slabgorb/townomatic#readme",
+  "devDependencies": {
+    "mocha": "^2.3.2",
+    "should": "^7.1.0",
+    "coffee-script": "1.10.0"
+  },
+  "dependencies": {
+    "nodemon": "^1.4.1",
+    "underscore": "1.8.3",
+    "mongodb": "2.0.42",
+    "mongoose": "4.1.6"
+
+  }
+}
