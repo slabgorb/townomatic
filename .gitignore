@@ -27,6 +27,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+### Bower ###
+public/bower_components
+.bower-cache
+.bower-registry
+.bower-tmp
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
