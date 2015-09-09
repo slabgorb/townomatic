@@ -5,6 +5,8 @@ exports.register_model = (mongoose) ->
   Being = new Schema
     first_name: String
     last_name: String
+    gender: String
+    occupation: String
     age:
       type: Number
       min: 0

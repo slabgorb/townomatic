@@ -30,19 +30,17 @@
 # Like usual, the Compass configuration path are relative to the :project_path
 
 # guard 'compass', project_path: 'not_current_dir', configuration_file: 'path/to/my/compass_config.rb'
-guard :compass
+guard :compass, configuration_file: './compass_config.rb'
 
 coffeescript_options = {
-  input: 'coffee',
-  output: 'js',
-  patterns: [%r{^coffee/(.+\.(?:coffee|coffee\.md|litcoffee))$}]
+  input: 'app',
+  output: 'public/js',
+  patterns: [%r{^app/(.+\.(?:coffee|coffee\.md|litcoffee))$}]
 }
 
 guard 'coffeescript', coffeescript_options do
   coffeescript_options[:patterns].each { |pattern| watch(pattern) }
 end
 guard 'livereload' do
-  watch(%r{js/.+\.(css|js|html)})
-  watch(%r{css/.+\.(css|js|html)})
-  watch(%r{.+\.(html)})
+  watch(%r{public/.+\.(css|js|html)})
 end

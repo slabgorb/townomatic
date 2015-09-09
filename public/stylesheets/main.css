@@ -33,7 +33,7 @@
   font-weight: normal;
   font-style: normal;
 }
-/* line 2, ../sass/main.scss */
+/* line 2, ../../sass/main.scss */
 body {
   font-family: titillium_regular, helvetica, arial, sans-serif;
   background-color: #ECE5CE;
@@ -42,13 +42,13 @@ body {
   padding: 0;
 }
 
-/* line 9, ../sass/main.scss */
+/* line 10, ../../sass/main.scss */
 #main {
   width: 100%;
   height: 100%;
   padding: 10px 20px;
 }
-/* line 10, ../sass/main.scss */
+/* line 11, ../../sass/main.scss */
 #main h1, #main h2, #main h3, #main h4 {
   font-family: chanticleer, georgia, "times new roman", serif;
 }

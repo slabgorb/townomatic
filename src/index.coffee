@@ -4,8 +4,10 @@ config = require './config'
 restify = require 'restify'
 fs = require 'fs'
 _ = require 'underscore'
+staticServer = require('node-static')
 
-PORT = 8082
+BACKEND_PORT = 8082
+FRONTEND_PORT = 8080
 
 
 _.each ['being', 'community'], (file) ->
@@ -13,45 +15,62 @@ _.each ['being', 'community'], (file) ->
 
 mongoose.connect config.creds.mongodb_uri
 
-server = restify.createServer();
+server = restify.createServer()
 server.use restify.bodyParser()
+server.use restify.CORS()
+server.use restify.fullResponse()
+
+
 
 getBeings = (req, res, next) ->
-  res.header 'Access-Control-Allow-Origin', '*'
-  res.header 'Access-Control-Allow-Headers', 'X-Requested-With'
   mongoose.models.Being.find (err, data) ->
     res.send data
 
 getBeing = (req, res, next) ->
-  res.header 'Access-Control-Allow-Origin', '*'
-  res.header 'Access-Control-Allow-Headers', 'X-Requested-With'
-  console.log(req.params.id)
-  mongoose.models.Being.find {_id: req.params.id }, (err, data) ->
+  mongoose.models.Being.findOne {_id: req.params.id }, (err, data) ->
     res.send data
 
-
 deleteBeing = (req, res, next) ->
-  res.header 'Access-Control-Allow-Origin', '*'
-  res.header 'Access-Control-Allow-Headers', 'X-Requested-With'
-  res.header 'Access-Control-Allow-Methods', '*'
   mongoose.models.Being.remove {_id: req.params.id},  (err, data) ->
     res.send 204
 
-
-postBeing = (req, res, next) ->
-    res.header 'Access-Control-Allow-Origin', '*'
-    res.header 'Access-Control-Allow-Headers', 'X-Requested-With'
-    mongoose.models.Being.create
+updateBeing = (req, res, next) ->
+  mongoose.models.Being.findOneAndUpdate {_id: req.params.id },
+    {
       first_name: req.params.first_name
       last_name: req.params.last_name
       age: req.params.age
-      (err, being) ->
-        res.send being
+      occupation: req.params.occupation
+      gender: req.params.gender
+      genetics: req.params.genetics
+    }, (err, data) ->
+      res.send data
+
+createBeing = (req, res, next) ->
+  mongoose.models.Being.create
+    first_name: req.params.first_name
+    last_name: req.params.last_name
+    age: req.params.age
+    occupation: req.params.occupation
+    gender: req.params.gender
+    genetics: req.params.genetics
+    (err, being) ->
+      res.send being
 
 server.get '/beings/:id', getBeing
 server.get '/beings', getBeings
 server.del '/beings', deleteBeing
-server.post '/beings', postBeing
+server.post '/beings', createBeing
+server.post '/beings/:id', updateBeing
+
+server.listen BACKEND_PORT
 
 
-server.listen PORT
+file = new (staticServer.Server)('./public')
+require('http').createServer((request, response) ->
+  request.addListener('end', ->
+    file.serve request, response
+    return
+  ).resume()
+  return
+).listen FRONTEND_PORT
