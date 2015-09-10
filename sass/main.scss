@@ -1,10 +1,12 @@
 @import 'library';
 body {
   font-family: $font_sans;
+
   background-color: $color_powderpuff;
   color: $color_banquette;
   margin: 0;
   padding: 0;
+
 }
 
 #main {
@@ -16,5 +18,9 @@ body {
   padding: 10px 20px;
   ul {
     list-style-type: none;
+    li {
+      font: normal normal 12px/14px $font_sans;
+      color: white;
+    }
   }
 }
