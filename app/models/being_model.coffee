@@ -1,1 +1,3 @@
-class BeingModel extends Backbone.Model
+window.Townomatic ?= {}
+
+class Townomatic.BeingModel extends Backbone.Model
