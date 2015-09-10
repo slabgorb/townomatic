@@ -1,8 +1,13 @@
+_ = require('underscore')
 module.exports = (grunt) ->
   # Project configuration.
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
-    jst: compile: files: 'public/js/templates.js': [ 'src/**/*.html' ]
+    jst:
+      compile:
+        files: 'public/js/templates.js': [ 'app/templates/*.html' ]
+        processName: (filepath) -> console.log(filepath); return _.last filepath.split('/')
+        prettify: true
     sass: compile: files: 'public/stylesheets/main.css': [ 'sass/**/*.scss' ]
     concat: vendor: files: 'public/js/vendor.js': [
       'bower_components/jquery/dist/jquery.min.js'
@@ -35,10 +40,16 @@ module.exports = (grunt) ->
         tasks: ['sass'],
         options:
           livereload: true
-      jst: files: ['src/**/*.html']
+      jst:
+        files: ['src/**/*.html']
+        tasks: 'jst'
+        options:
+          livereload: true
       coffee:
         files: ['app/**/*.coffee'],
         tasks: 'coffee'
+        options:
+          livereload: true
 
 
   grunt.loadNpmTasks 'grunt-contrib-concat'

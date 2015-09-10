@@ -5,7 +5,7 @@ class Townomatic.BeingsCollectionView extends Backbone.View
   el: '#beings'
 
   initialize: (options) ->
-    @template = _.template($('#beings-collection-template').html())
+    @template = JST["app/templates/beings_collection.html"]
     @collection = options.collection
     @listenTo @collection, 'add', @addOne
     @childViews = []
