@@ -35,7 +35,7 @@ module.exports = (grunt) ->
         tasks: ['sass'],
         options:
           livereload: true
-      jst: files: [
+      jst: files: ['src/**/*.html']
       coffee:
         files: ['app/**/*.coffee'],
         tasks: 'coffee'
