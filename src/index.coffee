@@ -20,7 +20,33 @@ server.use restify.bodyParser()
 server.use restify.CORS()
 server.use restify.fullResponse()
 
+getCommunities = (req, res, next) ->
+  mongoose.models.Community.find (err, data) ->
+    res.send data
 
+
+getCommunity = (req, res, next) ->
+  mongoose.models.Community.findOne {_id: req.params.id }, (err, data) ->
+    res.send data
+
+deleteCommunity = (req, res, next) ->
+  mongoose.models.Community.remove {_id: req.params.id},  (err, data) ->
+    res.send 204
+
+
+updateCommunity = (req, res, next) ->
+  mongoose.models.Community.findOneAndUpdate {_id: req.params.id },
+    {
+      name: req.params.name
+    }, (err, data) ->
+      res.send data
+
+
+createCommunity = (req, res, next) ->
+  mongoose.models.Community.create
+    name: req.params.name
+    (err, data) ->
+      res.send data
 
 getBeings = (req, res, next) ->
   mongoose.models.Being.find (err, data) ->
@@ -62,6 +88,12 @@ server.get '/beings', getBeings
 server.del '/beings', deleteBeing
 server.post '/beings', createBeing
 server.post '/beings/:id', updateBeing
+
+server.get '/communities/:id', getCommunity
+server.get '/communities', getCommunities
+server.del '/communities', deleteCommunity
+server.post '/communities', createCommunity
+server.post '/communities/:id', updateCommunity
 
 server.listen BACKEND_PORT
 
