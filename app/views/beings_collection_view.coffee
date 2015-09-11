@@ -19,7 +19,6 @@ class Townomatic.BeingsCollectionView extends Backbone.View
     @childViews.push new Townomatic.BeingView({model: model})
 
   addNew: () ->
-    console.log('adding')
     attributes = _.map @$('#new-being input'), (input) ->
       input.attr('data_field', input.value())
     model = new Townomatic.BeingModel attributes

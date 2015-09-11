@@ -6,5 +6,6 @@ class App
     @beings.fetch()
 
 $ ->
+  console.log 'starting application'
   app = new App
   app.initialize()

@@ -20,7 +20,15 @@ body {
     list-style-type: none;
     li {
       font: normal normal 12px/14px $font_sans;
-      color: white;
+    }
+    &.form {
+      background-color: $color_charlotte;
+      padding: 20px;
+      label {
+        display: inline-block;
+        text-align: right;
+        width: 100px;
+      }
     }
   }
 }

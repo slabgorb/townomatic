@@ -8,7 +8,7 @@ module.exports = (grunt) ->
         files: 'public/js/templates.js': [ 'app/templates/*.html' ]
         processName: (filepath) -> console.log(filepath); return _.last filepath.split('/')
         prettify: true
-    sass: compile: files: 'public/stylesheets/main.css': [ 'sass/**/*.scss' ]
+    sass: compile: files: 'public/stylesheets/main.css': [ 'sass/main.scss' ]
     concat: vendor: files: 'public/js/vendor.js': [
       'bower_components/jquery/dist/jquery.min.js'
       'bower_components/jquery-ui/jquery-ui.min.js'
@@ -29,6 +29,11 @@ module.exports = (grunt) ->
             'app/app.coffee'
           ]
     watch:
+      livereload:
+        files: ['public/js/*', 'public/*.html', 'public/stylesheets/*', 'public/images/*']
+        options:
+          livereload: true
+
       configFiles:
         files: [
           'Gruntfile.coffee'
@@ -38,27 +43,18 @@ module.exports = (grunt) ->
       css:
         files: '**/*.scss',
         tasks: ['sass'],
-        options:
-          livereload: true
       jst:
-        files: ['src/**/*.html']
+        files: 'app/templates/*.html'
         tasks: 'jst'
-        options:
-          livereload: true
       coffee:
-        files: ['app/**/*.coffee'],
+        files: 'app/**/*.coffee',
         tasks: 'coffee'
-        options:
-          livereload: true
-
 
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jst'
-
-
 
   grunt.registerTask 'default', [ 'watch' ]
   return
