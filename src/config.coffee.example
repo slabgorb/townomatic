@@ -1,0 +1,2 @@
+exports.creds =
+    mongodb_uri: [YOUR MONGODB URI]
