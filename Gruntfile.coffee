@@ -56,5 +56,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jst'
 
-  grunt.registerTask 'default', [ 'watch' ]
+  grunt.registerTask 'default', [ 'concat', 'sass','coffee', 'jst', 'watch' ]
   return
