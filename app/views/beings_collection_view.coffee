@@ -16,12 +16,27 @@ class Townomatic.BeingsCollectionView extends Backbone.View
     "click .add-being": 'addNew'
 
   addOne: (model) ->
-    @childViews.push new Townomatic.BeingView({model: model})
+    child = new Townomatic.BeingView({model: model})
+    @childViews.push child
+    @$el.append(child.render().el)
 
   addNew: () ->
-    attributes = _.map @$('#new-being input'), (input) ->
-      input.attr('data_field', input.value())
-    model = new Townomatic.BeingModel attributes
+    attributes = _. object(_.map(@$('#new-being input, #new-being select'), (input) -> [$(input).attr('data-field'),  $(input).val()]) )
+    console.log attributes
+    attributes =
+      name:
+        first: attributes['name.first']
+        last: attributes['name.last']
+      occupation: attributes.occupation
+      genetics: attributes.genetics
+      gender: attributes.gender
+      age: attributes.age
+    console.log attributes
+    model = new Townomatic.BeingModel()
+    model.set(attributes)
+
+    console.log(model)
+
     @collection.add(model)
 
   render: (options) ->

@@ -15,6 +15,7 @@ module.exports = (grunt) ->
       'bower_components/underscore/underscore-min.js'
       'bower_components/d3/d3.js'
       'bower_components/backbone/backbone.js'
+      'bower_components/backbone-nested-model/backbone-nested.js'
       'bower_components/backbone-modal/backbone.modal-min.js'
       'bower_components/elasticsearch/elasticsearch.min.js'
     ]

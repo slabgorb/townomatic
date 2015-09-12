@@ -1,14 +1,14 @@
 {
   "name": "townomatic",
   "dependencies": {
-    "jquery": "~2.1.4",
-    "jquery-ui": "~1.11.4",
-    "underscore": "~1.8.2",
     "backbone": "~1.1.2",
     "backbone-modal": "1.1.5",
+    "backbone-nested-model": "~2.0.4",
     "d3": "~3.0",
     "elasticsearch": "6.0.0",
-    "jquery.fileDownload": "1.4.2"
-
+    "jquery": "~2.1.4",
+    "jquery-ui": "~1.11.4",
+    "jquery.fileDownload": "1.4.2",
+    "underscore": "~1.8.2"
   }
 }

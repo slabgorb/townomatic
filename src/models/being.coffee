@@ -2,18 +2,26 @@ mongoose = require 'mongoose'
 _ = require 'underscore'
 Schema = mongoose.Schema
 
+unless mongoose.models.Genetics?
+  require("./genetics").register_model(mongoose)
+
 exports.register_model = (mongoose) ->
   Gene = new Schema
-    dna: String
+    dna:
+      type: String
+      default: -> (Math.random() * 0xFFFFFF << 0).toString(16)
+
 
   Gene.methods.randomize = () ->
     @dna = (Math.random() * 0xFFFFFF << 0).toString(16)
 
   Chromosome = new Schema
     genes: [ Gene ]
+    interpreter: Schema.Types.ObjectId
 
 
   Being = new Schema
+    species: String
     name:
       first: String
       last: String
@@ -25,9 +33,9 @@ exports.register_model = (mongoose) ->
       default: 1
     genetics: [ Chromosome ]
     living: {type: Boolean, default: true}
-    children: Array
-    parents: Array
-    spouses: Array
+    children: [Schema.Types.ObjectId]
+    parents: [Schema.Types.ObjectId]
+    spouses: [Schema.Types.ObjectId]
 
   Being.methods.marry  = (spouse) ->
     @spouses.push spouse

@@ -5,19 +5,27 @@
   <ul class="form">
     <li>
       <label>First Name</label>
-      <input type="text" data-field="first_name"/>
+      <input type="text" data-field="name.first"/>
     </li>
     <li>
       <label>Last Name</label>
-      <input type="text" data-field="last_name"/>
+      <input type="text" data-field="name.last"/>
     </li>
     <li>
       <label>Occupation</label>
       <input type="text" data-field="occupation"/>
     </li>
     <li>
+      <label>Genetics</label>
+      <input type="text" data-field="genetics"/>
+    </li>
+    <li>
       <label>Gender</label>
-      <input type="text" data-field="gender"/>
+      <select data-field="gender">
+        <option>Male</option>
+        <option>Female</option>
+        <option>Neuter</option>
+      </select>
     </li>
     <li>
       <label>Age</label>

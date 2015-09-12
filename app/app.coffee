@@ -5,7 +5,6 @@ class App
     @beingsView = new Townomatic.BeingsCollectionView({collection: @beings})
     @beings.fetch()
 
-$ ->
-  console.log 'starting application'
-  app = new App
-  app.initialize()
+console.log 'starting application'
+app = new App
+app.initialize()
