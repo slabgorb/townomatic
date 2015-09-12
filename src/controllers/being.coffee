@@ -29,17 +29,22 @@ updateBeing = (req, res, next) ->
       res.send data
 
 createBeing = (req, res, next) ->
-  genetics = mongoose.models.Genetics.findOne({species: req.params.species})
-  chromosome = mongoose.models.Chromosome.create
-    interpreter: genetics
 
+  genetics = mongoose.models.Genetics.findOne({species: req.params.species})
+ # genes =  (new mongoose.models.Gene for i in [0..genetics.geneLength])
+  genes =  (new mongoose.models.Gene for i in [0..12])
+  console.log genetics.species
+  console.log genetics.geneLength
+  console.log genes
+  console.log req.params.species
 
   mongoose.models.Being.create
-    name: {first: req.params.name.first, last: req.params.name.name}
+    species: req.params.species
+    name: {first: req.params.name.first, last: req.params.name.last}
     age: req.params.age
     occupation: req.params.occupation
     gender: req.params.gender
-    genetics: chromosome
+    genes: genes
     (err, being) ->
       res.send being
 

@@ -16,6 +16,7 @@ deleteGenetics = (req, res, next) ->
 createGenetics = (req, res, next) ->
   mongoose.models.Genetics.create
     species: req.params.species
+    geneLength: req.params.geneLength
     expression: req.params.expression
     (err, data) ->
       res.send data
@@ -23,6 +24,7 @@ createGenetics = (req, res, next) ->
 updateGenetics = (req, res, next) ->
   mongoose.models.findOneAndUpdate {species: req.params.species },
     expression: req.params.expression
+    geneLength: req.params.geneLength
     (err, genetics) ->
       res.send genetics
 

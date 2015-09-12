@@ -9,15 +9,10 @@ exports.register_model = (mongoose) ->
   Gene = new Schema
     dna:
       type: String
-      default: -> (Math.random() * 0xFFFFFF << 0).toString(16)
-
+      default: -> '000000'.replace /0/g, ->  (~ ~(Math.random() * 16)).toString 16
 
   Gene.methods.randomize = () ->
-    @dna = (Math.random() * 0xFFFFFF << 0).toString(16)
-
-  Chromosome = new Schema
-    genes: [ Gene ]
-    interpreter: Schema.Types.ObjectId
+    @dna = '000000'.replace /0/g, ->  (~ ~(Math.random() * 16)).toString 16
 
 
   Being = new Schema
@@ -25,27 +20,28 @@ exports.register_model = (mongoose) ->
     name:
       first: String
       last: String
-    gender: String
+    gender:
+      type: String
+      enum: ['Male', 'Female', 'Neuter']
     occupation: String
     age:
       type: Number
       min: 0
       default: 1
-    genetics: [ Chromosome ]
+    genes: [ Gene ]
     living: {type: Boolean, default: true}
     children: [Schema.Types.ObjectId]
     parents: [Schema.Types.ObjectId]
     spouses: [Schema.Types.ObjectId]
 
   Being.methods.marry  = (spouse) ->
-    @spouses.push spouse
+    @spouses.push spouse.id
 
   Being.methods.divorce = (spouse) ->
-    @spouses = _.without @spouses, _.findWhere(@spouses, {id: spouse.id})
+    @spouses = _.filter @spouses, (s) -> s == spouse.id
 
   Being.methods.die = ->
     @living = false
 
   mongoose.model 'Gene', Gene
-  mongoose.model 'Chromosome', Chromosome
   mongoose.model 'Being', Being

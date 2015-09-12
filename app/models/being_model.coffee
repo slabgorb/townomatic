@@ -2,11 +2,12 @@ window.Townomatic ?= {}
 
 class Townomatic.BeingModel extends Backbone.NestedModel
   defaults:
-    genetics: ""
-    name: {first: '', last: ''}
+    genes: []
+    species: 'human'
+    name: {first: 'Some', last: 'Being'}
     occupation: "Unemployed"
-    gender: "N"
-    age: 0
+    gender: "Neuter"
+    age: 1
     spouses: []
     children: []
     parents: []
