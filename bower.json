@@ -1,6 +1,8 @@
 {
   "name": "townomatic",
   "dependencies": {
+    "jquery": "~2.1.4",
+    "jquery-ui": "~1.11.4",
     "underscore": "~1.8.2",
     "backbone": "~1.1.2",
     "backbone-modal": "1.1.5",
