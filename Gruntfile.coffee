@@ -20,10 +20,12 @@ module.exports = (grunt) ->
       'bower_components/elasticsearch/elasticsearch.min.js'
     ]
     coffee:
-      compile:
+      app:
         sourceMap: true
         files:
           'public/js/app.js': [
+            'lib/townomatic.coffee',
+            'lib/townomatic_model.coffee'
             'app/models/*.coffee'
             'app/collections/*.coffee'
             'app/views/*.coffee'

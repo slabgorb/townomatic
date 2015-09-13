@@ -1,7 +1,12 @@
 <ul class="being">
-  <li><%= name.first %><%= name.last %></li>
+  <li><%= name.first %> <%= name.last %></li>
   <li><%= age %></li>
   <li><%= gender %></li>
   <li><%= occupation %></li>
-  <li><%= genetics %></li>
+  <li>
+    <ul class="genes">
+      <% _.each(_.sortBy(genes, function(gene) { return -parseInt(gene,16) }), function(gene) { %>  <li style="background-color: #<%= gene %>">&nbsp;</li> <% }); %>
+    </ul>
+  </li>
+  <li><%= expression %></li>
 </ul>

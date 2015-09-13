@@ -5,12 +5,9 @@ mongoose = require 'mongoose'
 
 delete mongoose.connection.models['Genetics']
 delete mongoose.connection.models['Being']
-delete mongoose.connection.models['Gene']
 
 require("../src/models/genetics").register_model(mongoose)
 require("../src/models/being").register_model(mongoose)
-
-
 
 describe "genetics", ->
   ex =
@@ -24,17 +21,10 @@ describe "genetics", ->
 
   genetics = new mongoose.models.Genetics
     species: 'meseeks'
-    geneLength: 12
     expression: ex
 
   it "refers to a species", ->
     genetics.species.should.equal "meseeks"
-
-describe "gene", ->
-  gene = new mongoose.models.Gene
-
-  it "has a dna value", ->
-    gene.dna.length.should.equal 6
 
 describe "being", ->
 
@@ -57,6 +47,15 @@ describe "being", ->
   it "makes a being", ->
     adam.name.first.should.equal 'Adam'
     adam.name.last.should.equal 'Ant'
+
+  it "has default genetics", ->
+    adam.genes.length.should.equal 128
+
+  it "should have 6-digit hex numbers for all genes", ->
+    (_.filter adam.genes, (gene) -> gene.length == 6).length.should.equal 128
+    numbers = _.map adam.genes, (gene) -> parseInt(gene, 16)
+    _.max(numbers).should.be.below(16777216)
+    _.min(numbers).should.be.above(-1)
 
   it "marries one being to another", ->
     adam.marry(eve)
