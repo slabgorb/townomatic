@@ -32,11 +32,6 @@ module.exports = (grunt) ->
             'app/app.coffee'
           ]
     watch:
-      livereload:
-        files: ['public/js/*', 'public/*.html', 'public/stylesheets/*', 'public/images/*']
-        options:
-          livereload: true
-
       configFiles:
         files: [
           'Gruntfile.coffee'
@@ -46,12 +41,18 @@ module.exports = (grunt) ->
       css:
         files: '**/*.scss',
         tasks: ['sass'],
+        options:
+          livereload: true
       jst:
         files: 'app/templates/*.html'
         tasks: 'jst'
+        options:
+          livereload: true
       coffee:
         files: 'app/**/*.coffee',
         tasks: 'coffee'
+        options:
+          livereload: true
 
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-sass'
