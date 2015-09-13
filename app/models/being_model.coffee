@@ -35,10 +35,9 @@ class Townomatic.BeingModel extends Townomatic.Model
 
   fetch:(options) ->
     super(options)
-    debugger
     @getGenetics().done =>
       @set 'expression', @express()
-
+      @trigger 'complete'
 
   #
   # Match the expression against the genetic code of the being.
@@ -58,7 +57,6 @@ class Townomatic.BeingModel extends Townomatic.Model
       else
         _.each value, (expression) =>
           regexp = new RegExp(String(expression), 'g')
-          console.log  regexp, @get('genes').join('').match(regexp)
           matches = @get('genes').join('').match(regexp)
           result[key] = if matches? then matches.length else 0
     result
