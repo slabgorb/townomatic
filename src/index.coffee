@@ -2,6 +2,7 @@ http = require 'http'
 mongoose = require 'mongoose'
 config = require './config'
 restify = require 'restify'
+cors = require('cors');
 fs = require 'fs'
 _ = require 'underscore'
 staticServer = require('node-static')
@@ -11,7 +12,7 @@ FRONTEND_PORT = 8080
 
 server = restify.createServer()
 server.use restify.bodyParser()
-server.use restify.CORS()
+server.use cors
 server.use restify.fullResponse()
 
 _.each ['species', 'being', 'community'], (file) ->
