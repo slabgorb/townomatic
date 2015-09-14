@@ -1,7 +1,8 @@
 class Townomatic.View extends Backbone.View
   initialize: (options)->
-    console.log 'initializing', @templateName, @childContainer
-    @template = ._template JST["app/templates/#{@templateName}.html"]
+    console.log 'initializing', JST
+    @template = JST["app/templates/#{@templateName}.html"]
+
 
 
 class Townomatic.ListItemView extends Townomatic.View
