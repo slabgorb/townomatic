@@ -14,8 +14,7 @@ server.use restify.bodyParser()
 server.use restify.CORS()
 server.use restify.fullResponse()
 
-
-_.each ['genetics', 'being', 'community'], (file) ->
+_.each ['species', 'being', 'community'], (file) ->
   require("./models/#{file}").register_model(mongoose)
   require("./controllers/#{file}").register_routes(server)
 

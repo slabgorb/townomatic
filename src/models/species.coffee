@@ -3,8 +3,8 @@ _ = require 'underscore'
 Schema = mongoose.Schema
 
 exports.register_model = (mongoose) ->
-  Genetics = new Schema
-    species: String
+  Species = new Schema
+    name: String
     expression: Schema.Types.Mixed
 
-  mongoose.model 'Genetics', Genetics
+  mongoose.model 'Species', Species

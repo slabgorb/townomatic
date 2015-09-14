@@ -1,6 +1,6 @@
 class Townomatic.BeingModel extends Townomatic.Model
 
-  url: -> "http://localhost:8082/beings/#{@get('id')}"
+  url: -> "#{@apiBase}/beings/#{@get('id')}"
 
   initialize: (attributes, options) ->
 
@@ -15,6 +15,7 @@ class Townomatic.BeingModel extends Townomatic.Model
     spouses: []
     children: []
     parents: []
+    expression: {}
 
   #
   # Get the related genetic expressions for this species.

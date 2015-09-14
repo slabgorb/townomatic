@@ -6,8 +6,12 @@ getBeings = (req, res, next) ->
     res.send data
 
 getBeing = (req, res, next) ->
-  mongoose.models.Being.findOne {_id: req.params.id }, (err, data) ->
-    res.send data
+  mongoose.models.Being.findOne {_id: req.params.id }
+    .populate('species')
+    .exec (err, being) ->
+      console.log being
+      being.setValue('expression', being.express())
+      res.send being
 
 deleteBeing = (req, res, next) ->
   mongoose.models.Being.remove {_id: req.params.id},  (err, data) ->
@@ -20,11 +24,11 @@ deleteBeings = (req, res, next) ->
 updateBeing = (req, res, next) ->
   mongoose.models.Being.findOneAndUpdate {_id: req.params.id },
     {
+      species: req.params.species
       name: {first: req.params.name.first, last: req.params.name.name}
       age: req.params.age
       occupation: req.params.occupation
       gender: req.params.gender
-      genetics: req.params.genetics
     }, (err, data) ->
       res.send data
 

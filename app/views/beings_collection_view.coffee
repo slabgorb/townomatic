@@ -1,24 +1,10 @@
-window.Townomatic ?= {}
-
-class Townomatic.BeingsCollectionView extends Backbone.View
-
-  el: '#beings'
-
-  initialize: (options) ->
-    @template = JST["app/templates/beings_collection.html"]
-    @collection = options.collection
-    @listenTo @collection, 'add', @addOne
-    @childViews = []
-    @collection.fetch().done =>
-      @render()
+class Townomatic.BeingsCollectionView extends Townomatic.ListView
+  templateName = 'beings_collection'
+  childClass = Townomatic.BeingView
 
   events:
     "click .add-being": 'addNew'
 
-  addOne: (model) ->
-    child = new Townomatic.BeingView({model: model})
-    @childViews.push child
-    @$el.append(child.render().el)
 
   addNew: () ->
     attributes = _. object(_.map(@$('#new-being input, #new-being select'), (input) -> [$(input).attr('data-field'),  $(input).val()]) )
@@ -38,9 +24,3 @@ class Townomatic.BeingsCollectionView extends Backbone.View
     console.log(model)
 
     @collection.add(model)
-
-  render: (options) ->
-    @$el.append @template()
-    _.each @childViews, (child) =>
-      child.$el = @$('#beings-children')
-      @$el.append(child.render().el)

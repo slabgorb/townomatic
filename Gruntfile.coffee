@@ -33,6 +33,8 @@ module.exports = (grunt) ->
           'public/js/app.js': [
             'lib/townomatic.coffee',
             'lib/townomatic_model.coffee'
+            'lib/townomatic_collection.coffee'
+            'lib/townomatic_view.coffee'
             'app/models/*.coffee'
             'app/collections/*.coffee'
             'app/views/*.coffee'
