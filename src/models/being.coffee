@@ -13,11 +13,13 @@ exports.register_model = (mongoose) ->
     gender:
       type: String
       enum: ['Male', 'Female', 'Neuter']
-    occupation: String
+    occupation:
+      type: String
+      default: 'None'
     age:
       type: Number
       min: 0
-      default: 1
+      default: 0
     genes:
       type: Array
       default: -> (('000000'.replace /0/g, ->  (~ ~(Math.random() * 16)).toString(16).toUpperCase()) for i in [1..128])
@@ -34,6 +36,38 @@ exports.register_model = (mongoose) ->
 
   Being.methods.die = ->
     @living = false
+
+  Being.statics.findByName = (first, last, callback) ->
+     mongoose.models.Being.findOne { 'name.first': first, 'name.last':last }, callback
+
+
+  Being.statics.reproduce = (parent, mate, firstName, gender) ->
+    genes = _.sample (_.flatten [parent.genes, mate.genes]), parent.genes.length
+    child = new mongoose.models.Being
+      name:
+        first: firstName
+        last: parent.name.last
+      species: parent.species
+      gender: gender
+      age: 0
+      genes: genes
+      living: true
+      children: []
+      parents: [parent.id, mate.id]
+      spouses: []
+    child.save()
+    parent.children.push child
+    mate.children.push child
+    child
+
+  Being.methods.siblings = ->
+    siblings = []
+    _.each @parents, (parentId) ->
+      mongoose.models.Being.findOne({ _id: parentId }).exec (error, parent) ->
+        console.log "parent", parent
+        _.each parent.children, (child) ->
+          siblings.push child.id
+    _.uniq(siblings)
 
   #
   # Match the expression against the genetic code of the being.

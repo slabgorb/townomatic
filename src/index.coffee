@@ -12,12 +12,12 @@ FRONTEND_PORT = 8080
 
 server = restify.createServer()
 server.use restify.bodyParser()
-server.use cors
+#server.use cors
 server.use restify.fullResponse()
 
 _.each ['species', 'being', 'community'], (file) ->
   require("./models/#{file}").register_model(mongoose)
-  require("./controllers/#{file}").register_routes(server)
+  require("./routes/#{file}").register_routes(mongoose, server)
 
 mongoose.connect config.creds.mongodb_uri
 server.listen BACKEND_PORT
