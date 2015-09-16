@@ -1,5 +1,0 @@
-should = require 'should'
-require 'coffee-script/register'
-_ = require 'underscore'
-mongoose = require 'mongoose'
-config = require '../src/config'

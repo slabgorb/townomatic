@@ -32,6 +32,10 @@ module.exports = (grunt) ->
         options:
           reporter: 'spec'
           require: ['coffee-script/register', 'should']
+          debug: true
+          'check-leaks': true
+          recursive: true
+          sort: true
 
         src: ['test/**/*.coffee']
 

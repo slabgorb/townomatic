@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register -R spec -u bdd -w",
+    "test": "grunt mochaTest",
     "start": "(coffee --compile --output dist --watch src &);./node_modules/nodemon/bin/nodemon.js ./dist/index.js"
   },
   "repository": {

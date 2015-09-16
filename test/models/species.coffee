@@ -1,7 +1,7 @@
 utils = require '../utils'
 mongoose = require('mongoose')
 
-describe "species", ->
+describe "models/species", ->
   ex =
     "emotional stability":
       reactive: [804]
