@@ -1,8 +1,5 @@
-mongoose = require 'mongoose'
-_ = require 'underscore'
-Schema = mongoose.Schema
-
 exports.register_model = (mongoose) ->
+  Schema = mongoose.Schema
   Species = new Schema
     name: String
     expression: Schema.Types.Mixed

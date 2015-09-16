@@ -1,10 +1,12 @@
 mongoose = require 'mongoose'
+_ = require 'underscore'
 config = require '../src/config'
 
-delete mongoose.connection.models['Species']
-delete mongoose.connection.models['Being']
-require("../src/models/species").register_model(mongoose)
-require("../src/models/being").register_model(mongoose)
+
+_.each ['Species', 'Being', 'Community'], (file) ->
+  delete mongoose.connection.models[file]
+  require("../src/models/#{file.toLowerCase()}").register_model(mongoose)
+
 
 before (done) ->
   clearDB = ->

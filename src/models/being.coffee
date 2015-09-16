@@ -1,8 +1,7 @@
-mongoose = require 'mongoose'
 _ = require 'underscore'
-Schema = mongoose.Schema
 
 exports.register_model = (mongoose) ->
+  Schema = mongoose.Schema
   Being = new Schema
     species:
       type: Schema.Types.ObjectId
