@@ -11,7 +11,8 @@ exports.getSpecies = (Species) ->
 
 exports.deleteSpecies =  (Species) ->
   (req, res, next) ->
-    _.noop()
+    Species.remove {_id: req.params.id }, (err, data) ->
+      res.send 204
 
 exports.createSpecies =  (Species) ->
   (req, res, next) ->
@@ -24,7 +25,7 @@ exports.createSpecies =  (Species) ->
 
 exports.updateSpecies =  (Species) ->
   (req, res, next) ->
-    findOneAndUpdate {species: req.params.species },
+    Species.findOneAndUpdate {species: req.params.species },
       expression: req.params.expression
       geneLength: req.params.geneLength
       (err, species) ->

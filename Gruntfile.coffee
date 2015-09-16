@@ -26,6 +26,15 @@ module.exports = (grunt) ->
         files: 'public/stylesheets/bootstrap.css': [
           'bower_components/bootstrap/dist/css/bootstrap.min.css'
         ]
+
+    mochaTest:
+      test:
+        options:
+          reporter: 'spec'
+          require: ['coffee-script/register', 'should']
+
+        src: ['test/**/*.coffee']
+
     coffee:
       app:
         sourceMap: true
@@ -47,6 +56,11 @@ module.exports = (grunt) ->
           'config/*.coffee'
         ]
         options: reload: true
+
+      mocha:
+        files: ['**/*.coffee']
+        tasks: ['mochaTest']
+
       css:
         files: '**/*.scss',
         tasks: ['sass'],
@@ -68,6 +82,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jst'
+  grunt.loadNpmTasks 'grunt-mocha-test'
 
-  grunt.registerTask 'default', [ 'concat', 'sass','coffee', 'jst', 'watch' ]
+  grunt.registerTask 'default', [ 'concat', 'sass','coffee', 'jst', 'mochaTest', 'watch' ]
   return

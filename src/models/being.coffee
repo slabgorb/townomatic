@@ -53,7 +53,7 @@ exports.register_model = (mongoose) ->
       genes: genes
       living: true
       children: []
-      parents: [parent.id, mate.id]
+      parents: [parent, mate]
       spouses: []
     child.save()
     parent.children.push child
@@ -63,8 +63,8 @@ exports.register_model = (mongoose) ->
   Being.methods.siblings = ->
     siblings = []
     _.each @parents, (parentId) ->
+      console.log(parentId)
       mongoose.models.Being.findOne({ _id: parentId }).exec (error, parent) ->
-        console.log "parent", parent
         _.each parent.children, (child) ->
           siblings.push child.id
     _.uniq(siblings)
