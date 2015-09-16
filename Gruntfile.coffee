@@ -3,6 +3,9 @@ module.exports = (grunt) ->
   # Project configuration.
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
+    prep_corpus:
+      corpora:
+        files: [src: 'corpora/*.txt' ]
     jst:
       compile:
         files: 'public/js/templates.js': [ 'app/templates/*.html' ]
@@ -81,12 +84,24 @@ module.exports = (grunt) ->
         options:
           livereload: true
 
+      corpus:
+        files: 'corpora/*.txt'
+        tasks: 'prep_corpus'
+
+  grunt.registerMultiTask 'prep_corpus', () ->
+    _.each @files.slice(), (file) ->
+      grunt.log.writeln("processing corpus files #{file.src} ...")
+      _.each file.src, (f) ->
+        content = grunt.file.read(f, { encoding: 'utf8' } )
+        outfile = f.replace('.txt', '.corpus')
+        grunt.file.write outfile, content.toLowerCase().replace(/[\[\]0-9.,|"'\/\\#!$%?\^&\*;:{}=\-_`~()]/g,"").replace(/\s{1,}/g,'$')
+
+
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jst'
   grunt.loadNpmTasks 'grunt-mocha-test'
-
   grunt.registerTask 'default', [ 'concat', 'sass','coffee', 'jst', 'mochaTest', 'watch' ]
   return
