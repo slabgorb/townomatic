@@ -13,7 +13,7 @@ describe "models/corpus", ->
     corpus.histogram.should.exist
     corpus.total(['a','b']).should.equal 2210
     corpus.histogram[['a','b']].should.eql {
-        $: 91,
+        _: 91,
         a: 91,
         b: 17,
         c: 2,
@@ -35,3 +35,31 @@ describe "models/corpus", ->
         z: 5,
         'î': 12
       }
+    corpus.save (err, corpus) ->
+      (err == null).should.be.true
+
+  it 'chooses from a histogram key', ->
+    corpus.choice(['a','b'], 1).should.equal 'i'
+
+  it 'makes a start key', ->
+    corpus.startKey().should.eql ['^','^']
+
+
+
+
+  # it 'makes a word', ->
+  #   # console.log("word", corpus.word())
+  #   # corpus.word().should.eql 'foo'
+  #   word = ''
+  #   char = ''
+  #   key = corpus.startKey()
+  #   console.log key
+  #   while char != corpus.endToken
+  #     console.log word
+  #     selection = Math.random * corpus.total(key)
+  #     console.log char, key, selection
+  #     char = corpus.choice(key, selection)
+  #     console.log char
+  #     word += char
+  #     key.push char
+  #     key.shift()

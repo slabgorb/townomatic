@@ -19,7 +19,7 @@ exports.register_model = (mongoose) ->
       default: '^'
     endToken:
       type: String
-      default: '$'
+      default: '_'
 
   Corpus.methods.total = (key) ->
     _.reduce @histogram[key], ((memo, h) -> memo += h), 0
@@ -27,7 +27,7 @@ exports.register_model = (mongoose) ->
 
   Corpus.methods.parse = ->
     histo = {}
-    key = new Array(@lookback + 1).join(@startToken).split('')
+    key = @startKey()
     _.each @language, (language) =>
       corpusText = fs.readFileSync("corpora/#{language}.corpus", 'utf8')
       _.each corpusText, (char) ->
@@ -38,16 +38,26 @@ exports.register_model = (mongoose) ->
         key.shift()
     @histogram = histo
 
+  Corpus.methods.choice = (key, selection) ->
+    position = 0
+    ary = _.map(@histogram[key], (v, k) -> [k, v])
+    match = _.find ary, (pair) ->
+      position += _.last(pair)
+      position > selection
+    _.first match
+
+  Corpus.methods.startKey = ->
+     new Array(@lookback + 1).join(@startToken).split('')
+
   Corpus.methods.word = ->
     word = ''
     char = ''
-    key = new Array(@lookback + 1).join(@startToken).split('')
-    selection = Math.random * @total(key)
-    selected = null
-    position = 0
-    _.each @histogram[key], (value, letter, index) ->
-      position += value
-      selected = letter if position > selection
-    selected
+    key = @startKey()
+    word = while _.first(char) != @endToken
+      selection = Math.random * @total(key)
+      char = @choice(key, selection)
+      key.push char
+      key.shift()
+
 
   mongoose.model 'Corpus', Corpus
