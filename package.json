@@ -38,6 +38,7 @@
     "should": "^7.1.0"
   },
   "dependencies": {
+    "grunt": "^0.4.5",
     "cors": "^2.7.1",
     "mongodb": "2.0.42",
     "mongoose": "4.1.6",
