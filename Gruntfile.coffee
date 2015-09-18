@@ -94,7 +94,7 @@ module.exports = (grunt) ->
       _.each file.src, (f) ->
         content = grunt.file.read(f, { encoding: 'utf8' } )
         outfile = f.replace('.txt', '.corpus')
-        grunt.file.write outfile, content.toLowerCase().replace(/[\[\]0-9.,|"'\/\\#!$%?\^&\*;:{}=\-_`~()]/g,"").replace(/\s{1,}/g,'_')
+        grunt.file.write outfile, content.toLowerCase().replace(/[\[\]0-9.,|"'\/\\#!$%?\^&\*»«;:{}=\-_`~()]/g,"").replace(/\s{1,}/g,'_')
 
 
   grunt.loadNpmTasks 'grunt-contrib-concat'
@@ -103,5 +103,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jst'
   grunt.loadNpmTasks 'grunt-mocha-test'
-  grunt.registerTask 'default', [ 'concat', 'sass','coffee', 'jst', 'mochaTest', 'watch' ]
+  grunt.registerTask 'default', [ 'prep_corpus','concat', 'sass','coffee', 'jst', 'mochaTest', 'watch' ]
   return

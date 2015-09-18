@@ -44,22 +44,8 @@ describe "models/corpus", ->
   it 'makes a start key', ->
     corpus.startKey().should.eql ['^','^']
 
+  it 'has a default max length', ->
+    corpus.maxWordLength.should.equal 20
 
-
-
-  # it 'makes a word', ->
-  #   # console.log("word", corpus.word())
-  #   # corpus.word().should.eql 'foo'
-  #   word = ''
-  #   char = ''
-  #   key = corpus.startKey()
-  #   console.log key
-  #   while char != corpus.endToken
-  #     console.log word
-  #     selection = Math.random * corpus.total(key)
-  #     console.log char, key, selection
-  #     char = corpus.choice(key, selection)
-  #     console.log char
-  #     word += char
-  #     key.push char
-  #     key.shift()
+  it 'makes a word', ->
+    corpus.word().should.not.eql ''
