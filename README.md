@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/slabgorb/townomatic.svg?branch=master)](https://travis-ci.org/slabgorb/townomatic)
+
 Makes towns and communities on the fly for RPG referees.
 
 Installation:
