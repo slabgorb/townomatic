@@ -39,8 +39,11 @@ describe "models/being", ->
   eve.setValue('genes', ["375AEE", "D51034", "256A6C", "C2F3EC", "C2CB0D", "55FC30", "117084", "417454", "D38287", "DC8F4D", "EAEE37", "53DA47", "D94E5E", "73F679", "700664", "F2F90D", "7242A2", "578BE7", "B47688", "BAEC58", "3E66E6", "45B0BF", "E7C0C6", "F54BF6", "C95AEF", "6D51A5", "52F5B7", "B7DCF4", "29A44D", "B20F64", "E52B73", "570819", "EB46C0", "508748", "B22FA9", "41AE8D", "5429F8", "710C5D", "4F3FD9", "7BADBD", "D496CC", "1910E8", "4D792E", "B370F9", "E96CAF", "7FF124", "C103B8", "6BFEA0", "8DF404", "5D4401", "E566DF", "C9A4B6", "3DA753", "616B78", "5CB510", "AE3597", "98F883", "1CF070", "2E3852", "707D15", "9E8CD6", "B7794F", "924002", "D56187", "0966FE", "70A18E", "BB31D3", "8C8C2C", "487D25", "12A413", "CA533B", "399F71", "34FE56", "E5EEC4", "38AE9B", "DAF030", "0C5688", "E1A035", "60D213", "254A16", "3B5BD0", "9CA128", "158C3D", "69507F", "FC8C97", "E3B49C", "4C6A9D", "C5A634", "585CC2", "7B9784", "DD3BE1", "4B438A", "C0498E", "DFA8CC", "1C1818", "300495", "6516BA", "8CC1A3", "AAEEA1", "3A0722", "CE9E6E", "EEA1CA", "79B396", "D6F355", "EC64EA", "7C5E9D", "07DFA9", "5D3BAC", "7D35FB", "FD3E2D", "AAEE35", "975829", "EF9817", "FA0DFD", "CCE55B", "761963", "52A834", "E28F0B", "537C44", "0EA926", "4D1BA5", "17287C", "C5D185", "74758C", "FE51A2", "1174D5", "DA9E9C", "EBB8E5" ])
   eve.save()
   abel = mongoose.models.Being.reproduce(adam, eve, 'Abel', 'Male')
+  abel.save()
   cain = mongoose.models.Being.reproduce(adam, eve, 'Cain', 'Male')
+  cain.save()
   jezebel = mongoose.models.Being.reproduce(adam, eve, 'Jezebel', 'Female')
+  jezebel.save()
 
 
 
@@ -90,8 +93,17 @@ describe "models/being", ->
     _.map(eve.children, (child) -> child.toString()).should.eql [abel.id, cain.id, jezebel.id]
 
   it "knows about siblings", ->
+    console.log abel.parents
+    mongoose.models.Being.find {}, (err, beings) ->
+      console.log beings
+
+
+    # mongoose.models.Being.findOne({'name.first':'Abel'})
+    #   .populate('parents')
+    #   .exec (error, being) ->
+    #     console.log being
+    # console.log abel.parents
     # _.each abel.parents, (parentId) ->
-    #   mongoose.models.Being.findOne({ id: parentId }).exec (error, parent) ->
-    #     console.log error
-    #     console.log parent.name
+    #   mongoose.models.Being.findById parentId,  (error, parent) ->
+    #     console.log parent
     #abel.siblings().should.eql [cain.id, jezebel.id]

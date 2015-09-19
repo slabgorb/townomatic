@@ -1,12 +1,17 @@
 class Townomatic.App extends Backbone.Router
   routes:
     "": "home"
-    "species": "species"
-    "/beings/:species": "beings"
+    "/species": "speciesList"
+    "/beings/:species": "beingsList"
     "/being/:id": "being"
+    "/corpora": "corpusList"
+    "/corpus/:id": "corpus"
+
+
 
   initialize: (options) ->
-    console.log "starting router", @routes
+    @logger = Townomatic.logger
+    @logger.debug "starting router", @routes
 
   # execute: (callback, args, name) ->
   #   console.log "executing", callback, args, name
@@ -16,14 +21,16 @@ class Townomatic.App extends Backbone.Router
     @view = new Townomatic.SpeciesListView()
     console.log @view
 
+  corpusList: ->
+    @logger.debug 'route: corpus'
 
   species: ->
-    console.log "route: species"
+    @logger.debug "route: species"
     collection = new Townomatic.SpeciesCollection()
     view = new Townomatic.SpeciesCollectionView()
 
   being: (id) ->
-    console.log "route: being #{id}"
+    @logger.debug "route: being #{id}"
     model = new Townomatic.BeingModel({id: id})
     view = new Townomatic.BeingView({model: @model})
 

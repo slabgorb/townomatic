@@ -63,11 +63,6 @@ module.exports = (grunt) ->
           'config/*.coffee'
         ]
         options: reload: true
-
-      mocha:
-        files: ['**/*.coffee']
-        tasks: ['mochaTest']
-
       css:
         files: '**/*.scss',
         tasks: ['sass'],
@@ -83,10 +78,12 @@ module.exports = (grunt) ->
         tasks: 'coffee'
         options:
           livereload: true
-
       corpus:
         files: 'corpora/*.txt'
         tasks: 'prep_corpus'
+      mocha:
+        files: ['src/**/*.coffee', 'spec/**/*.coffee']
+        tasks: ['mochaTest']
 
   grunt.registerMultiTask 'prep_corpus', () ->
     _.each @files.slice(), (file) ->

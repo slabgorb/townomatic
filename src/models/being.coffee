@@ -23,9 +23,9 @@ exports.register_model = (mongoose) ->
       type: Array
       default: -> (('000000'.replace /0/g, ->  (~ ~(Math.random() * 16)).toString(16).toUpperCase()) for i in [1..128])
     living: {type: Boolean, default: true}
-    children: [type: Schema.Types.ObjectId, ref: 'Being']
-    parents: [type: Schema.Types.ObjectId, ref: 'Being']
-    spouses: [type: Schema.Types.ObjectId, ref: 'Being']
+    children: [{type: Schema.Types.ObjectId, ref: 'Being'}]
+    parents: [{type: Schema.Types.ObjectId, ref: 'Being'}]
+    spouses: [{type: Schema.Types.ObjectId, ref: 'Being'}]
 
   Being.methods.marry  = (spouse) ->
     @spouses.push spouse.id
@@ -58,6 +58,8 @@ exports.register_model = (mongoose) ->
     parent.children.push child
     mate.children.push child
     child
+
+
 
   Being.methods.siblings = ->
     siblings = []
