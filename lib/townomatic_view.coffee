@@ -1,12 +1,20 @@
 class Townomatic.View extends Backbone.View
   initialize: (options)->
-    console.log 'initializing', JST
+    @logger = options.logger
+    @logger.debug 'initializing', JST, @templateName
     @template = JST["app/templates/#{@templateName}.html"]
 
 
-
 class Townomatic.ListItemView extends Townomatic.View
+  initialize: (options) ->
+    @model = options.model
+    @logger = options.logger
+    @logger.debug 'list item view', options, @templateName
 
+  render: ->
+    @logger.debug 'child model', @model
+    @$el.html @template(@model.toJSON())
+    return @
 
 class Townomatic.ListView extends Townomatic.View
   childClass: Townomatic.ListItemView
@@ -18,20 +26,23 @@ class Townomatic.ListView extends Townomatic.View
     super(options)
     @collection = new @collectionClass
     @listenTo @collection, 'add', @addOne
-    @el = '#main'
+    @el = $('#main')
     @childViews = []
     @render()
     @collection.fetch()
 
   render: ->
-    console.log 'rendering'
-    @$el.append @template()
+    @logger.debug 'rendering', @$el, @template()
+    @el.html @template()
 
   fetched: ->
     _.each @childView, (child) =>
-      @$childContainer.append(child.render().el())
+      @logger.debug 'child', child, childContainer
+      @$(@childContainer).append(child.render().el())
 
   addOne: (model) ->
-    child =  new @childClass( { model: @model } )
+    child =  new @childClass( { model: model, logger: @logger } )
     @childViews.push child
-    @$childContainer.append(child.render().el())
+    @logger.debug 'add one child', child
+
+    @$(@childContainer).append(child.render().el())

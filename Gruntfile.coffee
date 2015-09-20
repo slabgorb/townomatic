@@ -47,7 +47,8 @@ module.exports = (grunt) ->
         sourceMap: true
         files:
           'public/js/app.js': [
-            'lib/townomatic.coffee',
+            'lib/townomatic.coffee'
+            'lib/townomatic_logger.coffee'
             'lib/townomatic_model.coffee'
             'lib/townomatic_collection.coffee'
             'lib/townomatic_view.coffee'
@@ -65,7 +66,7 @@ module.exports = (grunt) ->
         options: reload: true
       css:
         files: '**/*.scss',
-        tasks: ['sass'],
+        tasks: 'sass',
         options:
           livereload: true
       jst:
@@ -74,7 +75,7 @@ module.exports = (grunt) ->
         options:
           livereload: true
       coffee:
-        files: 'app/**/*.coffee',
+        files: ['app/**/*.coffee','lib/**/*.coffee'],
         tasks: 'coffee'
         options:
           livereload: true
@@ -83,7 +84,7 @@ module.exports = (grunt) ->
         tasks: 'prep_corpus'
       mocha:
         files: ['src/**/*.coffee', 'spec/**/*.coffee']
-        tasks: ['mochaTest']
+        tasks: 'mochaTest'
 
   grunt.registerMultiTask 'prep_corpus', () ->
     _.each @files.slice(), (file) ->
@@ -100,5 +101,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jst'
   grunt.loadNpmTasks 'grunt-mocha-test'
-  grunt.registerTask 'default', [ 'prep_corpus','concat', 'sass','coffee', 'jst', 'mochaTest', 'watch' ]
+  grunt.registerTask 'default', [ 'watch' ]
   return

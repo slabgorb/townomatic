@@ -8,7 +8,8 @@ _ = require 'underscore'
 staticServer = require('node-static')
 
 BACKEND_PORT = 8082
-FRONTEND_PORT = 8080
+FRONTEND_PORT = 8081
+
 
 server = restify.createServer()
 server.use restify.bodyParser()
