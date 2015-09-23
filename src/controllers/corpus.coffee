@@ -1,5 +1,13 @@
 _ = require 'underscore'
 
+exports.parse = (Corpus) ->
+  (req, res, next) ->
+    Corpus.findOne {_id: req.params.id }
+      .exec (err, corpus) ->
+        corpus.parse()
+        corpus.save()
+
+
 exports.getCorpora = (Corpus) ->
   (req, res, next) ->
     Corpus.find (err, data) ->
@@ -37,4 +45,5 @@ exports.createCorpus = (Corpus) ->
       language: req.params.language
       lookback: req.params.lookback
       (err, corpus) ->
+        console.log corpus
         res.send corpus

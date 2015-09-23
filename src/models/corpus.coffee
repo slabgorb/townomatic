@@ -13,7 +13,8 @@ exports.register_model = (mongoose) ->
       min: 1
       max: 5
     language: [ {type: String, enum: corpora} ]
-    histogram: Schema.Types.Mixed
+    histogram:
+      type: Schema.Types.Mixed
     maxWordLength:
       type: Number
       default: 20
@@ -22,9 +23,9 @@ exports.register_model = (mongoose) ->
     _.reduce @histogram[key], ((memo, h) -> memo += h), 0
 
 
-  Corpus.methods.parse = ->
+  Corpus.methods.parse  = (lookback = 2) ->
+    console.log 'parsing corpus'
     histo = {}
-
     add = (key, char) ->
       histo[key] ?= {}
       histo[key][char] ?= 0
@@ -32,13 +33,18 @@ exports.register_model = (mongoose) ->
     _.each @language, (language) =>
       corpusText = fs.readFileSync("corpora/#{language}.corpus", 'utf8').split("_")
       _.each corpusText, (word) =>
-        key = @startKey()
+        key = new Array(lookback + 1).join('^').split('')
         _.each word, (char) ->
           add key,char
           key.push char
           key.shift()
         add key, "_"
+    console.log 'done parsing corpus'
     @histogram = histo
+
+  Corpus.pre 'save', (next) ->
+    @parse()
+    next()
 
   Corpus.methods.choice = (key, selection) ->
     position = 0
@@ -49,7 +55,8 @@ exports.register_model = (mongoose) ->
     _.first match
 
   Corpus.methods.startKey = ->
-     new Array(@lookback + 1).join('^').split('')
+    console.log "getting start key"
+    new Array(@lookback + 1).join('^').split('')
 
   Corpus.methods.startKeys = ->
     _.filter(_.keys(@histogram), (k) -> _.first(k) == '^')

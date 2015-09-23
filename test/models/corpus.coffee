@@ -6,10 +6,9 @@ describe "models/corpus", ->
   corpus = new mongoose.models.Corpus
     language: ['french','german']
     lookback: 2
-  corpus.parse()
   corpus.save()
 
-  it 'creates a histogram', ->
+  it 'creates a histogram', () ->
     corpus.histogram.should.exist
     corpus.total(['a','b']).should.equal 2210
     corpus.histogram[['a','b']].should.eql {
@@ -35,8 +34,7 @@ describe "models/corpus", ->
         z: 5,
         'î': 12
       }
-    corpus.save (err, corpus) ->
-      (err == null).should.be.true
+
 
   it 'chooses from a histogram key', ->
     corpus.choice(['a','b'], 1).should.equal 'i'
