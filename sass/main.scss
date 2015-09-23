@@ -47,4 +47,26 @@ body {
       }
     }
   }
+
+
 }
+
+  .node {
+    stroke: #333;
+    fill: #888;
+    text {
+      font-size: 8px;
+    }
+  }
+
+  .link {
+    stroke: #999;
+    stroke-width: 0.5px;
+    stroke-opacity: .6;
+    &.over {
+      stroke: #fff;
+    }
+    &.out {
+      stroke: #999;
+    }
+  }

@@ -1,6 +1,11 @@
-<li class="corpus-list-item">
-  <ul>
-    <li><%= language %></li>
-    <li><%= name %></li>
+<li class="corpus-list-item list-group-item">
+  <div class="media">
+    <div class="media-left media-top histogram" id="histogram-<%= _id %>">
+    </div>
+    <div class="media-body">
+      <%= language %>
+      <%= name %>
+    </div>
+    <div class="media-right media-top"><span class="glyphicon glyphicon-remove"></span></div>
   </ul>
 </li>

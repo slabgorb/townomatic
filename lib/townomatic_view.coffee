@@ -10,9 +10,11 @@ class Townomatic.ListItemView extends Townomatic.View
   initialize: (options) ->
     super(options)
     @model = options.model
+    @el = options.el
 
   render: ->
-    @$el.html @template(@model.toJSON())
+    @logger.debug 'rendering list item', @model
+    @$el.append @template(@model.toJSON())
     return @$el
 
 class Townomatic.ListView extends Townomatic.View
@@ -37,10 +39,10 @@ class Townomatic.ListView extends Townomatic.View
   fetched: ->
     _.each @childView, (child) =>
       @logger.debug 'child', child, childContainer
-      @$(@childContainer).append(child.render().el)
+      child.render()
 
   addOne: (model) ->
-    child =  new @childClass( { model: model, logger: @logger } )
+    child =  new @childClass( { model: model, logger: @logger, el: @childContainer } )
     @childViews.push child
     @logger.debug 'add one child', child, $(@childContainer)
-    $(@childContainer).append(child.render())
+    child.render()
