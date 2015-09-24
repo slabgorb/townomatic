@@ -6,7 +6,7 @@ exports.getSpecies = (Species) ->
       Species.findOne {species: req.params.species }, (err, data) ->
         res.send data
     else
-      mongoose.models.Species.find (err, data) ->
+      Species.find (err, data) ->
         res.send data
 
 exports.deleteSpecies =  (Species) ->
