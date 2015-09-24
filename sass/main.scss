@@ -21,6 +21,18 @@ body {
 
 
 #main {
+  #color-key {
+    > div {
+      width: 50px;
+      height: 20px;
+    }
+    &:nth-child(1) { background: $color_banquette; }
+    &:nth-child(2) { background: $color_strawberry_sugar; }
+    &:nth-child(3) { background: $color_creme_de_la_creme; }
+    &:nth-child(4) { background: $color_powderpuff; }
+    &:nth-child(5) { background: $color_charlotte; }
+
+  }
   h1, h2, h3, h4 {
     font-family: $font_serif;
   }
@@ -47,26 +59,16 @@ body {
       }
     }
   }
+  .media {
+    .histogram {
+      text {
+        &.key {
+          font-size: 5px;
+        }
+      }
 
+
+    }
+  }
 
 }
-
-  .node {
-    stroke: #333;
-    fill: #888;
-    text {
-      font-size: 8px;
-    }
-  }
-
-  .link {
-    stroke: #999;
-    stroke-width: 0.5px;
-    stroke-opacity: .6;
-    &.over {
-      stroke: #fff;
-    }
-    &.out {
-      stroke: #999;
-    }
-  }
