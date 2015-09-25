@@ -26,6 +26,7 @@ exports.register_model = (mongoose) ->
     children: [{type: Schema.Types.ObjectId, ref: 'Being'}]
     parents: [{type: Schema.Types.ObjectId, ref: 'Being'}]
     spouses: [{type: Schema.Types.ObjectId, ref: 'Being'}]
+    expression: Schema.Types.Mixed
 
   Being.methods.marry  = (spouse) ->
     @spouses.push spouse.id
@@ -79,6 +80,7 @@ exports.register_model = (mongoose) ->
   # expression becomes.
   #
   Being.methods.express = (exps) ->
+    console.log "expressing genetics for", @name
     result = {}
     exps ?= @species.expression
     _.each exps, (value, key) =>
@@ -89,7 +91,11 @@ exports.register_model = (mongoose) ->
           regexp = new RegExp(String(expression), 'g')
           matches = @genes.join('').match(regexp)
           result[key] = if matches? then matches.length else 0
-    result
+    @expression = result
 
+  # Being.post 'save', (next) ->
+  #   console.log 'in post save'
+  #   @express()
+  #   next()
 
   mongoose.model 'Being', Being

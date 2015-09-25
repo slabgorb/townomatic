@@ -83,7 +83,7 @@ module.exports = (grunt) ->
         files: 'corpora/*.txt'
         tasks: 'prep_corpus'
       mocha:
-        files: ['src/**/*.coffee', 'spec/**/*.coffee']
+        files: ['src/**/*.coffee', 'test/**/*.coffee']
         tasks: 'mochaTest'
 
   grunt.registerMultiTask 'prep_corpus', () ->

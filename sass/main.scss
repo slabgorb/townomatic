@@ -1,73 +1,47 @@
 @import 'library';
+@import 'bootstrap-override';
 body {
   font-family: $font_sans;
-
-  background-color: $color_powderpuff;
-  color: $color_banquette;
+  background-color: $color_background;
+  color: $color_text;
   margin: 0;
-  padding: 0;
-
-  .navbar {
-    background-color: $color_creme_de_la_creme;
-    a.navbar-brand {
+  padding: 0 0 50px 0;
+  #main {
+    padding: 20px;
+    h1, h2, h3, h4 {
       font-family: $font_serif;
-      img {
-        margin-top: -5px;
-      }
     }
-  }
-}
-
-
-
-#main {
-  #color-key {
-    > div {
-      width: 50px;
-      height: 20px;
-    }
-    &:nth-child(1) { background: $color_banquette; }
-    &:nth-child(2) { background: $color_strawberry_sugar; }
-    &:nth-child(3) { background: $color_creme_de_la_creme; }
-    &:nth-child(4) { background: $color_powderpuff; }
-    &:nth-child(5) { background: $color_charlotte; }
-
-  }
-  h1, h2, h3, h4 {
-    font-family: $font_serif;
-  }
-  ul {
-    list-style-type: none;
-    li {
-      font: normal normal 12px/14px $font_sans;
-    }
-    &.form {
-      background-color: $color_charlotte;
-      padding: 20px;
-      label {
-        display: inline-block;
-        text-align: right;
-        width: 100px;
-      }
-    }
-    &.genes {
+    ul {
+      list-style-type: none;
       li {
-        display: inline-block;
-        width: 15px;
-        height: 10px;
-        float: left;
+        font: normal normal 12px/14px $font_sans;
       }
-    }
-  }
-  .media {
-    .histogram {
-      text {
-        &.key {
-          font-size: 5px;
+      &.form {
+        background-color: $color_secondary;
+        padding: 20px;
+        label {
+          display: inline-block;
+          text-align: right;
+          width: 100px;
         }
       }
-
-
+      &.genes {
+        li {
+          display: inline-block;
+          width: 15px;
+          height: 10px;
+          float: left;
+        }
+      }
+    }
+    .media {
+      .histogram {
+        text {
+          &.key {
+            font-size: 5px;
+          }
+        }
+      }
     }
   }
 

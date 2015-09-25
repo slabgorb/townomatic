@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
      @import url('stylesheets/bootstrap.css');
      @import url('stylesheets/main.css');
@@ -26,28 +27,10 @@
     <meta name="theme-color" content="#ffffff">
   </head>
 
-  <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-            <img alt="Townomatic" src="images/heraldry/30/tower.png">
-          </a>
-          <a class="navbar-brand" href="#">
-            Townomatic
-          </a>
-        </div>
-        <div class="container-fluid" id='color-key'>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-    </nav>
-    <div id="main">
-    </div>
+  <body id="bootstrap-overrides">
+    <div id="header"></div>
+    <div class="container-fluid" id="main"></div>
+    <div id="footer"></div>
 
     <script type="text/javascript" src="js/vendor.js"></script>
     <script type="text/javascript" src="js/templates.js"></script>

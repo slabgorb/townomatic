@@ -1,5 +1,3 @@
-window.Townomatic ?= {}
-
 class Townomatic.BeingView extends Backbone.View
 
   initialize: (options) ->

@@ -3,7 +3,6 @@ _ = require 'underscore'
 mongoose = require('mongoose')
 
 
-
 describe "models/being", ->
   ex =
     "skin color":

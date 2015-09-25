@@ -2,10 +2,11 @@ class Townomatic.App
   constructor: ->
     @logger = new Townomatic.logger()
     @router = new Townomatic.Router({logger: @logger})
+    @header = new Townomatic.HeaderView({logger: @logger})
+
 
   initialize: ->
     Backbone.history.start()
-    @router.navigate('corpora', {trigger: true});
 
 class Townomatic.Router extends Backbone.Router
 
@@ -17,29 +18,32 @@ class Townomatic.Router extends Backbone.Router
     "being/:id": "being"
     "corpora": "corpusList"
     "corpus/:id": "corpus"
+    "communities": "communityList"
 
 
 
   initialize: (options) ->
     @logger = options.logger
-    @logger.debug "starting router", @routesendGroup
+    @logger.debug "starting router", @routes
 
   execute: (callback, args, name) ->
     @logger.debug "executing", callback, args, name
+    @view.remove() if @view?
     callback.call(@)
 
   home: ->
     @logger.debug "route: home"
-    @view = new Townomatic.SpeciesListView({logger: @logger})
-    @logger.debug
 
   corpusList: ->
-    @logger.debug 'route: corpus'
+    @logger.debug 'route: corpusList'
     @view = new Townomatic.CorpusListView({logger: @logger})
-
 
   species: ->
     @logger.debug "route: species"
+
+
+  speciesList: ->
+    @logger.debug "route: speciesList"
     collection = new Townomatic.SpeciesCollection({logger: @logger})
     view = new Townomatic.SpeciesCollectionView({logger: @logger})
 

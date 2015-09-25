@@ -10,7 +10,6 @@ exports.getBeing = (Being) ->
     Being.findOne {_id: req.params.id }
       .populate('species')
       .exec (err, being) ->
-        console.log being
         being.setValue('expression', being.express())
         res.send being
 
@@ -37,6 +36,7 @@ exports.updateBeing = (Being) ->
 
 exports.createBeing = (Being) ->
   (req, res, next) ->
+    console.log "Creating Being", req.params
     Being.create
       species: req.params.species
       name: {first: req.params.name.first, last: req.params.name.last}
@@ -44,4 +44,5 @@ exports.createBeing = (Being) ->
       occupation: req.params.occupation
       gender: req.params.gender
       (err, being) ->
+        console.log being
         res.send being

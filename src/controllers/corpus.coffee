@@ -45,5 +45,4 @@ exports.createCorpus = (Corpus) ->
       language: req.params.language
       lookback: req.params.lookback
       (err, corpus) ->
-        console.log corpus
         res.send corpus

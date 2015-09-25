@@ -36,7 +36,8 @@
     "grunt-mocha": "^0.4.13",
     "grunt-mocha-test": "^0.12.7",
     "mocha": "^2.3.2",
-    "should": "^7.1.0"
+    "should": "^7.1.0",
+    "supertest": "^1.1.0"
   },
   "dependencies": {
     "cors": "^2.7.1",

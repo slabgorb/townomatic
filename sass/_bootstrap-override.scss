@@ -1,0 +1,27 @@
+#bootstrap-overrides {
+  a {
+    color: $color_accent;
+  }
+
+  .navbar {
+    background-color: $color_secondary;
+    color: $color_primary;
+    a.navbar-brand {
+      font-family: $font_serif;
+      img {
+        margin-top: -5px;
+      }
+    }
+  }
+  .navbar-default {
+    border-color: $color_secondary;
+  }
+  .list-group, .list-group-item {
+    background-color: $color_background;
+    border-color: $color_secondary;
+  }
+
+  .media {
+    background-color: $color_secondary;
+  }
+}
