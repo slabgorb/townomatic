@@ -9,16 +9,29 @@
     }
   }
 
+  .jumbotron {
+    background-color: $color_secondary;
+    h1, h2 {
+      border-bottom: 1px solid $color_accent;
+      padding-bottom: 0px;
+    }
+    border-radius: 3px;
+  }
   .navbar {
     background-color: $color_secondary;
     color: $color_primary;
     a.navbar-brand {
       font-family: $font_serif;
+      text-transform: capitalize;
       img {
         margin-top: -5px;
       }
     }
+
     border-radius: 0px;
+  }
+  .navbar-nav {
+    font-weight: bold;
   }
   .navbar-default {
     border: 0px;

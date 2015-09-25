@@ -9,6 +9,10 @@ class Townomatic.View extends Backbone.View
       render()
       @postRender()
 
+  render: ->
+    @logger.debug 'rendering', @$el, @template()
+    @el.html @template()
+
   preRender: ->
     _.noop()
 
@@ -52,11 +56,6 @@ class Townomatic.ListView extends Townomatic.View
 
   events:
     'click .add-new': 'eventNew'
-
-
-  render: ->
-    @logger.debug 'rendering', @$el, @template()
-    @el.html @template()
 
   eventNew: ->
     @logger.debug 'adding new'

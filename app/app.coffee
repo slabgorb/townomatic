@@ -4,7 +4,6 @@ class Townomatic.App
     @router = new Townomatic.Router({logger: @logger})
     @header = new Townomatic.HeaderView({logger: @logger})
 
-
   initialize: ->
     Backbone.history.start()
 
@@ -14,13 +13,12 @@ class Townomatic.Router extends Backbone.Router
   routes:
     "": "home"
     "species": "speciesList"
-    "beings/:species": "beingsList"
+    "beings": "beingList"
     "being/:id": "being"
     "languages": "languageList"
     "language/:id": "language"
     "communities": "communityList"
-
-
+    "community/:id": "community"
 
   initialize: (options) ->
     @logger = options.logger
@@ -33,13 +31,11 @@ class Townomatic.Router extends Backbone.Router
 
   home: ->
     @logger.debug "route: home"
+    @view = new Townomatic.HomeView({logger: @logger})
 
   languageList: ->
-    @logger.debug 'route: languageList'
+    @logger.debug 'route: language list'
     @view = new Townomatic.LanguageListView({logger: @logger})
-
-
-
 
   species: ->
     @logger.debug "route: species"
@@ -53,9 +49,13 @@ class Townomatic.Router extends Backbone.Router
     model = new Townomatic.BeingModel({id: id, logger: @logger})
     view = new Townomatic.BeingView({model: @model, logger: @logger})
 
-  beings: (species) ->
-    @logger.debug "route: beings"
+  beingList: () ->
+    @logger.debug "route: being list"
     view = new Townomatic.BeingListView({logger: @logger})
+
+  communityList: () ->
+    @logger.debug "route: communities list"
+    view = new Townomatic.CommunityListView({logger: @logger})
 
 $ ->
   app = new Townomatic.App()

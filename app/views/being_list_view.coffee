@@ -1,6 +1,7 @@
 class Townomatic.BeingListView extends Townomatic.ListView
-  templateName = 'beings_collection'
-  childClass = Townomatic.BeingItemView
+  templateName: 'being_list'
+  childClass = Townomatic.BeingListItemView
+  collectionClass = Townomatic.BeingCollection
 
   events:
     "click .add-being": 'addNew'
@@ -8,7 +9,6 @@ class Townomatic.BeingListView extends Townomatic.ListView
 
   addNew: () ->
     attributes = _. object(_.map(@$('#new-being input, #new-being select'), (input) -> [$(input).attr('data-field'),  $(input).val()]) )
-    console.log attributes
     attributes =
       name:
         first: attributes['name.first']
@@ -17,7 +17,6 @@ class Townomatic.BeingListView extends Townomatic.ListView
       genetics: attributes.genetics
       gender: attributes.gender
       age: attributes.age
-    console.log attributes
     model = new Townomatic.BeingModel()
     model.set(attributes)
 

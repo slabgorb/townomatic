@@ -1,0 +1,23 @@
+<form>
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" data-field="name.first"/>
+    <label>Last Name</label>
+    <input type="text" data-field="name.last"/>
+  </div>
+  <div class="form-group">
+      <label>Occupation</label>
+      <input type="text" data-field="occupation"/>
+  </div>
+  <div class="form-group">
+      <label>Gender</label>
+      <select data-field="gender">
+        <option>Male</option>
+        <option>Female</option>
+        <option>Neuter</option>
+      </select>
+      <label>Age</label>
+      <input type="number" min="0"  data-field="age"/>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>

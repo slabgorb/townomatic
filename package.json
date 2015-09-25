@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "grunt mochaTest",
-    "start": "(coffee --compile --output dist --watch src &);./node_modules/nodemon/bin/nodemon.js ./dist/index.js"
+    "start": "./node_modules/nodemon/bin/nodemon.js --watch dist ./dist/index.js"
   },
   "repository": {
     "type": "git",
