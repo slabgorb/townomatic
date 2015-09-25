@@ -12,9 +12,12 @@
         margin-top: -5px;
       }
     }
+    border-radius: 0px;
   }
   .navbar-default {
-    border-color: $color_secondary;
+    border: 0px;
+
+    border-bottom: 1px solid $color_accent;
   }
   .list-group, .list-group-item {
     background-color: $color_background;
@@ -22,6 +25,6 @@
   }
 
   .media {
-    background-color: $color_secondary;
+    background-color: $color_background;
   }
 }

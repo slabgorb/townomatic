@@ -17,9 +17,14 @@ class Townomatic.ListItemView extends Townomatic.View
     @$el.append @template(@model.toJSON())
     return @$el
 
+class Townomatic.FormView extends Townomatic.View
+  formName: ''
+
+
 class Townomatic.ListView extends Townomatic.View
   childClass: Townomatic.ListItemView
   templateName: ''
+  formTemplateName: ''
   childContainer: '.children'
   collectionClass: Townomatic.Collection
 
@@ -27,6 +32,8 @@ class Townomatic.ListView extends Townomatic.View
     super(options)
     @collection = new @collectionClass
     @listenTo @collection, 'add', @addOne
+    @formTemplate  = JST["app/templates/#{@formTemplateName}.html"]
+
     @el = $('#main')
     @childViews = []
     @render()
@@ -35,6 +42,8 @@ class Townomatic.ListView extends Townomatic.View
   render: ->
     @logger.debug 'rendering', @$el, @template()
     @el.html @template()
+    @el.append @formTemplate()
+
 
   fetched: ->
     _.each @childView, (child) =>

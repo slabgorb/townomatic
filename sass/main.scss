@@ -6,6 +6,8 @@ body {
   color: $color_text;
   margin: 0;
   padding: 0 0 50px 0;
+  font: normal normal 14px/18px $font_serif;
+
   #main {
     padding: 20px;
     h1, h2, h3, h4 {
@@ -13,9 +15,6 @@ body {
     }
     ul {
       list-style-type: none;
-      li {
-        font: normal normal 12px/14px $font_sans;
-      }
       &.form {
         background-color: $color_secondary;
         padding: 20px;
@@ -34,15 +33,5 @@ body {
         }
       }
     }
-    .media {
-      .histogram {
-        text {
-          &.key {
-            font-size: 5px;
-          }
-        }
-      }
-    }
   }
-
 }
