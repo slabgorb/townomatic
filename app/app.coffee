@@ -16,8 +16,8 @@ class Townomatic.Router extends Backbone.Router
     "species": "speciesList"
     "beings/:species": "beingsList"
     "being/:id": "being"
-    "corpora": "corpusList"
-    "corpus/:id": "corpus"
+    "languages": "languageList"
+    "language/:id": "language"
     "communities": "communityList"
 
 
@@ -34,9 +34,9 @@ class Townomatic.Router extends Backbone.Router
   home: ->
     @logger.debug "route: home"
 
-  corpusList: ->
-    @logger.debug 'route: corpusList'
-    @view = new Townomatic.CorpusListView({logger: @logger})
+  languageList: ->
+    @logger.debug 'route: languageList'
+    @view = new Townomatic.LanguageListView({logger: @logger})
 
   species: ->
     @logger.debug "route: species"

@@ -2,16 +2,17 @@ utils = require '../utils'
 _ = require 'underscore'
 mongoose = require('mongoose')
 
-describe "models/corpus", ->
-  corpus = new mongoose.models.Corpus
-    language: ['french','german']
+describe "models/language", ->
+  language = new mongoose.models.Language
+    name: 'test'
+    corpora: ['french','german']
     lookback: 2
-  corpus.save()
+  language.save()
 
   it 'creates a histogram', () ->
-    corpus.histogram.should.exist
-    corpus.total(['a','b']).should.equal 2210
-    corpus.histogram[['a','b']].should.eql {
+    language.histogram.should.exist
+    language.total(['a','b']).should.equal 2210
+    language.histogram[['a','b']].should.eql {
         _: 91,
         a: 91,
         b: 17,
@@ -37,13 +38,13 @@ describe "models/corpus", ->
 
 
   it 'chooses from a histogram key', ->
-    corpus.choice(['a','b'], 1).should.equal 'i'
+    language.choice(['a','b'], 1).should.equal 'i'
 
   it 'makes a start key', ->
-    corpus.startKey().should.eql ['^','^']
+    language.startKey().should.eql ['^','^']
 
   it 'has a default max length', ->
-    corpus.maxWordLength.should.equal 20
+    language.maxWordLength.should.equal 20
 
   it 'makes a word', ->
-    corpus.word().should.not.eql ''
+    language.word().should.not.eql ''

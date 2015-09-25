@@ -1,4 +1,4 @@
-class Townomatic.CorpusModel extends Townomatic.Model
+class Townomatic.LanguageModel extends Townomatic.Model
 
   defaults:
     lookback: 2

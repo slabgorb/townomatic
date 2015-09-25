@@ -6,7 +6,7 @@ class Townomatic.HeaderView extends Townomatic.View
     @template = JST["app/templates/#{@templateName}.html"]
     @logger.debug 'template', "app/templates/#{@templateName}.html", @template
     @nav =  [
-      { label: "Corpora", path: "#corpora" }
+      { label: "Languages", path: "#languages" }
       { label: "Species", path: "#species" }
       { label: "Communities", path: "#communities" }
       { label: "Beings", path: "#beings" }

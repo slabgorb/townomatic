@@ -5,7 +5,7 @@ request = require('supertest')
 
 describe 'routes/being', (done) ->
   url = 'http://localhost:8082'
-  it 'should save a being', ->
+  it.skip 'should save a being', ->
     body =
       name:
         first: 'Joe'
@@ -15,8 +15,8 @@ describe 'routes/being', (done) ->
     request url
       .get '/beings'
       .set('Accept', 'application/json')
-      .end (err, res) ->
-        console.log res
+      #.end (err, res) ->
+      #  console.log res
       # #.send "foo"
       # .end (err, res) ->
       #   console.log res

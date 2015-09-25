@@ -3,7 +3,7 @@ _ = require 'underscore'
 config = require '../src/config'
 
 
-_.each ['Species', 'Being', 'Community', 'Corpus'], (file) ->
+_.each ['Species', 'Being', 'Community', 'Language'], (file) ->
   delete mongoose.connection.models[file]
   require("../src/models/#{file.toLowerCase()}").register_model(mongoose)
 

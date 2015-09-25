@@ -91,8 +91,7 @@ describe "models/being", ->
     _.map(adam.children, (child) -> child.toString()).should.eql [abel.id, cain.id, jezebel.id]
     _.map(eve.children, (child) -> child.toString()).should.eql [abel.id, cain.id, jezebel.id]
 
-  it "knows about siblings", ->
-    console.log abel.parents
+  it.skip "knows about siblings", ->
     mongoose.models.Being.find {}, (err, beings) ->
       console.log beings
 

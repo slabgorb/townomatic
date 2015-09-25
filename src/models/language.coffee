@@ -5,48 +5,46 @@ corpora = _.uniq(_.map fs.readdirSync('corpora'), (file) -> file.split('.')[0])
 
 exports.register_model = (mongoose) ->
   Schema = mongoose.Schema
-  Corpus = new Schema
+  Language = new Schema
     name: String
     lookback:
       type: Number
       default: 2
       min: 1
       max: 5
-    language: [ {type: String, enum: corpora} ]
+    corpora: [ {type: String, enum: corpora} ]
     histogram:
       type: Schema.Types.Mixed
     maxWordLength:
       type: Number
       default: 20
 
-  Corpus.methods.total = (key) ->
+  Language.methods.total = (key) ->
     _.reduce @histogram[key], ((memo, h) -> memo += h), 0
 
 
-  Corpus.methods.parse  = (lookback = 2) ->
-    console.log 'parsing corpus'
+  Language.methods.parse  = (lookback = 2) ->
     histo = {}
     add = (key, char) ->
       histo[key] ?= {}
       histo[key][char] ?= 0
       histo[key][char] += 1
-    _.each @language, (language) =>
-      corpusText = fs.readFileSync("corpora/#{language}.corpus", 'utf8').split("_")
-      _.each corpusText, (word) =>
+    _.each @corpora, (corpus) =>
+      languageText = fs.readFileSync("corpora/#{corpus}.corpus", 'utf8').split("_")
+      _.each languageText, (word) =>
         key = new Array(lookback + 1).join('^').split('')
         _.each word, (char) ->
           add key,char
           key.push char
           key.shift()
         add key, "_"
-    console.log 'done parsing corpus'
     @histogram = histo
 
-  Corpus.pre 'save', (next) ->
+  Language.pre 'save', (next) ->
     @parse()
     next()
 
-  Corpus.methods.choice = (key, selection) ->
+  Language.methods.choice = (key, selection) ->
     position = 0
     ary = _.map(@histogram[key], (v, k) -> [k, v])
     match = _.find ary, (pair) ->
@@ -54,14 +52,14 @@ exports.register_model = (mongoose) ->
       position > selection
     _.first match
 
-  Corpus.methods.startKey = ->
+  Language.methods.startKey = ->
     console.log "getting start key"
     new Array(@lookback + 1).join('^').split('')
 
-  Corpus.methods.startKeys = ->
+  Language.methods.startKeys = ->
     _.filter(_.keys(@histogram), (k) -> _.first(k) == '^')
 
-  Corpus.methods.word = ->
+  Language.methods.word = ->
     word = ''
     char = ''
     count = 0
@@ -76,4 +74,4 @@ exports.register_model = (mongoose) ->
     word.replace('_','')
 
 
-  mongoose.model 'Corpus', Corpus
+  mongoose.model 'Language', Language
