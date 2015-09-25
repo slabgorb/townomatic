@@ -1,6 +1,6 @@
-class Townomatic.BeingsCollectionView extends Townomatic.ListView
+class Townomatic.BeingListView extends Townomatic.ListView
   templateName = 'beings_collection'
-  childClass = Townomatic.BeingView
+  childClass = Townomatic.BeingItemView
 
   events:
     "click .add-being": 'addNew'

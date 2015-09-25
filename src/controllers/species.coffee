@@ -11,6 +11,7 @@ exports.getSpecies = (Species) ->
 
 exports.deleteSpecies =  (Species) ->
   (req, res, next) ->
+    console.log 'removing species', req.params.id
     Species.remove {_id: req.params.id }, (err, data) ->
       res.send 204
 

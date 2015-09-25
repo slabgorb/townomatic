@@ -1,6 +1,12 @@
 #bootstrap-overrides {
   a {
     color: $color_accent;
+    cursor: pointer;
+    text-decoration: none;
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
   }
 
   .navbar {

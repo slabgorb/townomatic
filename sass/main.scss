@@ -1,5 +1,7 @@
 @import 'library';
+@import 'reset';
 @import 'bootstrap-override';
+
 body {
   font-family: $font_sans;
   background-color: $color_background;
@@ -7,6 +9,10 @@ body {
   margin: 0;
   padding: 0 0 50px 0;
   font: normal normal 14px/18px $font_serif;
+
+  .typewriter {
+    font-family: $font_fixed;
+  }
 
   #main {
     padding: 20px;

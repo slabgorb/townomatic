@@ -3,7 +3,17 @@ class Townomatic.View extends Backbone.View
     @logger = options.logger
     @logger.debug 'initializing', JST, @templateName
     @template = JST["app/templates/#{@templateName}.html"]
+    _.bindAll @, 'preRender', 'render', 'postRender'
+    @render = _.wrap @render, (render) =>
+      @preRender()
+      render()
+      @postRender()
 
+  preRender: ->
+    _.noop()
+
+  postRender: ->
+    $('[data-toggle="tooltip"]').tooltip()
 
 class Townomatic.ListItemView extends Townomatic.View
   tagName: 'li'
@@ -27,6 +37,7 @@ class Townomatic.ListView extends Townomatic.View
   formTemplateName: ''
   childContainer: '.children'
   collectionClass: Townomatic.Collection
+  modelClass: Townomatic.Model
 
   initialize: (options)->
     super(options)
@@ -39,11 +50,18 @@ class Townomatic.ListView extends Townomatic.View
     @render()
     @collection.fetch()
 
+  events:
+    'click .add-new': 'eventNew'
+
+
   render: ->
     @logger.debug 'rendering', @$el, @template()
     @el.html @template()
-    @el.append @formTemplate()
 
+  eventNew: ->
+    @logger.debug 'adding new'
+    @newModel = new @modelClass()
+    @el.append @formTemplate(@newModel.toJSON())
 
   fetched: ->
     _.each @childView, (child) =>

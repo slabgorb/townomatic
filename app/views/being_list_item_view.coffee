@@ -1,4 +1,4 @@
-class Townomatic.BeingView extends Backbone.View
+class Townomatic.BeingListItemView extends Townomatic.ListItemView
 
   initialize: (options) ->
     @template = JST["app/templates/being.html"]

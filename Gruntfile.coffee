@@ -8,7 +8,7 @@ module.exports = (grunt) ->
         files: [src: 'corpora/*.txt' ]
     jst:
       compile:
-        files: 'public/js/templates.js': [ 'app/templates/*.html' ]
+        files: 'public/js/templates.js': [ 'app/templates/**/*.html' ]
         processName: (filepath) -> console.log(filepath); return _.last filepath.split('/')
         prettify: true
     sass: compile: files: 'public/stylesheets/main.css': [ 'sass/main.scss' ]
@@ -70,7 +70,7 @@ module.exports = (grunt) ->
         options:
           livereload: true
       jst:
-        files: 'app/templates/*.html'
+        files: 'app/templates/**/*.html'
         tasks: 'jst'
         options:
           livereload: true
@@ -101,5 +101,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jst'
   grunt.loadNpmTasks 'grunt-mocha-test'
-  grunt.registerTask 'default', [ 'watch' ]
+  grunt.registerTask 'default', [ 'concat', 'jst', 'sass', 'coffee', 'watch' ]
   return

@@ -38,14 +38,15 @@ class Townomatic.Router extends Backbone.Router
     @logger.debug 'route: languageList'
     @view = new Townomatic.LanguageListView({logger: @logger})
 
+
+
+
   species: ->
     @logger.debug "route: species"
 
-
   speciesList: ->
     @logger.debug "route: speciesList"
-    collection = new Townomatic.SpeciesCollection({logger: @logger})
-    view = new Townomatic.SpeciesCollectionView({logger: @logger})
+    view = new Townomatic.SpeciesListView({logger: @logger})
 
   being: (id) ->
     @logger.debug "route: being #{id}"
@@ -54,8 +55,7 @@ class Townomatic.Router extends Backbone.Router
 
   beings: (species) ->
     @logger.debug "route: beings"
-    collecton = new Townomatic.BeingsCollection({species: species, logger: @logger})
-    view = new Townomatic.BeingsCollectionView({collection: @collection, logger: @logger})
+    view = new Townomatic.BeingListView({logger: @logger})
 
 $ ->
   app = new Townomatic.App()
