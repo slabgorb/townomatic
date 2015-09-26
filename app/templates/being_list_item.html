@@ -1,13 +1,11 @@
-<tr class="being">
-  <td><%= name.first %> <%= name.last %></td>
-  <td><%= species.name %></td>
-  <td><%= age %></td>
-  <td><%= gender %></td>
-  <td><%= occupation %></td>
-  <td class="text-left">
-    <ul class="genes">
-      <% _.each(_.sortBy(genes, function(gene) { return -parseInt(gene,16) }), function(gene) { %>  <li style="background-color: #<%= gene %>">&nbsp;</li> <% }); %>
-    </ul>
-  </td>
-  <%= JST['app/templates/includes/clone_edit_remove.html'] %>
-</tr>
+<td><%= name.first %> <%= name.last %></td>
+<td><%= species.name %></td>
+<td><%= age %></td>
+<td><%= gender %></td>
+<td><%= occupation %></td>
+<td class="text-left">
+  <ul class="genes">
+    <% _.each(_.sortBy(genes, function(gene) { return -parseInt(gene,16) }), function(gene) { %>  <li style="background-color: #<%= gene %>">&nbsp;</li> <% }); %>
+  </ul>
+</td>
+<%= JST['app/templates/includes/clone_edit_remove.html']({id: _id}) %>

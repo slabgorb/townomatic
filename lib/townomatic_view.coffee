@@ -1,7 +1,6 @@
 class Townomatic.View extends Backbone.View
   initialize: (options)->
     @logger = options.logger
-    @logger.debug 'initializing', JST, @templateName
     @template = JST["app/templates/#{@templateName}.html"]
     _.bindAll @, 'preRender', 'render', 'postRender'
     @render = _.wrap @render, (render) =>
@@ -10,26 +9,35 @@ class Townomatic.View extends Backbone.View
       @postRender()
 
   render: ->
-    @logger.debug 'rendering', @$el, @template()
     @el.html @template()
+    return @el
 
   preRender: ->
-    _.noop()
+    return @
 
   postRender: ->
     $('[data-toggle="tooltip"]').tooltip()
+    return @
 
 class Townomatic.ListItemView extends Townomatic.View
-  tagName: 'li'
+  tagName: 'tr'
+  className: 'item'
+  id: -> @model.get('_id')
+
   initialize: (options) ->
     super(options)
     @model = options.model
-    @el = options.el
 
   render: ->
-    @logger.debug 'rendering list item', @model
-    @$el.append @template(@model.toJSON())
-    return @$el
+    @$el.html @template(@model.toJSON())
+    return @
+
+  events: ->
+    'click .remove': 'eventRemove'
+
+  eventRemove: (event) ->
+    @model.destroy()
+    @remove()
 
 class Townomatic.FormView extends Townomatic.View
   formName: ''
@@ -64,11 +72,9 @@ class Townomatic.ListView extends Townomatic.View
 
   fetched: ->
     _.each @childView, (child) =>
-      @logger.debug 'child', child, childContainer
       child.render()
 
   addOne: (model) ->
-    child =  new @childClass( { model: model, logger: @logger, el: @childContainer } )
+    child =  new @childClass( { model: model, logger: @logger} )
     @childViews.push child
-    @logger.debug 'add one child', child, $(@childContainer)
-    child.render()
+    $(@childContainer).append(child.render().el)
