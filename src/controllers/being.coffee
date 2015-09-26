@@ -11,6 +11,7 @@ exports.getBeing = (Being) ->
       .populate('species')
       .exec (err, being) ->
         being.setValue('expression', being.express())
+        being.setValue('species.name', being.species.name)
         res.send being
 
 exports.deleteBeing = (Being) ->

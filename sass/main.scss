@@ -31,7 +31,10 @@ body {
         }
       }
       &.genes {
+        margin: 0;
+        padding: 0;
         li {
+          float: left;
           display: inline-block;
           width: 3px;
           margin:0px;
