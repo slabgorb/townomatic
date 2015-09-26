@@ -1,22 +1,19 @@
-<tr>
-  <td><%= name %></td>
-  <td>
-    <a class="glyphicon glyphicon-menu-down" href="#<%= 'collapse-' + _id %>" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="<%= 'collapse-' + _id %>"></a>
-    <div class="collapse" id="<%= 'collapse-' + _id %>">
-      <dl>
-        <% _.each(expression, function(value, key) { %>
-        <dt><%= key %></dt>
-        <dd>
-          <ul>
-            <% _.each(value, function(v,k) { %>
-            <li> <span class="typewriter"><%= v.join(',') %></span> : <%= k %>  </li>
-            <% }); %>
-          </ul>
-        </dd>
-        <% }); %>
-      </dl>
-    </div>
-  </td>
-  <%= JST['app/templates/includes/clone_edit_remove.html'] %>
-
-</tr>
+<td><%= name %></td>
+<td>
+  <a class="glyphicon glyphicon-menu-down" href="#<%= 'collapse-' + _id %>" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="<%= 'collapse-' + _id %>"></a>
+  <div class="collapse" id="<%= 'collapse-' + _id %>">
+    <dl>
+      <% _.each(expression, function(value, key) { %>
+      <dt><%= key %></dt>
+      <dd>
+        <ul>
+          <% _.each(value, function(v,k) { %>
+          <li> <span class="typewriter"><%= v.join(',') %></span> : <%= k %>  </li>
+          <% }); %>
+        </ul>
+      </dd>
+      <% }); %>
+    </dl>
+  </div>
+</td>
+<%= JST['app/templates/includes/clone_edit_remove.html'] %>
