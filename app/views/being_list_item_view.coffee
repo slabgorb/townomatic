@@ -1,7 +1,7 @@
 class Townomatic.BeingListItemView extends Townomatic.ListItemView
 
   initialize: (options) ->
-    @template = JST["app/templates/being.html"]
+    @template = JST["app/templates/being_list_item.html"]
     @el = 'body'
     @listenTo @model, 'complete', @render
     @model.fetch()

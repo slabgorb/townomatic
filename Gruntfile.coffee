@@ -43,6 +43,11 @@ module.exports = (grunt) ->
         src: ['test/**/*.coffee']
 
     coffee:
+      srv:
+        files: [
+          { cwd: 'src', expand: true, ext: '.js', dest: 'dist/', src: '**/*.coffee' }
+        ]
+
       app:
         sourceMap: true
         files:
@@ -75,7 +80,7 @@ module.exports = (grunt) ->
         options:
           livereload: true
       coffee:
-        files: ['app/**/*.coffee','lib/**/*.coffee'],
+        files: ['app/**/*.coffee','lib/**/*.coffee', 'src/**/*.coffee'],
         tasks: 'coffee'
         options:
           livereload: true

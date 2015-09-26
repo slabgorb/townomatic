@@ -2,8 +2,8 @@ _ = require 'underscore'
 
 exports.getSpecies = (Species) ->
   (req, res, next) ->
-    if req.params.species?
-      Species.findOne {species: req.params.species }, (err, data) ->
+    if req.params.id?
+      Species.findOne {_id: req.params.id }, (err, data) ->
         res.send data
     else
       Species.find (err, data) ->

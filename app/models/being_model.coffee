@@ -1,6 +1,6 @@
 class Townomatic.BeingModel extends Townomatic.Model
 
-  url: -> "#{@apiBase}/beings/#{@get('id')}"
+  url: -> "http://localhost:8082/beings/#{@get('_id')}"
 
   initialize: (attributes, options) ->
 

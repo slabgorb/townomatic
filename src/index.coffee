@@ -2,7 +2,6 @@ http = require 'http'
 mongoose = require 'mongoose'
 config = require './config'
 restify = require 'restify'
-cors = require('cors');
 fs = require 'fs'
 _ = require 'underscore'
 staticServer = require('node-static')
@@ -10,10 +9,16 @@ staticServer = require('node-static')
 BACKEND_PORT = 8082
 FRONTEND_PORT = 8081
 
+restify.CORS.ALLOW_HEADERS.push('accept');
+restify.CORS.ALLOW_HEADERS.push('sid');
+restify.CORS.ALLOW_HEADERS.push('lang');
+restify.CORS.ALLOW_HEADERS.push('origin');
+restify.CORS.ALLOW_HEADERS.push('withcredentials');
+restify.CORS.ALLOW_HEADERS.push('x-requested-with');
 
 server = restify.createServer()
 server.use restify.bodyParser()
-#server.use cors
+server.use restify.CORS()
 server.use restify.fullResponse()
 
 _.each ['species', 'being', 'community', 'language'], (file) ->
