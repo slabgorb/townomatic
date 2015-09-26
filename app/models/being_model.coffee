@@ -21,7 +21,7 @@ class Townomatic.BeingModel extends Townomatic.Model
   # Get the related genetic expressions for this species.
   #
   getGenetics: ->
-    @genetics = new Townomatic.GeneticsModel({species: @get('species')})
+    @genetics = new Townomatic.SpeciesModel({id: @get('species')})
     @listenTo @, 'geneticsFetched', @express
     @genetics.fetch().done =>
       @trigger 'fetchDone'
