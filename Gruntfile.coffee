@@ -79,8 +79,13 @@ module.exports = (grunt) ->
         tasks: 'jst'
         options:
           livereload: true
-      coffee:
-        files: ['app/**/*.coffee','lib/**/*.coffee', 'src/**/*.coffee'],
+      coffeeapp:
+        files: ['app/**/*.coffee','lib/**/*.coffee']
+        tasks: 'coffee'
+        options:
+          livereload: true
+      coffeesrc:
+        files: [ 'src/**/*.coffee'],
         tasks: 'coffee'
         options:
           livereload: true
