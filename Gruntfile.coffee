@@ -81,12 +81,12 @@ module.exports = (grunt) ->
           livereload: true
       coffeeapp:
         files: ['app/**/*.coffee','lib/**/*.coffee']
-        tasks: 'coffee'
+        tasks: 'coffee:app'
         options:
           livereload: true
-      coffeesrc:
+      coffeesrv:
         files: [ 'src/**/*.coffee'],
-        tasks: 'coffee'
+        tasks: 'coffee:srv'
         options:
           livereload: true
       corpus:
