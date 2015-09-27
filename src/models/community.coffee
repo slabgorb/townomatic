@@ -21,6 +21,7 @@ exports.register_model = (mongoose) ->
     colors:
       main: String
       secondary: String
+    description: String
 
 
   mongoose.model 'Community', Community
