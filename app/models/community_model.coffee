@@ -7,3 +7,6 @@ class Townomatic.CommunityModel extends Townomatic.Model
       main: '#FFFFFF'
       secondary: '#FFFFFF'
     icon: 'bee-volant'
+
+
+  toString: -> @get('name')

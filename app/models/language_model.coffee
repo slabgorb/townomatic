@@ -1,7 +1,10 @@
 class Townomatic.LanguageModel extends Townomatic.Model
+  url: -> "http://localhost:8082/languages/#{@get('id')}"
 
   defaults:
     lookback: 2
+
+  toString: -> @get('name')
 
 
   linksAndNodes: ->

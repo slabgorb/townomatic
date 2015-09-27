@@ -9,7 +9,10 @@ class Townomatic.View extends Backbone.View
       @postRender()
 
   render: ->
-    @el.html @template()
+    if @model?
+      @el.html @template(@model.toJSON())
+    else
+      @el.html @template()
     return @
 
   preRender: ->
@@ -22,12 +25,14 @@ class Townomatic.View extends Backbone.View
 class Townomatic.DetailView extends Townomatic.View
   initialize: (options) ->
     super(options)
-    @el = '#main'
-    @render()
+    @model = options.model
+    @el = $('#main')
+    @model.fetch().done () =>
+      @render()
 
   render: ->
-    @logger.debug 'detail view', @template, @model, @el
-    @$el.html @template(@model.toJSON())
+    @logger.debug 'detail view', @model, @el
+    @el.html @template(@model.toJSON())
     return @
 
 
