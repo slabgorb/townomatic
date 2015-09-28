@@ -19,6 +19,19 @@ body {
     h1, h2, h3, h4 {
       font-family: $font_serif;
     }
+    .community-icon-small {
+      font-size: 36px;
+    }
+    .community-icon-medium {
+      font-size: 72px;
+    }
+    .community-icon-large {
+      font-size: 144px;
+    }
+    .community-icon-huge {
+      font-size: 288px;
+    }
+
     ul {
       list-style-type: none;
       &.form {
