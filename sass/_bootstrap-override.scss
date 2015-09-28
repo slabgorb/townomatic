@@ -11,7 +11,9 @@
 
   .breadcrumb {
     text-transform: uppercase;
-    background-color: $color_secondary;
+    font-size: 0.8em;
+    padding: 8px 0px;
+    margin-bottom: 5px;
   }
 
   .jumbotron {
@@ -22,9 +24,12 @@
     }
     border-radius: 3px;
   }
-  .navbar {
-    background-color: $color_secondary;
-    color: $color_primary;
+  .navbar, .breadcrumb {
+    background-color: $color_accent;
+    color: $color_secondary;
+    a {
+      color: $color_secondary;
+    }
     a.navbar-brand {
       font-family: $font_serif;
       text-transform: capitalize;
@@ -41,7 +46,7 @@
   .navbar-default {
     border: 0px;
 
-    border-bottom: 1px solid $color_accent;
+    border-bottom: 3px solid $color_accent;
   }
   .list-group, .list-group-item {
     background-color: $color_background;
