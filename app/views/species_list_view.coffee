@@ -3,4 +3,4 @@ class Townomatic.SpeciesListView extends Townomatic.ListView
   formTemplateName: 'species_form'
   childClass: Townomatic.SpeciesListItemView
   collectionClass: Townomatic.SpeciesCollection
-  modelName: Townomatic.SpeciesModel
+  modelClass: Townomatic.SpeciesModel

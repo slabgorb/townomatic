@@ -27,7 +27,7 @@ class Townomatic.Router extends Backbone.Router
 
   home: ->
     @logger.debug "route: home"
-    @view = new Townomatic.HomeView({logger: @logger})
+    @view = new Townomatic.HomeView({logger: @logger, el: '#main'})
     @header.setBreadcrumbs []
 
   listPage: (type) ->

@@ -2,6 +2,7 @@ class Townomatic.BeingListView extends Townomatic.ListView
   templateName: 'being_list'
   childClass: Townomatic.BeingListItemView
   collectionClass: Townomatic.BeingCollection
+  formTemplateName: 'being_form'
 
   events:
     "click .add-being": 'addNew'
