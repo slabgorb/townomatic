@@ -36,8 +36,8 @@ class Townomatic.ListItemView extends Townomatic.View
     'click .remove': 'eventRemove'
 
   eventRemove: (event) ->
-    @model.destroy()
-    @remove()
+    @model.destroy
+      success: () => @remove()
 
 class Townomatic.FormView extends Townomatic.View
   formName: ''
