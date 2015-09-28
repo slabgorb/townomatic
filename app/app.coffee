@@ -31,7 +31,7 @@ class Townomatic.Router extends Backbone.Router
     @header.setBreadcrumbs []
 
   listPage: (type) ->
-    @view = new Townomatic["#{type}ListView"]({logger: @logger})
+    @view = new Townomatic["#{type}ListView"]({logger: @logger, el: '#main'})
     @header.setBreadcrumbs [
       { label:type, url: "/#{type}"}
     ]
@@ -40,7 +40,7 @@ class Townomatic.Router extends Backbone.Router
     @model = new Townomatic["#{type}Model"]({_id: id, logger: @logger})
     @model.fetch
       success: =>
-        @view = new Townomatic["#{type}View"]({model: @model, logger: @logger})
+        @view = new Townomatic["#{type}View"]({model: @model, logger: @logger, el:'#main'})
         @header.setBreadcrumbs [
           { label:type, url: "/#{type.toLowerCase()}"}
           { label:"#{@model.toString()}" , url:"/#{type.toLowerCase()}/#{id}"}

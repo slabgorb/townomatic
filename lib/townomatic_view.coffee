@@ -10,9 +10,9 @@ class Townomatic.View extends Backbone.View
 
   render: ->
     if @model?
-      @el.html @template(@model.toJSON())
+      @$el.html @template(@model.toJSON())
     else
-      @el.html @template()
+      @$el.html @template()
     return @
 
   preRender: ->
@@ -26,13 +26,12 @@ class Townomatic.DetailView extends Townomatic.View
   initialize: (options) ->
     super(options)
     @model = options.model
-    @el = $('#main')
     @model.fetch().done () =>
       @render()
 
   render: ->
     @logger.debug 'detail view', @model, @el
-    @el.html @template(@model.toJSON())
+    @$el.html @template(@model.toJSON())
     return @
 
 
@@ -75,7 +74,6 @@ class Townomatic.ListView extends Townomatic.View
     @listenTo @collection, 'add', @addOne
     @formTemplate  = JST["app/templates/#{@formTemplateName}.html"]
 
-    @el = $('#main')
     @childViews = []
     @render()
     @collection.fetch()
@@ -86,7 +84,7 @@ class Townomatic.ListView extends Townomatic.View
   eventNew: ->
     @logger.debug 'adding new'
     @newModel = new @modelClass()
-    @el.append @formTemplate(@newModel.toJSON())
+    @$el.append @formTemplate(@newModel.toJSON())
 
   addOne: (model) ->
     child =  new @childClass( { model: model, logger: @logger} )
