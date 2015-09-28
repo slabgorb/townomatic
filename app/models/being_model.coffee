@@ -1,6 +1,7 @@
 class Townomatic.BeingModel extends Townomatic.Model
 
-  url: -> "http://localhost:8082/beings/#{@get('id')}"
+  url: ->
+    if @get('_id') then "http://localhost:8082/beings/#{@get('_id')}" else "http://localhost:8082/beings"
 
   initialize: (attributes, options) ->
 

@@ -51,14 +51,16 @@ class Townomatic.ListItemView extends Townomatic.View
   events: ->
     'click .remove': 'eventRemove'
     'click .duplicate': 'eventDuplicate'
+    'click .edit': 'eventEdit'
 
-  eventDuplicate: (event) ->
+  eventDuplicate: (_event) ->
     @trigger 'duplicate', @model
 
-  eventRemove: (event) ->
-    console.log @model.destroy()
+  eventEdit: (_event) ->
+    @trigger 'edit', @model
+
+  eventRemove: (_event) ->
     @model.destroy()
-    #@remove()
 
 
 class Townomatic.FormView extends Townomatic.View
@@ -85,12 +87,20 @@ class Townomatic.ListView extends Townomatic.View
     @collection.fetch()
 
   events:
-    'click .add-new': 'eventNew'
+    'click .add-new': 'onNew'
+    'click .btn-cancel': 'eventCancel'
 
-  eventNew: ->
-    @logger.debug 'adding new'
+  eventCancel: ->
+    @render()
+    @collection.reset()
+    @collection.fetch()
+
+  onNew: ->
     @newModel = new @modelClass()
-    @$el.append @formTemplate(@newModel.toJSON())
+    @$el.html @formTemplate(@newModel.toJSON())
+
+  onEdit: (model) ->
+    @$el.html @formTemplate(model.toJSON())
 
   onDuplicate: (model) ->
     duplicate = new @modelClass(model.toJSON())
@@ -104,6 +114,7 @@ class Townomatic.ListView extends Townomatic.View
     child =  new @childClass( { model: model, logger: @logger} )
     @childViews.push child
     @listenTo child, 'duplicate', @onDuplicate
+    @listenTo child, 'edit', @onEdit
     $(@childContainer).append(child.render().el)
 
   removeOne: (model) ->
