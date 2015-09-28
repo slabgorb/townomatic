@@ -50,10 +50,15 @@ class Townomatic.ListItemView extends Townomatic.View
 
   events: ->
     'click .remove': 'eventRemove'
+    'click .duplicate': 'eventDuplicate'
+
+  eventDuplicate: (event) ->
+    @trigger 'duplicate', @model
 
   eventRemove: (event) ->
-    @model.destroy
-      success: () => @remove()
+    console.log @model.destroy()
+    @model.destroy()
+    #@remove()
 
 
 class Townomatic.FormView extends Townomatic.View
@@ -72,6 +77,7 @@ class Townomatic.ListView extends Townomatic.View
     super(options)
     @collection = new @collectionClass
     @listenTo @collection, 'add', @addOne
+    @listenTo @collection, 'remove', @removeOne
     @formTemplate  = JST["app/templates/#{@formTemplateName}.html"]
 
     @childViews = []
@@ -86,7 +92,20 @@ class Townomatic.ListView extends Townomatic.View
     @newModel = new @modelClass()
     @$el.append @formTemplate(@newModel.toJSON())
 
+  onDuplicate: (model) ->
+    duplicate = new @modelClass(model.toJSON())
+    console.log duplicate
+    duplicate.unset('_id')
+    duplicate.save().done =>
+      duplicate.fetch().done =>
+        @collection.add(duplicate)
+
   addOne: (model) ->
     child =  new @childClass( { model: model, logger: @logger} )
     @childViews.push child
+    @listenTo child, 'duplicate', @onDuplicate
     $(@childContainer).append(child.render().el)
+
+  removeOne: (model) ->
+    removed = _.find @childViews, (child) -> child.model == model
+    removed.remove()

@@ -3,4 +3,4 @@ class Townomatic.CommunityListView extends Townomatic.ListView
   formTemplateName: "community_form"
   childClass: Townomatic.CommunityListItemView
   collectionClass: Townomatic.CommunityCollection
-  modelName: Townomatic.CommunityModel
+  modelClass: Townomatic.CommunityModel
