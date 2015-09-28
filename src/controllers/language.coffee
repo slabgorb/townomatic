@@ -42,6 +42,7 @@ exports.createLanguage = (Language) ->
   (req, res, next) ->
     Language.create
       name: req.params.name
+      corpora: req.params.corpora
       language: req.params.language
       lookback: req.params.lookback
       (err, language) ->

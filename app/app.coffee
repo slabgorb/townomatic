@@ -1,61 +1,76 @@
 class Townomatic.App
   constructor: ->
     @logger = new Townomatic.logger()
-    @router = new Townomatic.Router({logger: @logger})
     @header = new Townomatic.HeaderView({logger: @logger})
+    @router = new Townomatic.Router({logger: @logger, header: @header})
 
   initialize: ->
     Backbone.history.start()
 
 class Townomatic.Router extends Backbone.Router
 
-
   routes:
     "": "home"
-    "species": "speciesList"
-    "beings": "beingList"
     "being/:id": "being"
-    "languages": "languageList"
-    "language/:id": "language"
-    "communities": "communityList"
+    "being": "beingList"
+    "community": "communityList"
     "community/:id": "community"
+    "language/:id": "language"
+    "language": "languageList"
+    "species": "speciesList"
+    "species/:id": "species"
 
   initialize: (options) ->
     @logger = options.logger
     @logger.debug "starting router", @routes
-
-  execute: (callback, args, name) ->
-    @logger.debug "executing", callback, args, name
-    @view.remove() if @view?
-    callback.call(@)
+    @header = options.header
 
   home: ->
     @logger.debug "route: home"
     @view = new Townomatic.HomeView({logger: @logger})
+    @header.setBreadcrumbs []
 
-  languageList: ->
-    @logger.debug 'route: language list'
-    @view = new Townomatic.LanguageListView({logger: @logger})
+  listPage: (type) ->
+    @view = new Townomatic["#{type}ListView"]({logger: @logger})
+    @header.setBreadcrumbs [
+      { label:type, url: "/#{type}"}
+    ]
 
-  species: ->
-    @logger.debug "route: species"
-
-  speciesList: ->
-    @logger.debug "route: speciesList"
-    view = new Townomatic.SpeciesListView({logger: @logger})
+  detailPage: (type, id) ->
+    @model = new Townomatic["#{type}Model"]({_id: id, logger: @logger})
+    @model.fetch
+      success: =>
+        @view = new Townomatic["#{type}View"]({model: @model, logger: @logger})
+        @header.setBreadcrumbs [
+          { label:type, url: "/#{type.toLowerCase()}"}
+          { label:"#{@model.toString()}" , url:"/#{type.toLowerCase()}/#{id}"}
+        ]
 
   being: (id) ->
-    @logger.debug "route: being #{id}"
-    model = new Townomatic.BeingModel({id: id, logger: @logger})
-    view = new Townomatic.BeingView({model: @model, logger: @logger})
+    @detailPage 'Being', id
 
   beingList: () ->
-    @logger.debug "route: being list"
-    view = new Townomatic.BeingListView({logger: @logger})
+    @listPage 'Being'
+
+  community: (id) ->
+    @detailPage 'Community', id
 
   communityList: () ->
-    @logger.debug "route: communities list"
-    view = new Townomatic.CommunityListView({logger: @logger})
+    @listPage 'Community'
+
+  language: (id) ->
+    @detailPage 'Language', id
+
+  languageList: ->
+    @listPage 'Language'
+
+  species: (id) ->
+    @detailPage 'Species', id
+
+  speciesList: ->
+    @listPage 'Species'
+
+
 
 $ ->
   app = new Townomatic.App()

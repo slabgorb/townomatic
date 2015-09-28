@@ -17,6 +17,9 @@ class Townomatic.BeingModel extends Townomatic.Model
     parents: []
     expression: {}
 
+  toString: () ->
+    [@get('name.first'), @get('name.last')].join(' ')
+
   #
   # Get the related genetic expressions for this species.
   #

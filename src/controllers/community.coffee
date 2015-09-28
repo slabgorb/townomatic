@@ -20,13 +20,20 @@ exports.updateCommunity = (Community) ->
   (req, res, next) ->
     Community.findOneAndUpdate {_id: req.params.id },
       name: req.params.name
+      "colors.main": req.params.colors.main
+      "colors.secondary": req.params.colors.secondary
+      icon: req.params.icon
       (err, data) ->
         res.send data
 
 
 exports.createCommunity = (Community) ->
   (req, res, next) ->
+    console.log req.params
     Community.create
       name: req.params.name
+      "colors.main": req.params.colors.main
+      "colors.secondary": req.params.colors.secondary
+      icon: req.params.icon
       (err, data) ->
         res.send data

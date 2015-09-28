@@ -9,6 +9,11 @@
     }
   }
 
+  .breadcrumb {
+    text-transform: uppercase;
+    background-color: $color_secondary;
+  }
+
   .jumbotron {
     background-color: $color_secondary;
     h1, h2 {

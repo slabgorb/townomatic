@@ -9,8 +9,11 @@ class Townomatic.View extends Backbone.View
       @postRender()
 
   render: ->
-    @el.html @template()
-    return @el
+    if @model?
+      @el.html @template(@model.toJSON())
+    else
+      @el.html @template()
+    return @
 
   preRender: ->
     return @
@@ -18,6 +21,20 @@ class Townomatic.View extends Backbone.View
   postRender: ->
     $('[data-toggle="tooltip"]').tooltip()
     return @
+
+class Townomatic.DetailView extends Townomatic.View
+  initialize: (options) ->
+    super(options)
+    @model = options.model
+    @el = $('#main')
+    @model.fetch().done () =>
+      @render()
+
+  render: ->
+    @logger.debug 'detail view', @model, @el
+    @el.html @template(@model.toJSON())
+    return @
+
 
 class Townomatic.ListItemView extends Townomatic.View
   tagName: 'tr'
@@ -38,6 +55,7 @@ class Townomatic.ListItemView extends Townomatic.View
   eventRemove: (event) ->
     @model.destroy
       success: () => @remove()
+
 
 class Townomatic.FormView extends Townomatic.View
   formName: ''
@@ -69,10 +87,6 @@ class Townomatic.ListView extends Townomatic.View
     @logger.debug 'adding new'
     @newModel = new @modelClass()
     @el.append @formTemplate(@newModel.toJSON())
-
-  fetched: ->
-    _.each @childView, (child) =>
-      child.render()
 
   addOne: (model) ->
     child =  new @childClass( { model: model, logger: @logger} )

@@ -1,20 +1,24 @@
-<h1><%= title %></h1>
-<div class="container-fluid">
-  <ul class="nav navbar-nav">
-    <li><a class="add-new">Add</a></li>
-  </ul>
-</div>
-<table class='table <%= title.toLowerCase() %>-list'>
-  <thead>
-    <tr><% _.each(headers, function(header) { %>
-      <th><%= header %></th>
-      <% }); %>
-      <th>duplicate</th>
-      <th>edit</th>
-      <th>remove</th>
-    </tr>
+<div class="container">
+  <h1><%= title %></h1>
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a class="add-new">Add</a></li>
+    </ul>
+  </div>
+  <table class='table <%= title.toLowerCase() %>-list'>
+    <thead>
+      <tr>
+        <th class="text-center">view</th>
+        <% _.each(headers, function(header) { %>
+        <th><%= header %></th>
+        <% }); %>
+        <th class="text-center">duplicate</th>
+        <th class="text-center">edit</th>
+        <th class="text-center">remove</th>
+      </tr>
 
-  </thead>
-  <tbody class="children">
-  </tbody>
-</table>
+    </thead>
+    <tbody class="children">
+    </tbody>
+  </table>
+</div>
