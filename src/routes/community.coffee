@@ -7,3 +7,4 @@ exports.register_routes = (mongoose, server) ->
   server.del '/communities/:id', controller.deleteCommunity(mongoose.models.Community)
   server.post '/communities', controller.createCommunity(mongoose.models.Community)
   server.post '/communities/:id', controller.updateCommunity(mongoose.models.Community)
+  server.put '/communities/:id', controller.updateCommunity(mongoose.models.Community)

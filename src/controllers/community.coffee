@@ -23,6 +23,7 @@ exports.updateCommunity = (Community) ->
       "colors.main": req.params.colors.main
       "colors.secondary": req.params.colors.secondary
       icon: req.params.icon
+      description: req.params.description
       (err, data) ->
         res.send data
 
@@ -35,5 +36,6 @@ exports.createCommunity = (Community) ->
       "colors.main": req.params.colors.main
       "colors.secondary": req.params.colors.secondary
       icon: req.params.icon
+      description: req.params.description
       (err, data) ->
         res.send data

@@ -7,3 +7,4 @@ exports.register_routes = (mongoose, server) ->
   server.del '/species/:id', controller.deleteSpecies(mongoose.models.Species)
   server.post '/species', controller.createSpecies(mongoose.models.Species)
   server.post '/species/:id', controller.updateSpecies(mongoose.models.Species)
+  server.put '/species/:id', controller.updateSpecies(mongoose.models.Species)

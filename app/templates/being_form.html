@@ -1,23 +1,24 @@
 <form>
+  <input type="hidden" name="id" value="<%= _id %>"/>
   <div class="form-group">
     <label>First Name</label>
-    <input type="text" data-field="name.first"/>
+    <input type="text" data-field="name.first" value="<%= name.first %>"/>
     <label>Last Name</label>
-    <input type="text" data-field="name.last"/>
+    <input type="text" data-field="name.last" value="<%= name.last %>"/>
   </div>
   <div class="form-group">
       <label>Occupation</label>
-      <input type="text" data-field="occupation"/>
+      <input type="text" data-field="occupation" value="<%= occupation %>"/>
   </div>
   <div class="form-group">
       <label>Gender</label>
       <select data-field="gender">
-        <option>Male</option>
-        <option>Female</option>
-        <option>Neuter</option>
+        <option <%= gender == 'Male' ? 'selected' : '' %>">Male</option>
+        <option <%= gender == 'Female' ? 'selected' : '' %>>Female</option>
+        <option <%= gender == 'Neuter' ? 'selected' : '' %>>Neuter</option>
       </select>
       <label>Age</label>
-      <input type="number" min="0"  data-field="age"/>
+      <input type="number" min="0"  data-field="age" value="<%= age %>"/>
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <%= JST['app/templates/includes/form_buttons.html']() %>
 </form>

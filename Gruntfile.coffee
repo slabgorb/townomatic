@@ -24,6 +24,7 @@ module.exports = (grunt) ->
           'bower_components/backbone-modal/backbone.modal-min.js'
           'bower_components/elasticsearch/elasticsearch.min.js'
           'bower_components/bootstrap/dist/js/bootstrap.min.js'
+          'bower_components/jquery-serialize-object/dist/jquery.serialize-object.min.js'
         ]
       bootstrap_css:
         files: 'public/stylesheets/bootstrap.css': [

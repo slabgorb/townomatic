@@ -7,3 +7,4 @@ exports.register_routes = (mongoose, server) ->
   server.del '/beings/:id', controller.deleteBeing(mongoose.models.Being)
   server.post '/beings', controller.createBeing(mongoose.models.Being)
   server.post '/beings/:id', controller.updateBeing(mongoose.models.Being)
+  server.put '/beings/:id', controller.updateBeing(mongoose.models.Being)

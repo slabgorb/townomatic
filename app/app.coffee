@@ -24,9 +24,9 @@ class Townomatic.Router extends Backbone.Router
     @logger = options.logger
     @logger.debug "starting router", @routes
     @header = options.header
+    @main = '#main'
 
   home: ->
-    @logger.debug "route: home"
     @view = new Townomatic.HomeView({logger: @logger, el: '#main'})
     @header.setBreadcrumbs []
 
@@ -73,5 +73,7 @@ class Townomatic.Router extends Backbone.Router
 
 
 $ ->
+  $.extend FormSerializer.patterns,
+    validate: /^[a-z][a-z0-9_]*(?:\.[a-z0-9_]+)*(?:\[\])?$/i
   app = new Townomatic.App()
   app.initialize()

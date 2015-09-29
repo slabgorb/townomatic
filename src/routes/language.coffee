@@ -7,3 +7,4 @@ exports.register_routes = (mongoose, server) ->
   server.del '/languages/:id', controller.deleteLanguage(mongoose.models.Language)
   server.post '/languages', controller.createLanguage(mongoose.models.Language)
   server.post '/languages/:id', controller.updateLanguage(mongoose.models.Language)
+  server.put '/languages/:id', controller.updateLanguage(mongoose.models.Language)
