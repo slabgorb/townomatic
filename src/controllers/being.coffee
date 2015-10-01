@@ -37,13 +37,13 @@ exports.updateBeing = (Being) ->
 
 exports.createBeing = (Being) ->
   (req, res, next) ->
-    console.log "Creating Being", req.params
     Being.create
       species: req.params.species
       name: {first: req.params.name.first, last: req.params.name.last}
       age: req.params.age
       occupation: req.params.occupation
       gender: req.params.gender
+      genes: req.params.genes
       (err, being) ->
         console.log being
         res.send being

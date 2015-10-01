@@ -1,5 +1,16 @@
 <h2><%= name %></h2>
 <h3><%= corpora.join(',') %></h3>
-<p>
-  <%= JSON.stringify(histogram) %>
-</p>
+<dl>
+  <% _.each(histogram, function(charSet, key) { %>
+  <dt><%= key %></dt>
+  <dd>
+    <ul>
+      <% _.each(charSet, function(probability, char) { %>
+      <li>
+        <%= char %>:<%= probability %>
+      </li>
+      <% }); %>
+    </ul>
+  </dd>
+  <% }); %>
+</dl>

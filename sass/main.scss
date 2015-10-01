@@ -22,6 +22,30 @@ body {
     .community-icon-small {
       font-size: 36px;
     }
+
+    ul.iconList {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: white;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      height: 40ex;
+      overflow: scroll;
+      li {
+        &.yes {
+          color: white;
+          background-color: $color_secondary;
+        }
+        vertical-align: middle;
+        &:before {
+          @include icon-size(24px);
+          position: relative;
+          top: 8px;
+          margin-right: 5px;
+        }
+      }
+    }
+
     .community-icon-medium {
       font-size: 72px;
     }
