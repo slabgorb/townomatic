@@ -86,7 +86,7 @@ class Townomatic.ListView extends Townomatic.View
     @render()
     @collection.fetch()
 
-  events:
+  events: ->
     'click .add-new': 'onNew'
     'click .cancel': 'eventCancel'
     'click .submit': 'eventSubmit'

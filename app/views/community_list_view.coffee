@@ -13,3 +13,12 @@ class Townomatic.CommunityListView extends Townomatic.ListView
   addOne: (model) ->
     super(model)
     model.set 'iconList', @iconList
+
+  events: ->
+    _.extend super(),
+      'click ul.iconList li': 'eventClickIconList'
+
+  eventClickIconList: (event)->
+    @$('#iconTarget').val $(event.target).text()
+    @$('ul.iconList li').removeClass 'yes'
+    $(event.target).addClass('yes')
