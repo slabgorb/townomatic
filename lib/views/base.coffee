@@ -1,0 +1,24 @@
+class Townomatic.BaseView extends Backbone.View
+  initialize: (options = {})->
+    options.logger ?= new Townomatic.logger()
+    @logger = options.logger
+    @template = JST["app/templates/#{@templateName}.html"]
+    _.bindAll @, 'preRender', 'render', 'postRender'
+    @render = _.wrap @render, (render) =>
+      @preRender()
+      render()
+      @postRender()
+
+  render: ->
+    if @model?
+      @$el.html @template(@model.toJSON())
+    else
+      @$el.html @template()
+    return @
+
+  preRender: ->
+    return @
+
+  postRender: ->
+    $('[data-toggle="tooltip"]').tooltip()
+    return @

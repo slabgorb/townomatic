@@ -1,4 +1,4 @@
-class Townomatic.BeingModel extends Townomatic.Model
+class Townomatic.BeingModel extends Townomatic.BaseModel
 
   url: ->
     if @get('_id') then "http://localhost:8082/beings/#{@get('_id')}" else "http://localhost:8082/beings"

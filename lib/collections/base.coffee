@@ -1,3 +1,3 @@
-class Townomatic.Collection extends Backbone.Collection
+class Townomatic.BaseCollection extends Backbone.Collection
   initialize: (attributes, options) ->
     @apiBase = 'http://localhost:8082'

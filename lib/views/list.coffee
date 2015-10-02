@@ -1,79 +1,11 @@
-class Townomatic.View extends Backbone.View
-  initialize: (options)->
-    @logger = options.logger
-    @template = JST["app/templates/#{@templateName}.html"]
-    _.bindAll @, 'preRender', 'render', 'postRender'
-    @render = _.wrap @render, (render) =>
-      @preRender()
-      render()
-      @postRender()
-
-  render: ->
-    if @model?
-      @$el.html @template(@model.toJSON())
-    else
-      @$el.html @template()
-    return @
-
-  preRender: ->
-    return @
-
-  postRender: ->
-    $('[data-toggle="tooltip"]').tooltip()
-    return @
-
-class Townomatic.DetailView extends Townomatic.View
-  initialize: (options) ->
-    super(options)
-    @model = options.model
-    @model.fetch().done () =>
-      @render()
-
-  render: ->
-    @logger.debug 'detail view', @model, @el
-    @$el.html @template(@model.toJSON())
-    return @
-
-
-class Townomatic.ListItemView extends Townomatic.View
-  tagName: 'tr'
-  className: 'item'
-  id: -> @model.get('_id')
-
-  initialize: (options) ->
-    super(options)
-    @model = options.model
-
-  render: ->
-    @$el.html @template(@model.toJSON())
-    return @
-
-  events: ->
-    'click .remove': 'eventRemove'
-    'click .duplicate': 'eventDuplicate'
-    'click .edit': 'eventEdit'
-
-  eventDuplicate: (_event) ->
-    @trigger 'duplicate', @model
-
-  eventEdit: (_event) ->
-    @trigger 'edit', @model
-
-  eventRemove: (_event) ->
-    @model.destroy()
-
-
-class Townomatic.FormView extends Townomatic.View
-  formName: ''
-
-
-class Townomatic.ListView extends Townomatic.View
+class Townomatic.ListView extends Townomatic.BaseView
   childClass: Townomatic.ListItemView
   templateName: ''
   formTemplateName: ''
   childContainer: '.children'
-  collectionClass: Townomatic.Collection
-  modelClass: Townomatic.Model
+  collectionClass: Townomatic.BaseCollection
+  modelClass: Townomatic.BaseModel
+  formClass: Townomatic.FormView
 
   initialize: (options)->
     super(options)

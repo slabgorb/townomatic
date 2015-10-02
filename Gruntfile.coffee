@@ -55,9 +55,13 @@ module.exports = (grunt) ->
           'public/js/app.js': [
             'lib/townomatic.coffee'
             'lib/townomatic_logger.coffee'
-            'lib/townomatic_model.coffee'
-            'lib/townomatic_collection.coffee'
-            'lib/townomatic_view.coffee'
+            'lib/models/base.coffee'
+            'lib/models/*.coffee'
+            'lib/collections/base.coffee'
+            'lib/collections/*.coffee'
+            'lib/views/base.coffee'
+            'lib/views/*.coffee'
+
             'app/models/*.coffee'
             'app/collections/*.coffee'
             'app/views/*.coffee'

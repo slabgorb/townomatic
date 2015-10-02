@@ -1,4 +1,4 @@
-class Townomatic.HomeView extends Townomatic.View
+class Townomatic.HomeView extends Townomatic.BaseView
   templateName: "home"
 
   initialize: (options) ->

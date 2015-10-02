@@ -1,4 +1,4 @@
-class Townomatic.LanguageModel extends Townomatic.Model
+class Townomatic.LanguageModel extends Townomatic.BaseModel
   url: ->
     if @get('_id') then "http://localhost:8082/languages/#{@get('_id')}" else "http://localhost:8082/languages"
 

@@ -1,4 +1,4 @@
-class Townomatic.HeaderView extends Townomatic.View
+class Townomatic.HeaderView extends Townomatic.BaseView
   templateName: 'header'
 
   initialize: (options) ->
