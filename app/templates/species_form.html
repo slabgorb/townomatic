@@ -1,14 +1,23 @@
 <form>
+  <% if (typeof _id !=='undefined') { %>
+  <input type="hidden" name="id" value="<%= _id %>"/>
+  <% } %>
   <div class="form-group">
     <label for="name">Name</label>
-    <input class="form-control" name="name">
+    <input class="form-control" name="name" value="<%= name %>">
   </div>
 
   <div class="form-group">
     <label for="expression">Expression</label>
-    <textarea name="expression">
-
-    </textarea>
+    <table id="genotypeUI" class="typewriter">
+      <% _.each(geneticSpace, function(gs) { %>
+      <tr>
+        <% _.each(gs, function(g) { %>
+        <td><%= g %></td>
+        <% }); %>
+      </tr>
+      <% }); %>
+    </table>
   </div>
 
   <%= JST['app/templates/includes/form_buttons.html']() %>

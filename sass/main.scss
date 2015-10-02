@@ -56,6 +56,35 @@ body {
       font-size: 288px;
     }
 
+    form {
+      table#genotypeUI {
+        border-spacing: 5px 0px;
+        border-collapse: separate;
+        tr {
+          td {
+            border: 1px solid $color_primary;
+            width:20px;
+            padding: 5px;
+            height: 20px;
+            text-align: center;
+            cursor: pointer;
+            &.selected {
+              background-color: $color_secondary;
+              border-left: 2px solid $color_accent;
+              border-right: 2px solid $color_accent;
+              color: $color_accent_light;
+            }
+            &.top {
+              border-top: 2px solid $color_accent;
+            }
+            &.bottom {
+              border-bottom: 2px solid $color_accent;
+            }
+
+          }
+        }
+      }
+    }
     ul {
       list-style-type: none;
       &.form {

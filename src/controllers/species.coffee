@@ -18,6 +18,7 @@ exports.deleteSpecies =  (Species) ->
 exports.createSpecies =  (Species) ->
   (req, res, next) ->
     Species.create
+      name: req.params.name
       species: req.params.species
       geneLength: req.params.geneLength
       expression: req.params.expression
@@ -27,6 +28,7 @@ exports.createSpecies =  (Species) ->
 exports.updateSpecies =  (Species) ->
   (req, res, next) ->
     Species.findOneAndUpdate {species: req.params.species },
+      name: req.params.name
       expression: req.params.expression
       geneLength: req.params.geneLength
       (err, species) ->
