@@ -56,6 +56,15 @@ body {
       font-size: 288px;
     }
 
+    #expressionDisplay {
+      .expressionValue {
+        &.selected {
+          background-color: $color_primary;
+          color: $color_accent;
+        }
+      }
+    }
+
     form {
       table#genotypeUI {
         border-spacing: 5px 0px;
@@ -70,9 +79,9 @@ body {
             cursor: pointer;
             &.selected {
               background-color: $color_secondary;
-              border-left: 2px solid $color_accent;
-              border-right: 2px solid $color_accent;
+              border: 2px solid $color_accent;
               color: $color_accent_light;
+              padding: 4px;
             }
             &.top {
               border-top: 2px solid $color_accent;

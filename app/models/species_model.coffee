@@ -7,8 +7,4 @@ class Townomatic.SpeciesModel extends Townomatic.BaseModel
     @set 'geneticSpace', @geneticSpace()
 
   geneticSpace: ->
-    _.map [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], (i) ->
-      chars = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
-      _(i).times ->
-        chars.push chars.shift()
-      chars
+    (['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'] for i in  [1..4])

@@ -7,17 +7,35 @@
     <input class="form-control" name="name" value="<%= name %>">
   </div>
 
-  <div class="form-group">
-    <label for="expression">Expression</label>
-    <table id="genotypeUI" class="typewriter">
-      <% _.each(geneticSpace, function(gs) { %>
-      <tr>
-        <% _.each(gs, function(g) { %>
-        <td><%= g %></td>
+  <div class="container">
+    <div class="left">
+      <table id="genotypeUI" class="typewriter">
+        <% _.each(geneticSpace, function(gs, i) { %>
+        <tr class='genotypeRow' data-index="<%= i %>">
+          <% _.each(gs, function(g) { %>
+          <td class="genotypeCell" data-value="<%= g %>"><%= g %></td>
+          <% }); %>
+        </tr>
         <% }); %>
-      </tr>
-      <% }); %>
-    </table>
+      </table>
+    </div>
+    <div class="right">
+      <ul id="expressionDisplay">
+        <% _.each(expression, function(exp, key) { %>
+        <li>
+          <%= key %>
+          <ul class="expressionDisplayItem">
+            <% _.each(exp, function(v,k) { %>
+            <li>
+              <span class='expressionKey'><%= k %></span>
+              <span class='expressionValue' data-value="<%= v %>"><%= v %></span>
+            </li>
+            <% }); %>
+          </ul>
+          <% }); %>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <%= JST['app/templates/includes/form_buttons.html']() %>

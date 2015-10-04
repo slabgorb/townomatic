@@ -7,25 +7,23 @@ class Townomatic.SpeciesListView extends Townomatic.ListView
 
   initialize: (options = {}) ->
     super(options)
-    @isMouseDown = false
 
   events: ->
     _.extend super(),
       'mousedown #genotypeUI tr td': 'eventGenotypeMousedown'
-      'mouseover #genotypeUI tr td': 'eventGenotypeMouseover'
-      'mouseup form': 'eventMouseup'
+      'click #expressionDisplay .expressionValue': 'eventClickExpressionValue'
 
-  eventMouseup: (event) ->
-    @isMouseDown = false
+  eventClickExpressionValue: (event) ->
+    $target = $(event.target)
+    $('span.expressionValue').removeClass('selected')
+    $target.addClass('selected')
+    @$('#genotypeUI td').removeClass('selected')
+    _.each String($target.attr('data-value')).split(''), (char, i) ->
+      @$("#genotypeUI .genotypeRow[data-index='#{i}'] .genotypeCell[data-value='#{char}']").addClass('selected')
+
 
   eventGenotypeMousedown: (event) ->
     $target = $(event.target)
+    $target.siblings().removeClass('selected')
     $target.toggleClass 'selected'
-    @isMouseDown = true
-    return false
-
-  eventGenotypeMouseover: (event) ->
-    console.log @isMouseDown
-    $target = $(event.target)
-    if @isMouseDown
-      $target.toggleClass 'selected', not $target.hasClass('selected')
+    @trigger 'expressionChange',
