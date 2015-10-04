@@ -7,6 +7,10 @@ exports.parse = (Language) ->
         language.parse()
         language.save()
 
+exports.makeWord = (Language) ->
+   Language.findOne {_id: req.params.id }
+     .exec (err, language) ->
+       language(word)
 
 exports.getLanguages = (Language) ->
   (req, res, next) ->

@@ -18,10 +18,10 @@ exports.register_model = (mongoose) ->
     maxWordLength:
       type: Number
       default: 20
+    glossary: [ { word: String, translation: String } ]
 
   Language.methods.total = (key) ->
     _.reduce @histogram[key], ((memo, h) -> memo += h), 0
-
 
   Language.methods.parse  = (lookback = 2) ->
     histo = {}
@@ -59,7 +59,7 @@ exports.register_model = (mongoose) ->
   Language.methods.startKeys = ->
     _.filter(_.keys(@histogram), (k) -> _.first(k) == '^')
 
-  Language.methods.word = ->
+  Language.methods.word  = (translation) ->
     word = ''
     char = ''
     count = 0
@@ -71,7 +71,8 @@ exports.register_model = (mongoose) ->
       word += char
       key.push char
       key.shift()
-    word.replace('_','')
-
+    word = word.replace('_','')
+    @glossary.push {word: word, translation: translation}
+    return word
 
   mongoose.model 'Language', Language

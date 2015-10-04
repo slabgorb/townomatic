@@ -47,4 +47,5 @@ describe "models/language", ->
     language.maxWordLength.should.equal 20
 
   it 'makes a word', ->
-    language.word().should.not.eql ''
+    language.word('foo').should.not.eql ''
+    _.first(language.glossary).should.not.be_nil
