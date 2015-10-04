@@ -1,5 +1,6 @@
 _ = require 'underscore'
 fs = require 'fs'
+words = require './words'
 
 corpora = _.uniq(_.map fs.readdirSync('corpora'), (file) -> file.split('.')[0])
 
@@ -41,7 +42,9 @@ exports.register_model = (mongoose) ->
     @histogram = histo
 
   Language.pre 'save', (next) ->
+    console.log "in pre save"
     @parse()
+    @makeGlossary()
     next()
 
   Language.methods.choice = (key, selection) ->
@@ -58,6 +61,10 @@ exports.register_model = (mongoose) ->
 
   Language.methods.startKeys = ->
     _.filter(_.keys(@histogram), (k) -> _.first(k) == '^')
+
+  Language.methods.makeGlossary = ->
+    _.each words, (translation) =>
+      @word(translation)
 
   Language.methods.word  = (translation) ->
     word = ''

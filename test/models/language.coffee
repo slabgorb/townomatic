@@ -49,3 +49,7 @@ describe "models/language", ->
   it 'makes a word', ->
     language.word('foo').should.not.eql ''
     _.first(language.glossary).should.not.be_nil
+
+  it 'makes a glossary', ->
+    language.makeGlossary()
+    console.log "glossary", language.glossary
