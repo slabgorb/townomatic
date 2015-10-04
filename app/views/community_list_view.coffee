@@ -11,8 +11,14 @@ class Townomatic.CommunityListView extends Townomatic.ListView
       super(options)
 
   addOne: (model) ->
-    super(model)
     model.set 'iconList', @iconList
+    super(model)
+
+  onNew: () ->
+    @newModel = new @modelClass()
+    @newModel.set 'iconList', @iconList
+    @$el.html @formTemplate(@newModel.toJSON())
+
 
   events: ->
     _.extend super(),

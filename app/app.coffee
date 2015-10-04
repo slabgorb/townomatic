@@ -75,5 +75,5 @@ class Townomatic.Router extends Backbone.Router
 $ ->
   $.extend FormSerializer.patterns,
     validate: /^[a-z][a-z0-9_]*(?:\.[a-z0-9_]+)*(?:\[\])?$/i
-  app = new Townomatic.App()
+  window.app = new Townomatic.App()
   app.initialize()
