@@ -51,5 +51,4 @@ describe "models/language", ->
     _.first(language.glossary).should.not.be_nil
 
   it 'makes a glossary', ->
-    language.makeGlossary()
-    console.log "glossary", language.glossary
+    (language.glossary.length > 900).should.be_true

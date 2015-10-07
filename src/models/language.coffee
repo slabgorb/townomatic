@@ -1,6 +1,6 @@
 _ = require 'underscore'
 fs = require 'fs'
-words = require './words'
+words = require('./words')
 
 corpora = _.uniq(_.map fs.readdirSync('corpora'), (file) -> file.split('.')[0])
 
@@ -19,6 +19,9 @@ exports.register_model = (mongoose) ->
     maxWordLength:
       type: Number
       default: 20
+    minWordLength:
+      type: Number
+      default: 2
     glossary: [ { word: String, translation: String } ]
 
   Language.methods.total = (key) ->
@@ -42,7 +45,6 @@ exports.register_model = (mongoose) ->
     @histogram = histo
 
   Language.pre 'save', (next) ->
-    console.log "in pre save"
     @parse()
     @makeGlossary()
     next()
@@ -56,7 +58,6 @@ exports.register_model = (mongoose) ->
     _.first match
 
   Language.methods.startKey = ->
-    console.log "getting start key"
     new Array(@lookback + 1).join('^').split('')
 
   Language.methods.startKeys = ->
