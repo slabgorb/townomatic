@@ -34,7 +34,7 @@ body {
       li {
         &.yes {
           color: white;
-          background-color: $color_secondary;
+          background-color: $color_dark;
         }
         vertical-align: middle;
         &:before {
@@ -59,8 +59,8 @@ body {
     #expressionDisplay {
       .expressionValue {
         &.selected {
-          background-color: $color_primary;
-          color: $color_accent;
+          background-color: $color_darkest;
+          color: $color_light;
         }
       }
     }
@@ -71,23 +71,23 @@ body {
         border-collapse: separate;
         tr {
           td {
-            border: 1px solid $color_primary;
+            border: 1px solid $color_dark;
             width:20px;
             padding: 5px;
             height: 20px;
             text-align: center;
             cursor: pointer;
             &.selected {
-              background-color: $color_secondary;
-              border: 2px solid $color_accent;
-              color: $color_accent_light;
+              background-color: $color_darkest;
+              border: 2px solid $color_light;
+              color: $color_lightest;
               padding: 4px;
             }
             &.top {
-              border-top: 2px solid $color_accent;
+              border-top: 2px solid $color_light;
             }
             &.bottom {
-              border-bottom: 2px solid $color_accent;
+              border-bottom: 2px solid $color_light;
             }
 
           }
@@ -97,7 +97,7 @@ body {
     ul {
       list-style-type: none;
       &.form {
-        background-color: $color_secondary;
+        background-color: $color_light;
         padding: 20px;
         label {
           display: inline-block;

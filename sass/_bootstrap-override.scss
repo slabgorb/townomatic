@@ -1,6 +1,6 @@
 #bootstrap-overrides {
   a {
-    color: $color_accent;
+    color: $color_dark;
     cursor: pointer;
     text-decoration: none;
     &:hover,
@@ -17,18 +17,18 @@
   }
 
   .jumbotron {
-    background-color: $color_secondary;
+    background-color: $color_light;
     h1, h2 {
-      border-bottom: 1px solid $color_accent;
+      border-bottom: 1px solid $color_darkest;
       padding-bottom: 0px;
     }
     border-radius: 3px;
   }
   .navbar, .breadcrumb {
-    background-color: $color_accent;
-    color: $color_secondary;
+    background-color: $color_dark;
+    color: $color_text;
     a {
-      color: $color_secondary;
+      color: $color_light;
     }
     a.navbar-brand {
       font-family: $font_serif;
@@ -46,14 +46,14 @@
   .navbar-default {
     border: 0px;
 
-    border-bottom: 3px solid $color_accent;
+    border-bottom: 3px solid $color_light;
   }
   .list-group, .list-group-item {
     background-color: $color_background;
-    border-color: $color_secondary;
+    border-color: $color_darkest;
   }
 
   .media {
-    background-color: $color_background;
+    background-color: $color_dark;
   }
 }
