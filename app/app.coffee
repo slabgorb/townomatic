@@ -15,6 +15,8 @@ class Townomatic.Router extends Backbone.Router
     "being": "beingList"
     "community": "communityList"
     "community/:id": "community"
+    "corpus": "corpusList"
+    "corpus/:id": "corpus"
     "language/:id": "language"
     "language": "languageList"
     "species": "speciesList"
@@ -57,6 +59,12 @@ class Townomatic.Router extends Backbone.Router
 
   communityList: () ->
     @listPage 'Community'
+
+  corpus: () ->
+    @detailPage 'Corpus'
+
+  corpusList: () ->
+    @listPage 'Corpus'
 
   language: (id) ->
     @detailPage 'Language', id

@@ -25,6 +25,9 @@ _.each ['species', 'being', 'community', 'language'], (file) ->
   require("./models/#{file}").register_model(mongoose)
   require("./routes/#{file}").register_routes(mongoose, server)
 
+_.each ['corpus'], (file) ->
+  require("./routes/#{file}").register_routes(server)
+
 mongoose.connect config.creds.mongodb_uri
 server.listen BACKEND_PORT
 

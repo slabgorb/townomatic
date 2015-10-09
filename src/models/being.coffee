@@ -65,7 +65,6 @@ exports.register_model = (mongoose) ->
   Being.methods.siblings = ->
     siblings = []
     _.each @parents, (parentId) ->
-      console.log(parentId)
       mongoose.models.Being.findOne({ _id: parentId }).exec (error, parent) ->
         _.each parent.children, (child) ->
           siblings.push child.id
@@ -80,7 +79,6 @@ exports.register_model = (mongoose) ->
   # expression becomes.
   #
   Being.methods.express = (exps) ->
-    console.log "expressing genetics for", @name
     result = {}
     exps ?= @species.expression
     _.each exps, (value, key) =>
@@ -93,9 +91,8 @@ exports.register_model = (mongoose) ->
           result[key] = if matches? then matches.length else 0
     @expression = result
 
-  # Being.post 'save', (next) ->
-  #   console.log 'in post save'
-  #   @express()
-  #   next()
+  Being.pre 'save', (next) ->
+    @express()
+    next()
 
   mongoose.model 'Being', Being

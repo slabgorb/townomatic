@@ -10,6 +10,7 @@ class Townomatic.HeaderView extends Townomatic.BaseView
       { label: "Species", path: "#species" }
       { label: "Communities", path: "#community" }
       { label: "Beings", path: "#being" }
+      { label: "Corpus", path: "#corpus" }
     ]
 
     @render()

@@ -65,3 +65,19 @@ class Townomatic.BeingModel extends Townomatic.BaseModel
           matches = @get('genes').join('').match(regexp)
           result[key] = if matches? then matches.length else 0
     result
+
+  describe: ->
+    _.each @get('expression'), (value, trait) =>
+      @logger.debug 'describe', value, trait
+
+  # def description(ex = nil)
+  #   sorted_map = { }
+  #   begin
+  #     self.genetic_map(ex).each_pair do |trait, value|
+  #       sorted_map[trait] = value.to_a.sort{ |a,b| b.last <=> a.last }
+  #     end
+  #     return sorted_map.to_a.collect { |c| { c.first => [c.second.first.first.to_sym, c.second.first.second] }}
+  #   rescue
+  #     []
+  #   end
+  # end
