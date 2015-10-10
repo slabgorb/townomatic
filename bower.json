@@ -10,6 +10,7 @@
     "jquery": "~2.1.4",
     "jquery-ui": "~1.11.4",
     "jquery.fileDownload": "1.4.2",
-    "underscore": "~1.8.2"
+    "underscore": "~1.8.2",
+    "jquery-serialize-object": "~2.5.0"
   }
 }
