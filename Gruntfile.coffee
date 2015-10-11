@@ -53,14 +53,14 @@ module.exports = (grunt) ->
         sourceMap: true
         files:
           'public/js/app.js': [
-            'lib/townomatic.coffee'
-            'lib/townomatic_logger.coffee'
-            'lib/models/base.coffee'
-            'lib/models/*.coffee'
-            'lib/collections/base.coffee'
-            'lib/collections/*.coffee'
-            'lib/views/base.coffee'
-            'lib/views/*.coffee'
+            'app/lib/townomatic.coffee'
+            'app/lib/townomatic_logger.coffee'
+            'app/lib/models/base.coffee'
+            'app/lib/models/*.coffee'
+            'app/lib/collections/base.coffee'
+            'app/lib/collections/*.coffee'
+            'app/lib/views/base.coffee'
+            'app/lib/views/*.coffee'
 
             'app/models/*.coffee'
             'app/collections/*.coffee'
