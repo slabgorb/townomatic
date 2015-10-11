@@ -28,7 +28,7 @@ exports.updateBeing = (Being) ->
   (req, res, next) ->
     Being.findOneAndUpdate {_id: req.params.id },
       species: req.params.species
-      name: {first: req.params.name.first, last: req.params.name.name}
+      name: {first: req.params.name.first, last: req.params.name.last}
       age: req.params.age
       occupation: req.params.occupation
       gender: req.params.gender

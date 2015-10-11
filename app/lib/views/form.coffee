@@ -18,12 +18,9 @@ class Townomatic.FormView extends Townomatic.BaseView
     form = $(event.target).parent('form')
     serialization = $(form).serializeObject()
     @logger.debug 'form submission', serialization
-    if serialization.id?
-      @model.set(serialization)
-    else
-      model = new @modelClass(serialization)
-    model.save().done =>
-      @refresh()
+    @model.set(serialization)
+    @model.save().done =>
+      Backbone.history.navigate("#{@type}", { trigger: true })
 
   eventCancel: (event) ->
     Backbone.history.navigate("#{@type}", { trigger: true })
