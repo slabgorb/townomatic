@@ -54,7 +54,6 @@ class Townomatic.ListView extends Townomatic.BaseView
 
   onDuplicate: (model) ->
     duplicate = new @modelClass(model.toJSON())
-    console.log duplicate
     duplicate.unset('_id')
     duplicate.save().done =>
       duplicate.fetch().done =>

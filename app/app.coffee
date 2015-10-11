@@ -19,6 +19,8 @@ class Townomatic.Router extends Backbone.Router
     "corpus/:id": "corpus"
     "language/:id": "language"
     "language": "languageList"
+    "language/new": "languageForm"
+    "language/edit/:id": "languageForm"
     "species": "speciesList"
     "species/:id": "species"
 
@@ -37,6 +39,16 @@ class Townomatic.Router extends Backbone.Router
     @header.setBreadcrumbs [
       { label:type, url: "/#{type}"}
     ]
+
+  formPage: (type, id) ->
+    if id?
+      @model = new Towomatic["#{type}Model"]({_id: id, logger: @logger})
+      @model.fetch
+        success: =>
+          @view = new Townomatic["#{type}FormView"]({model: @model, logger: @logger, el: '#main'})
+    else
+      @model = new Towomatic["#{type}Model"]
+      @view = new Townomatic["#{type}FormView"]({model: @model, logger: @logger, el: '#main'})
 
   detailPage: (type, id) ->
     @model = new Townomatic["#{type}Model"]({_id: id, logger: @logger})
