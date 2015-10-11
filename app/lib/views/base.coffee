@@ -1,5 +1,9 @@
 class Townomatic.BaseView extends Backbone.View
   initialize: (options = {})->
+    options.type ?= 'Base'
+    @type = options.type.toLowerCase()
+    @modelClass ?= Townomatic["#{options.type}Model"]
+    @collectionClass ?= Townomatic["#{options.type}Collection"]
     options.logger ?= new Townomatic.logger()
     @logger = options.logger
     @template = JST["app/templates/#{@templateName}.html"]

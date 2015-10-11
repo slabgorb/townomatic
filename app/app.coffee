@@ -31,30 +31,30 @@ class Townomatic.Router extends Backbone.Router
     @main = '#main'
 
   home: ->
-    @view = new Townomatic.HomeView({logger: @logger, el: '#main'})
+    @view = new Townomatic.HomeView({logger: @logger, el: '#main', type: 'Home'})
     @header.setBreadcrumbs []
 
   listPage: (type) ->
-    @view = new Townomatic["#{type}ListView"]({logger: @logger, el: '#main'})
+    @view = new Townomatic["#{type}ListView"]({logger: @logger, el: '#main', type: type})
     @header.setBreadcrumbs [
       { label:type, url: "/#{type}"}
     ]
 
   formPage: (type, id) ->
     if id?
-      @model = new Towomatic["#{type}Model"]({_id: id, logger: @logger})
+      @model = new Townomatic["#{type}Model"]({_id: id, logger: @logger})
       @model.fetch
         success: =>
-          @view = new Townomatic["#{type}FormView"]({model: @model, logger: @logger, el: '#main'})
+          @view = new Townomatic["#{type}FormView"]({model: @model, logger: @logger, el: '#main', type: type})
     else
-      @model = new Towomatic["#{type}Model"]
-      @view = new Townomatic["#{type}FormView"]({model: @model, logger: @logger, el: '#main'})
+      @model = new Townomatic["#{type}Model"](logger: @logger)
+      @view = new Townomatic["#{type}FormView"]({model: @model, logger: @logger, el: '#main', type: type})
 
   detailPage: (type, id) ->
-    @model = new Townomatic["#{type}Model"]({_id: id, logger: @logger})
+    @model = new Townomatic["#{type}Model"]({_id: id, logger: @logger, type: type})
     @model.fetch
       success: =>
-        @view = new Townomatic["#{type}View"]({model: @model, logger: @logger, el:'#main'})
+        @view = new Townomatic["#{type}View"]({model: @model, logger: @logger, el:'#main', type: type})
         @header.setBreadcrumbs [
           { label:type, url: "/#{type.toLowerCase()}"}
           { label:"#{@model.toString()}" , url:"/#{type.toLowerCase()}/#{id}"}
@@ -66,11 +66,18 @@ class Townomatic.Router extends Backbone.Router
   beingList: () ->
     @listPage 'Being'
 
+  beingForm: (id) ->
+    @formPage 'Being', id
+
+
   community: (id) ->
     @detailPage 'Community', id
 
   communityList: () ->
     @listPage 'Community'
+
+  communityForm: (id) ->
+    @formPage 'Community', id
 
   corpus: () ->
     @detailPage 'Corpus'
@@ -84,13 +91,17 @@ class Townomatic.Router extends Backbone.Router
   languageList: ->
     @listPage 'Language'
 
+  languageForm: (id)->
+    @formPage 'Language', id
+
   species: (id) ->
     @detailPage 'Species', id
 
   speciesList: ->
     @listPage 'Species'
 
-
+  speciesForm: (id) ->
+    @formPage 'Species'
 
 $ ->
   $.extend FormSerializer.patterns,

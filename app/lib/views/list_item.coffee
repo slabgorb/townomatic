@@ -4,6 +4,8 @@ class Townomatic.ListItemView extends Townomatic.BaseView
   id: -> @model.get('_id')
 
   initialize: (options) ->
+    @type = options.type.toLowerCase()
+    @templateName ?= "#{@type}_list"
     super(options)
     @model = options.model
 

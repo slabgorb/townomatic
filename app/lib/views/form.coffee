@@ -1,6 +1,14 @@
 class Townomatic.FormView extends Townomatic.BaseView
   formName: ''
 
+
+  initialize: (options) ->
+    @type = options.type.toLowerCase()
+    @templateName ?= "#{@type}_form"
+    super(options)
+    @model = options.model
+    @render()
+
   events: ->
     'click .cancel': 'eventCancel'
     'click .submit': 'eventSubmit'
@@ -11,13 +19,11 @@ class Townomatic.FormView extends Townomatic.BaseView
     serialization = $(form).serializeObject()
     @logger.debug 'form submission', serialization
     if serialization.id?
-      model = @collection.findWhere({_id: serialization.id})
-      model.set(serialization)
+      @model.set(serialization)
     else
       model = new @modelClass(serialization)
     model.save().done =>
       @refresh()
 
   eventCancel: (event) ->
-    event.preventDefault()
-    @refresh()
+    Backbone.history.navigate("#{@type}", { trigger: true })

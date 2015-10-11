@@ -8,6 +8,8 @@ class Townomatic.ListView extends Townomatic.BaseView
   formClass: Townomatic.FormView
 
   initialize: (options)->
+    @type = options.type.toLowerCase()
+    @templateName ?= "#{@type}_list"
     super(options)
     @collection = new @collectionClass
     @listenTo @collection, 'add', @addOne
@@ -32,25 +34,11 @@ class Townomatic.ListView extends Townomatic.BaseView
     @collection.reset()
     @collection.fetch()
 
-  eventSubmit: (event) ->
-    event.preventDefault()
-    form = $(event.target).parent('form')
-    serialization = $(form).serializeObject()
-    @logger.debug 'form submission', serialization
-    if serialization.id?
-      model = @collection.findWhere({_id: serialization.id})
-      model.set(serialization)
-    else
-      model = new @modelClass(serialization)
-    model.save().done =>
-      @refresh()
-
   onNew: ->
-    @newModel = new @modelClass()
-    @$el.html @formTemplate(@newModel.toJSON())
+    Backbone.history.navigate("#{@type}/new", { trigger: true })
 
   onEdit: (model) ->
-    @$el.html @formTemplate(model.toJSON())
+    Backbone.history.navigate("#{@type}/edit/#{model.get('_id')}", { trigger:true })
 
   onDuplicate: (model) ->
     duplicate = new @modelClass(model.toJSON())
