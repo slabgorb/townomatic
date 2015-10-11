@@ -107,7 +107,7 @@ class Townomatic.Router extends Backbone.Router
     @listPage 'Species'
 
   speciesForm: (id) ->
-    @formPage 'Species'
+    @formPage 'Species', id
 
 $ ->
   $.extend FormSerializer.patterns,

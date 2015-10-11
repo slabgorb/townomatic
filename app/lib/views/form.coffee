@@ -1,7 +1,4 @@
 class Townomatic.FormView extends Townomatic.BaseView
-  formName: ''
-
-
   initialize: (options) ->
     @type = options.type.toLowerCase()
     @templateName ?= "#{@type}_form"

@@ -3,6 +3,9 @@ class Townomatic.SpeciesModel extends Townomatic.BaseModel
     if @get('_id') then "http://localhost:8082/species/#{@get('_id')}" else "http://localhost:8082/species"
   toString: -> @get('name')
 
+  defaults:
+    expression: {}
+
   initialize: (attrs, options) ->
     @set 'geneticSpace', @geneticSpace()
 
