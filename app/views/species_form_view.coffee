@@ -1,0 +1,1 @@
+class Townomatic.SpeciesFormView extends Townomatic.FormView

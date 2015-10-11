@@ -13,8 +13,12 @@ class Townomatic.Router extends Backbone.Router
     "": "home"
     "being/:id": "being"
     "being": "beingList"
+    "being/new": "beingForm"
+    "being/edit/:id": "beingForm"
     "community": "communityList"
     "community/:id": "community"
+    "community/new": "communityForm"
+    "community/edit/:id": "communityForm"
     "corpus": "corpusList"
     "corpus/:id": "corpus"
     "language/:id": "language"
@@ -23,6 +27,8 @@ class Townomatic.Router extends Backbone.Router
     "language/edit/:id": "languageForm"
     "species": "speciesList"
     "species/:id": "species"
+    "species/new": "speciesForm"
+    "species/edit/:id" : "speciesForm"
 
   initialize: (options) ->
     @logger = options.logger

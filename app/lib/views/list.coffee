@@ -48,7 +48,7 @@ class Townomatic.ListView extends Townomatic.BaseView
         @collection.add(duplicate)
 
   addOne: (model) ->
-    child =  new @childClass( { model: model, logger: @logger} )
+    child =  new @childClass( { model: model, logger: @logger, type: @type } )
     @childViews.push child
     @listenTo child, 'duplicate', @onDuplicate
     @listenTo child, 'edit', @onEdit
