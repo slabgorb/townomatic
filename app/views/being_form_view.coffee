@@ -1,0 +1,1 @@
+class Townomatic.BeingFormView extends Townomatic.FormView
