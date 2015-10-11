@@ -13,7 +13,7 @@ module.exports = (grunt) ->
         prettify: true
     sass: compile: files: 'public/stylesheets/main.css': [ 'sass/main.scss' ]
     concat:
-      vendor:
+      vendor_js:
         files: 'public/js/vendor.js': [
           'bower_components/jquery/dist/jquery.min.js'
           'bower_components/jquery-ui/jquery-ui.min.js'
@@ -25,10 +25,12 @@ module.exports = (grunt) ->
           'bower_components/elasticsearch/elasticsearch.min.js'
           'bower_components/bootstrap/dist/js/bootstrap.min.js'
           'bower_components/jquery-serialize-object/dist/jquery.serialize-object.min.js'
+          'bower_components/bootstrap-select/dist/js/bootstrap-select.min.js'
         ]
-      bootstrap_css:
-        files: 'public/stylesheets/bootstrap.css': [
+      vendor_css:
+        files: 'public/stylesheets/vendor.css': [
           'bower_components/bootstrap/dist/css/bootstrap.min.css'
+          'bower_components/bootstrap-select/dist/css/bootstrap-select.min.css'
         ]
 
     mochaTest:

@@ -8,9 +8,9 @@
     "d3": "~3.0",
     "elasticsearch": "6.0.0",
     "jquery": "~2.1.4",
-    "jquery-ui": "~1.11.4",
     "jquery.fileDownload": "1.4.2",
     "underscore": "~1.8.2",
-    "jquery-serialize-object": "~2.5.0"
+    "jquery-serialize-object": "~2.5.0",
+    "bootstrap-select": "~1.7.4"
   }
 }
