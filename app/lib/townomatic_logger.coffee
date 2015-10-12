@@ -17,6 +17,14 @@ class Townomatic.logger
     err = new Error()
     err.stack.split("\n")[4]
 
+  info: (title, messages...) ->
+    @log('info', title, messages)
 
   debug: (title, messages...) ->
     @log('debug', title, messages)
+
+  error: (title, messages...) ->
+    @log('error', title, messages)
+
+  fatal: (title, messages...) ->
+    @log('fatal', title, messages)
