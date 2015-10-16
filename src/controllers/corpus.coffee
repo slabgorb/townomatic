@@ -3,8 +3,9 @@ fs = require 'fs'
 
 
 corpusData =  (corpus) ->
+  stats = fs.statSync("corpora/#{corpus}")
   c =  _.first corpus.split('.')
-  { name: c , id: c }
+  { name: c , id: c, size: stats['size'] }
 
 
 exports.getCorpora = ->

@@ -11,30 +11,30 @@ describe "models/language", ->
 
   it 'creates a histogram', () ->
     language.histogram.should.exist
-    language.total(['a','b']).should.equal 2210
+    language.total(['a','b']).should.equal 2061
     language.histogram[['a','b']].should.eql {
-        _: 91,
-        a: 91,
-        b: 17,
-        c: 2,
-        e: 1135,
-        f: 3,
-        g: 60,
-        h: 5,
-        i: 152,
-        k: 9,
-        l: 335,
-        n: 5,
-        o: 136,
-        r: 37,
-        s: 55,
-        t: 41,
-        u: 3,
-        w: 15,
-        y: 1,
-        z: 5,
-        'î': 12
-      }
+      _: 91,
+      a: 74,
+      b: 17,
+      c: 2,
+      e: 1131,
+      f: 3,
+      g: 60,
+      h: 5,
+      i: 122,
+      k: 9,
+      l: 276,
+      n: 5,
+      o: 107,
+      r: 33,
+      s: 52,
+      t: 41,
+      u: 2,
+      w: 15,
+      y: 1,
+      z: 5,
+      'î': 10
+    }
 
 
   it 'chooses from a histogram key', ->
