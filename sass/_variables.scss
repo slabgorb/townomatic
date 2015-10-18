@@ -2,9 +2,16 @@ $font_serif: chanticleer, georgia, 'times new roman', serif;
 $font_sans: titillium_regular, helvetica, arial, sans-serif;
 $font_fixed: saxmonoregular, courier new;
 
-$color_lightest:   #e0fbfc;
-$color_light:      #c2dfe3;
-$color_dark:       #9db4c0;
-$color_darkest:    #5c6b73;
-$color_text:       #253237;
+
+$color_1: #73603D;
+$color_2: #BF8A49;
+$color_3: #F2CA80;
+$color_4: #5E5A59;
+$color_5: #0D0D0D;
+
+$color_lightest:   $color_3;
+$color_light:      $color_2;
+$color_dark:       $color_1;
+$color_darkest:    $color_4;
+$color_text:       $color_5;
 $color_background: #f0f5fd;
