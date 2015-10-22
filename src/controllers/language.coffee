@@ -15,6 +15,15 @@ exports.glossary = (Language) ->
         language.makeGlossary()
         language.save()
         res.send language.glossary
+
+exports.clearGlossary = (Language) ->
+  (req, res, next) ->
+    Language.findOne {_id: req.params.id }
+      .exec (err, language) ->
+        language.glossary = []
+        language.save()
+        res.send language
+
 exports.translate = (Language) ->
   (req, res, next) ->
     Language.findOne {_id: req.params.id }

@@ -1,7 +1,6 @@
 _ = require 'underscore'
 fs = require 'fs'
 words = require('./words')
-
 corpora = _.uniq(_.map fs.readdirSync('corpora'), (file) -> file.split('.')[0])
 
 String::isFirstCapital = ->
@@ -69,22 +68,25 @@ exports.register_model = (mongoose) ->
       @word(translation)
     @save()
 
+
+
   Language.methods.word  = (translation) ->
     translation = translation.toLowerCase()
     found = _.find(@glossary, (g) -> g.translation == translation)
     return found.word if found?
     word = ''
-    char = ''
-    count = 0
-    key = _.sample(@startKeys()).split(',')
-    while char != '_' and count < @maxWordLength
-      selection = Math.floor(Math.random() * @total(key))
-      char = @choice(key, selection)
-      count += 1
-      word += char
-      key.push char
-      key.shift()
-    word = word.replace('_','')
+    while word.length < @minWordLength
+      char = ''
+      count = 0
+      key = _.sample(@startKeys()).split(',')
+      while char != '_' and count < @maxWordLength
+        selection = Math.floor(Math.random() * @total(key))
+        char = @choice(key, selection)
+        count += 1
+        word += char
+        key.push char
+        key.shift()
+      word = word.replace('_','')
     @glossary.push {word: word, translation: translation}
     return word
 
