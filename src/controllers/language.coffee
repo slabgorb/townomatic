@@ -47,8 +47,8 @@ exports.download = (Language) ->
 
 exports.getLanguages = (Language) ->
   (req, res, next) ->
-    Language.find (err, data) ->
-      res.send data
+    Language.find (err, languages) ->
+      res.send _.map(languages, (language) -> _.pick(language, 'name', 'lookback', 'minWordLength', 'maxWordLength', 'corpora', '_id'))
 
 exports.getLanguage = (Language) ->
   (req, res, next) ->
