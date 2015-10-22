@@ -50,11 +50,6 @@ exports.register_model = (mongoose) ->
         add key, "_"
     @histogram = histo
 
-  Language.pre 'save', (next) ->
-    @parse()
-    @makeGlossary()
-    next()
-
   Language.methods.choice = (key, selection) ->
     position = 0
     ary = _.map(@histogram[key], (v, k) -> [k, v])
@@ -72,9 +67,11 @@ exports.register_model = (mongoose) ->
   Language.methods.makeGlossary = ->
     _.each words, (translation) =>
       @word(translation)
+    @save()
 
   Language.methods.word  = (translation) ->
-    found = _.find(@glossary, (g) -> g.translation == translation.toLowerCase())
+    translation = translation.toLowerCase()
+    found = _.find(@glossary, (g) -> g.translation == translation)
     return found.word if found?
     word = ''
     char = ''
@@ -103,6 +100,7 @@ exports.register_model = (mongoose) ->
         word
       else
         wordToTranslate
+    @save()
     translated.join('')
 
 

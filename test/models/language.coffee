@@ -7,6 +7,8 @@ describe "models/language", ->
     name: 'test'
     corpora: ['french','german']
     lookback: 2
+  language.parse()
+  language.makeGlossary()
   language.save()
 
   it 'creates a histogram', () ->
