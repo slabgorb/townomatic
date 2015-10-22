@@ -12,6 +12,7 @@ exports.glossary = (Language) ->
   (req, res, next) ->
     Language.findOne {_id: req.params.id }
       .exec (err, language) ->
+        language.parse() unless language.histogram?
         language.makeGlossary()
         language.save()
         res.send language.glossary
