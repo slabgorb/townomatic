@@ -51,3 +51,13 @@ exports.createLanguage = (Language) ->
       lookback: req.params.lookback
       (err, language) ->
         res.send language
+
+exports.download = (Language) ->
+  (req, res, next) ->
+    Language.findOne {_id: req.params.id }
+
+exports.translate = (Language) ->
+  (req, res, next) ->
+    Language.findOne {_id: req.params.id }
+      .exec (err, language) ->
+        res.send language.translate(req.params.body)

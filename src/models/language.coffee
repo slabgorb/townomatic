@@ -68,6 +68,8 @@ exports.register_model = (mongoose) ->
       @word(translation)
 
   Language.methods.word  = (translation) ->
+    found = _.find(@glossary, (g) -> g.translation == translation)
+    return found.word if found?
     word = ''
     char = ''
     count = 0
@@ -82,5 +84,17 @@ exports.register_model = (mongoose) ->
     word = word.replace('_','')
     @glossary.push {word: word, translation: translation}
     return word
+
+  # translate the provided text into words in the language. If any
+  # words are undefined, create them on the fly in the language and
+  # store them
+  Language.methods.translate = (body) ->
+    translated = _.map body.split(/(\W)/), (wordToTranslate) =>
+      if wordToTranslate.match(/\w/)
+        @word(wordToTranslate)
+      else
+        wordToTranslate
+    translated.join('')
+
 
   mongoose.model 'Language', Language

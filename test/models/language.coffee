@@ -52,3 +52,11 @@ describe "models/language", ->
 
   it 'makes a glossary', ->
     (language.glossary.length > 900).should.be_true
+
+
+  it 'translates a phrase', ->
+    what = _.find(language.glossary, (g) -> g.translation == 'what').word
+    language.translate('what, what, what!').should.equal "#{what}, #{what}, #{what}!"
+    glossaryLength = language.glossary.length
+    language.translate('notaword anothernotword')
+    language.glossary.length.should.equal glossaryLength + 2
