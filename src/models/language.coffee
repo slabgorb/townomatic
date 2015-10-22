@@ -4,6 +4,12 @@ words = require('./words')
 
 corpora = _.uniq(_.map fs.readdirSync('corpora'), (file) -> file.split('.')[0])
 
+String::isFirstCapital = ->
+  /^[a-z]/i.test(@) and @charAt(0) == @charAt(0).toUpperCase()
+
+String::capitalizeFirstLetter = ->
+  @charAt(0).toUpperCase() + @slice(1)
+
 exports.register_model = (mongoose) ->
   Schema = mongoose.Schema
   Language = new Schema
@@ -68,7 +74,7 @@ exports.register_model = (mongoose) ->
       @word(translation)
 
   Language.methods.word  = (translation) ->
-    found = _.find(@glossary, (g) -> g.translation == translation)
+    found = _.find(@glossary, (g) -> g.translation == translation.toLowerCase())
     return found.word if found?
     word = ''
     char = ''
@@ -91,7 +97,10 @@ exports.register_model = (mongoose) ->
   Language.methods.translate = (body) ->
     translated = _.map body.split(/(\W)/), (wordToTranslate) =>
       if wordToTranslate.match(/\w/)
-        @word(wordToTranslate)
+        word = @word(wordToTranslate)
+        if wordToTranslate.isFirstCapital()
+          word = word.capitalizeFirstLetter() if word.length > 0
+        word
       else
         wordToTranslate
     translated.join('')
