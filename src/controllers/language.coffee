@@ -31,6 +31,12 @@ exports.translate = (Language) ->
       .exec (err, language) ->
         res.send language.translate(req.params.body)
 
+exports.endings = (Language) ->
+  (req, res, next) ->
+    Language.findOne {_id: req.params.id }
+      .exec (err, language) ->
+        res.send language.endings(req.query.filter)
+
 exports.createLanguage = (Language) ->
   (req, res, next) ->
     Language.create

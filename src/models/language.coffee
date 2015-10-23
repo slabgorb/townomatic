@@ -69,8 +69,14 @@ exports.register_model = (mongoose) ->
     @save()
 
 
+  Language.methods.endings = (filter) ->
+    ends = _.compact(_.map @histogram, (values, key) -> key if  (('_' of values) and not ('^' in key))).sort()
+    if filter?
+      _.filter(ends, (ending) -> filter in ending)
+    else
+      ends
 
-  Language.methods.word  = (translation) ->
+  Language.methods.word  = (translation, ending = null) ->
     translation = translation.toLowerCase()
     found = _.find(@glossary, (g) -> g.translation == translation)
     return found.word if found?
