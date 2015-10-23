@@ -15,7 +15,9 @@
     padding: 8px 0px;
     margin-bottom: 5px;
   }
-
+  p.lead {
+    font-family: $font_header;
+  }
   .jumbotron {
     background-color: $color_light;
     h1, h2 {
@@ -23,6 +25,7 @@
       padding-bottom: 0px;
     }
     border-radius: 3px;
+
   }
   .navbar, .breadcrumb {
     background-color: $color_darkest;
@@ -31,8 +34,7 @@
       color: $color_lightest;
     }
     a.navbar-brand {
-      font-family: $font_serif;
-      text-transform: capitalize;
+      font-family: $font_title;
       img {
         margin-top: -5px;
       }
