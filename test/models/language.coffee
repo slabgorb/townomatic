@@ -55,6 +55,12 @@ describe "models/language", ->
   it 'makes a glossary', ->
     (language.glossary.length > 900).should.be_true
 
+  it 'offers endings', ->
+    endings = language.endings()
+    endings.length.should.not.equal 0
+    filteredEndings = language.endings('a')
+    console.log filteredEndings
+    filteredEndings.length.should.not.equal endings.length
 
   it 'translates a phrase', ->
     what = _.find(language.glossary, (g) -> g.translation == 'what').word

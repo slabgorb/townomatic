@@ -2,16 +2,16 @@ $font_serif: chanticleer, georgia, 'times new roman', serif;
 $font_sans: titillium_regular, helvetica, arial, sans-serif;
 $font_fixed: saxmonoregular, courier new;
 
+$color_1: #00060D;
+$color_2: #203140;
+$color_3: #707F8C;
+$color_4: #A3B2BF;
+$color_5: #F2F2F2;
 
-$color_1: #73603D;
-$color_2: #BF8A49;
-$color_3: #F2CA80;
-$color_4: #5E5A59;
-$color_5: #0D0D0D;
 
-$color_lightest:   $color_3;
-$color_light:      $color_2;
-$color_dark:       $color_1;
-$color_darkest:    $color_4;
-$color_text:       $color_5;
+$color_lightest:   $color_5;
+$color_light:      $color_4;
+$color_dark:       $color_3;
+$color_darkest:    $color_2;
+$color_text:       $color_1;
 $color_background: #f0f5fd;
