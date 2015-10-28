@@ -8,6 +8,7 @@ class Townomatic.LanguageView extends Townomatic.DetailView
   events: ->
     _.extend super(),
       'keyup #translate-words': 'eventTranslate'
+      'click #glossary-button': 'eventGlossary'
 
   translate: ->
     console.log 'translating'
@@ -16,6 +17,8 @@ class Townomatic.LanguageView extends Townomatic.DetailView
 
   eventTranslate: _.debounce (-> @translate()),300
 
+  eventGlossary: ->
+    @model.glossary()
 
 
   showTranslation: (translation) ->

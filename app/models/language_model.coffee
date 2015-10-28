@@ -9,6 +9,18 @@ class Townomatic.LanguageModel extends Townomatic.BaseModel
 
   toString: -> @get('name')
 
+  glossary: ->
+    $.ajax
+      url:"http://localhost:8082/glossary/#{@get('_id')}"
+      dataType: 'json'
+      success: (data) =>
+        data = _.map data, (d) ->
+          [d.translation, d.word]
+        @toCSV(data, @get('name'))
+
+
+  clearGlossary: ->
+
 
   translate: (wordsToTranslate) ->
     $.ajax
