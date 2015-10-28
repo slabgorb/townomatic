@@ -27,9 +27,10 @@ exports.clearGlossary = (Language) ->
 
 exports.translate = (Language) ->
   (req, res, next) ->
-    Language.findOne {_id: req.params.id }
-      .exec (err, language) ->
-        res.send language.translate(req.params.body)
+    if req.params.body?
+      Language.findOne {_id: req.params.id }
+        .exec (err, language) ->
+          res.send language.translate(req.params.body)
 
 exports.endings = (Language) ->
   (req, res, next) ->

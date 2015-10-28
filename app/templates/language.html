@@ -1,12 +1,19 @@
 <h2><%= name %></h2>
-<h3><%= corpora.join(',') %></h3>
-<div class="form-group">
-  <button type="button" id="glossary-button" class="btn" value="Download Glossary">Download Glossary</button>
-</div>
-<div class="form-group">
-  <textarea id="translate-words" name="translate-words"/>
-  <button type="button" id="translate-button" class="btn">Translate</button>
-</div>
-<div id="translation-results">
+<h4>Derived from: <%= corpora.join(',') %></h4>
+<form>
+  <div class="form-group">
+    <label>Get a glossary</label>
+    <button type="button" id="glossary-button" class="btn" value="Download Glossary">Download Glossary</button>
+  </div>
+  <div class="form-group">
+    <label for="translate-words">
+      Translate
+    </label>
+    <textarea class="form-control" id="translate-words" name="translate-words"/>
+    <button type="button" id="translate-button" class="btn btn-default">Translate</button>
+  </div>
 
-</div>
+  <div id="translation-results">
+
+  </div>
+</form>
