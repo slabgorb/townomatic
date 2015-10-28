@@ -1,16 +1,12 @@
 <h2><%= name %></h2>
 <h3><%= corpora.join(',') %></h3>
-<dl>
-  <% _.each(histogram, function(charSet, key) { %>
-  <dt><%= key %></dt>
-  <dd>
-    <ul>
-      <% _.each(charSet, function(probability, char) { %>
-      <li>
-        <%= char %>:<%= probability %>
-      </li>
-      <% }); %>
-    </ul>
-  </dd>
-  <% }); %>
-</dl>
+<div class="form-group">
+  <button type="button" id="glossary-button" class="btn" value="Download Glossary">Download Glossary</button>
+</div>
+<div class="form-group">
+  <textarea id="translate-words" name="translate-words"/>
+  <button type="button" id="translate-button" class="btn">Translate</button>
+</div>
+<div id="translation-results">
+
+</div>

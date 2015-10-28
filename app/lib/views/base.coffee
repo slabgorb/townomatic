@@ -13,6 +13,8 @@ class Townomatic.BaseView extends Backbone.View
       render()
       @postRender()
 
+  events: -> {}
+
   render: ->
     if @model?
       @$el.html @template(@model.toJSON())
