@@ -1,19 +1,29 @@
 <h2><%= name %></h2>
 <h4>Derived from: <%= corpora.join(',') %></h4>
-<form>
-  <div class="form-group">
-    <label>Get a glossary</label>
-    <button type="button" id="glossary-button" class="btn" value="Download Glossary">Download Glossary</button>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Tools</h3>
   </div>
-  <div class="form-group">
-    <label for="translate-words">
-      Translate
-    </label>
-    <textarea class="form-control" id="translate-words" name="translate-words"/>
-    <button type="button" id="translate-button" class="btn btn-default">Translate</button>
-  </div>
+  <div class="panel-body">
+    <form>
+      <p>
+        Get a glossary with english words and their translation into <%= name %>.
+      </p>
+      <button type="button" id="glossary-button" class="btn btn-default">Download Glossary</button>
+      <p>
+        Translate text into <%= name %> just by typing or pasting into the box below.
+      <div class="form-group">
+        <textarea class="form-control" id="translate-words" name="translate-words"></textarea>
+      </div>
+      <div class="well" id="translation-results"></div>
+      <p>
+        Translate text from <%= name %> just by typing or pasting into the box below.
+      <div class="form-group">
+        <textarea class="form-control" id="untranslate-words" name="untranslate-words"></textarea>
+      </div>
+      <div class="well" id="untranslation-results"></div>
 
-  <div id="translation-results">
-
+      </div>
+    </form>
   </div>
-</form>
+</div>

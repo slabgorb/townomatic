@@ -21,6 +21,14 @@ class Townomatic.LanguageModel extends Townomatic.BaseModel
 
   clearGlossary: ->
 
+  untranslate: (wordsToTranslate) ->
+    $.ajax
+      url:"http://localhost:8082/untranslate/#{@get('_id')}"
+      method: 'POST'
+      data: body: wordsToTranslate
+      dataType: 'json'
+      success: (data) => @trigger 'untranslated', data
+
 
   translate: (wordsToTranslate) ->
     $.ajax

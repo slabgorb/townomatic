@@ -76,6 +76,14 @@ exports.register_model = (mongoose) ->
     else
       ends
 
+
+  Language.methods.translation = (word) ->
+    found = _.find(@glossary, (g) -> g.word == word)
+    if found? then found.translation else word
+
+  #
+  # Create a new word or return an existing word
+  #
   Language.methods.word  = (translation, ending = null) ->
     translation = translation.toLowerCase()
     found = _.find(@glossary, (g) -> g.translation == translation)
@@ -108,6 +116,15 @@ exports.register_model = (mongoose) ->
         word
       else
         wordToTranslate
+    @save()
+    translated.join('')
+
+  Language.methods.untranslate = (body) ->
+    translated = _.map body.split(/(\s|[!@$%^&*\(\)\[\]|{}<>?,.;':"~`])/), (wordToTranslate) =>
+      word = @translation(wordToTranslate)
+      if wordToTranslate.isFirstCapital()
+        word = word.capitalizeFirstLetter() if word.length > 0
+      word
     @save()
     translated.join('')
 

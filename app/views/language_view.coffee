@@ -4,18 +4,25 @@ class Townomatic.LanguageView extends Townomatic.DetailView
   initialize: (options) ->
     super(options)
     @listenTo @model, 'translated', @showTranslation
+    @listenTo @model, 'untranslated', @showUnTranslation
 
   events: ->
     _.extend super(),
       'keyup #translate-words': 'eventTranslate'
+      'keyup #untranslate-words': 'eventUnTranslate'
       'click #glossary-button': 'eventGlossary'
 
   translate: ->
-    console.log 'translating'
     wordsToTranslate = @$('#translate-words').val()
     @model.translate(wordsToTranslate)
 
+  untranslate: ->
+    wordsToTranslate = @$('#untranslate-words').val()
+    @model.untranslate(wordsToTranslate)
+
   eventTranslate: _.debounce (-> @translate()),300
+
+  eventUnTranslate: _.debounce (-> @untranslate()),300
 
   eventGlossary: ->
     @model.glossary()
@@ -23,3 +30,6 @@ class Townomatic.LanguageView extends Townomatic.DetailView
 
   showTranslation: (translation) ->
     @$('#translation-results').text(translation)
+
+  showUnTranslation: (translation) ->
+    @$('#untranslation-results').text(translation)

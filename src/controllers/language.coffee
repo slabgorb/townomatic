@@ -32,6 +32,13 @@ exports.translate = (Language) ->
         .exec (err, language) ->
           res.send language.translate(req.params.body)
 
+exports.untranslate = (Language) ->
+  (req, res, next) ->
+    if req.params.body?
+      Language.findOne {_id: req.params.id }
+        .exec (err, language) ->
+          res.send language.untranslate(req.params.body)
+
 exports.endings = (Language) ->
   (req, res, next) ->
     Language.findOne {_id: req.params.id }
