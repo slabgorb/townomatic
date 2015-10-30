@@ -10,7 +10,7 @@ exports.getBeing = (Being) ->
     Being.findOne {_id: req.params.id }
       .populate('species')
       .exec (err, being) ->
-        being.setValue('expression', being.express())
+        being.express()
         being.setValue('species.name', being.species.name)
         res.send being
 

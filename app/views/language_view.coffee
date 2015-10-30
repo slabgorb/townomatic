@@ -11,6 +11,8 @@ class Townomatic.LanguageView extends Townomatic.DetailView
       'keyup #translate-words': 'eventTranslate'
       'keyup #untranslate-words': 'eventUnTranslate'
       'click #glossary-button': 'eventGlossary'
+      'click #translation-results': 'eventClickTranslated'
+      'click #untranslation-results': 'eventClickTranslated'
 
   translate: ->
     wordsToTranslate = @$('#translate-words').val()
@@ -27,9 +29,13 @@ class Townomatic.LanguageView extends Townomatic.DetailView
   eventGlossary: ->
     @model.glossary()
 
+  eventClickTranslated: (event) ->
+    $target = $(event.target)
+    @logger.debug 'clicked', $target, $target.val(), $target.contents()
+    $target.selectRange(0, $target.val().length)
 
   showTranslation: (translation) ->
-    @$('#translation-results').text(translation)
+    @$('#translation-results').val(translation)
 
   showUnTranslation: (translation) ->
-    @$('#untranslation-results').text(translation)
+    @$('#untranslation-results').val(translation)

@@ -90,9 +90,8 @@ exports.register_model = (mongoose) ->
           matches = @genes.join('').match(regexp)
           result[key] = if matches? then matches.length else 0
     @expression = result
+    @save()
+    @expression
 
-  Being.pre 'save', (next) ->
-    @express()
-    next()
 
   mongoose.model 'Being', Being

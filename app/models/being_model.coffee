@@ -8,10 +8,10 @@ class Townomatic.BeingModel extends Townomatic.BaseModel
 
   defaults:
     genes: []
-    species: 'human'
-    name: {first: 'Some', last: 'Being'}
-    occupation: "Unemployed"
-    gender: "Neuter"
+    species:''
+    occupation: ''
+    gender: ''
+    language: ''
     age: 1
     spouses: []
     children: []

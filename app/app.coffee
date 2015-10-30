@@ -11,10 +11,10 @@ class Townomatic.Router extends Backbone.Router
 
   routes:
     "": "home"
+    "being/edit/:id": "beingForm"
+    "being/new": "beingForm"
     "being/:id": "being"
     "being": "beingList"
-    "being/new": "beingForm"
-    "being/edit/:id": "beingForm"
     "community": "communityList"
     "community/:id": "community"
     "community/new": "communityForm"
@@ -58,6 +58,7 @@ class Townomatic.Router extends Backbone.Router
 
   detailPage: (type, id) ->
     @model = new Townomatic["#{type}Model"]({_id: id, logger: @logger, type: type})
+    console.log @model
     @model.fetch
       success: =>
         @view = new Townomatic["#{type}View"]({model: @model, logger: @logger, el:'#main', type: type})
@@ -74,7 +75,6 @@ class Townomatic.Router extends Backbone.Router
 
   beingForm: (id) ->
     @formPage 'Being', id
-
 
   community: (id) ->
     @detailPage 'Community', id

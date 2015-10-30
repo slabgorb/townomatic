@@ -1,24 +1,46 @@
-<form>
-  <input type="hidden" name="id" value="<%= _id %>"/>
-  <div class="form-group">
-    <label>First Name</label>
-    <input type="text" name="name.first" value="<%= name.first %>"/>
-    <label>Last Name</label>
-    <input type="text" name="name.last" value="<%= name.last %>"/>
-  </div>
-  <div class="form-group">
-      <label>Occupation</label>
-      <input type="text" data-field="occupation" value="<%= occupation %>"/>
-  </div>
-  <div class="form-group">
-      <label>Gender</label>
-      <select name="gender">
+<div class="container form">
+  <form>
+    <% if (typeof _id != 'undefined') { %>
+    <input type="hidden" name="id" value="<%= _id %>"/>
+    <% } %>
+    <div class="form-group">
+      <label for="name.first">First Name</label>
+      <input type="text" class="form-control" name="name.first" value="<%= name.first %>"/>
+      <label for="name.last">Last Name</label>
+      <input type="text" class="form-control" name="name.last" value="<%= name.last %>"/>
+    </div>
+    <div class="form-group">
+      <label for="species">Species</label>
+      <select name="species" class="selectpicker">
+        <% _.each(species_list, function(s) { %>
+        <option <%= s.id == species ? 'selected' : '' %> value="<%= s.id %>"><%= s.name %></option>
+        <% }); %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="language">Language</label>
+      <select name="language" class="selectpicker">
+        <% _.each(language_list, function(s) { %>
+        <option <%= s.id == language ? 'selected' : '' %> value="<%= s.id %>"><%= s.name %></option>
+        <% }); %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="occupation">Occupation</label>
+      <input type="text" name="occupation" class="form-control" value="<%= occupation %>"/>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select name="gender" class="selectpicker">
         <option <%= gender == 'Male' ? 'selected' : '' %>">Male</option>
         <option <%= gender == 'Female' ? 'selected' : '' %>>Female</option>
         <option <%= gender == 'Neuter' ? 'selected' : '' %>>Neuter</option>
       </select>
-      <label>Age</label>
-      <input type="number" min="0"  name="age" value="<%= age %>"/>
-  </div>
-  <%= JST['app/templates/includes/form_buttons.html']() %>
-</form>
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" class="form-control" min="0"  name="age" value="<%= age %>"/>
+    </div>
+    <%= JST['app/templates/includes/form_buttons.html']() %>
+  </form>
+</div>

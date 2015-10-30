@@ -55,6 +55,7 @@ module.exports = (grunt) ->
         sourceMap: true
         files:
           'public/js/app.js': [
+            'app/lib/extensions.coffee'
             'app/lib/townomatic.coffee'
             'app/lib/townomatic_logger.coffee'
             'app/lib/models/base.coffee'
