@@ -3,6 +3,18 @@ module.exports = (grunt) ->
   # Project configuration.
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
+    mongoimport:
+      options:
+        db: 'townomatic_development'
+        collections: [
+          {
+            name: 'occupations'
+            type: 'json'
+            file: 'db/seeds/occupations.json'
+            jsonArray: true
+            drop: true
+          }
+        ]
     prep_corpus:
       corpora:
         files: [src: 'corpora/*.txt' ]
@@ -114,6 +126,7 @@ module.exports = (grunt) ->
 
 
   grunt.loadNpmTasks 'grunt-contrib-concat'
+  grunt.loadNpmTasks 'grunt-mongoimport'
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'

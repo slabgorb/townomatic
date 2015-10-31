@@ -35,6 +35,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha": "^0.4.13",
     "grunt-mocha-test": "^0.12.7",
+    "grunt-mongoimport": "^0.1.6",
     "mocha": "^2.3.2",
     "should": "^7.1.0",
     "supertest": "^1.1.0"
