@@ -1,13 +1,10 @@
 class Townomatic.BeingFormView extends Townomatic.FormView
 
   initialize: (options) ->
-    @species = new Townomatic.SpeciesCollection()
-    @languages = new Townomatic.LanguageCollection()
+    @model = options.model
     promises = []
-    promises.push @species.fetch()
-    promises.push @languages.fetch()
-    $.when.apply($, promises).done () =>
-      console.log 'done?'
-      @model.set('species_list', _.map(@species.models, (s) -> {name: s.get('name'), id: s.id}))
-      @model.set('language_list', _.map(@languages.models, (s) -> {name: s.get('name'), id: s.id}))
+    promises.push @dropdownCollection('Species')
+    promises.push @dropdownCollection('Language')
+    promises.push @dropdownCollection('Occupation')
+    $.when.apply($, promises).done =>
       super(options)

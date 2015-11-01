@@ -19,5 +19,14 @@ class Townomatic.FormView extends Townomatic.BaseView
     @model.save().done =>
       Backbone.history.navigate("#{@type}", { trigger: true })
 
+  dropdownCollection: (className) ->
+    dfd = $.Deferred()
+    collection = new Townomatic["#{className}Collection"]()
+    collection.fetch().done ->
+      @model.set("#{className.toLowerCase()}_list", collection.models)
+      dfd.resolve(collection)
+    dfd.promise()
+
+
   eventCancel: (event) ->
     Backbone.history.navigate("#{@type}", { trigger: true })
