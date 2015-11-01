@@ -11,19 +11,18 @@
     </div>
     <div class="form-group">
       <label for="species">Species</label>
-      <select id="species_list" name="species" class="selectpicker">
-        <% _.each(species_list, function(s) { %>
-        <option <%= s.id == species ? 'selected' : '' %> value="<%= s.id %>"><%= s.name %></option>
-        <% }); %>
-      </select>
+      <div id="species-select">
+      </div>
     </div>
     <div class="form-group">
       <label for="language">Language</label>
-      <select id="language_list" name="language" class="selectpicker">
-        <% _.each(language_list, function(s) { %>
-        <option <%= s.id == language ? 'selected' : '' %> value="<%= s.id %>"><%= s.name %></option>
-        <% }); %>
-      </select>
+      <div id="language-select">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="community">Community</label>
+      <div id="community-select">
+      </div>
     </div>
     <div class="form-group">
       <label for="occupation">Occupation</label>

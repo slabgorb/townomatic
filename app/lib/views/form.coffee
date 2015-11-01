@@ -30,3 +30,12 @@ class Townomatic.FormView extends Townomatic.BaseView
 
   eventCancel: (event) ->
     Backbone.history.navigate("#{@type}", { trigger: true })
+
+  render: () ->
+    @$el.html @template(@model.toJSON())
+    if @selections?
+      _.each @selections, (selection, key) =>
+        $.when(selection.render()).done (view) =>
+          @$("##{key}-select").html(view.el)
+          @$("##{key}-select .selectpicker").selectpicker()
+    return @
