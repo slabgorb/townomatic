@@ -52,13 +52,20 @@ class Townomatic.Router extends Backbone.Router
       @model.fetch
         success: =>
           @view = new Townomatic["#{type}FormView"]({model: @model, logger: @logger, el: '#main', type: type})
+          @header.setBreadcrumbs [
+            { label:type, url: "/#{type.toLowerCase()}"}
+            { label:"#{@model.toString()}" , url:"/#{type.toLowerCase()}/#{id}"}
+          ]
     else
       @model = new Townomatic["#{type}Model"](logger: @logger)
       @view = new Townomatic["#{type}FormView"]({model: @model, logger: @logger, el: '#main', type: type})
+      @header.setBreadcrumbs [
+          { label:type, url: "/#{type.toLowerCase()}"}
+          { label:"New" , url:""}
+        ]
 
   detailPage: (type, id) ->
     @model = new Townomatic["#{type}Model"]({_id: id, logger: @logger, type: type})
-    console.log @model
     @model.fetch
       success: =>
         @view = new Townomatic["#{type}View"]({model: @model, logger: @logger, el:'#main', type: type})
