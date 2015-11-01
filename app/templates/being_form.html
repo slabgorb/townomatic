@@ -1,4 +1,9 @@
 <div class="container form">
+  <% if (typeof _id != 'undefined') { %>
+  <h2><%= JST['app/templates/includes/back.html']({path:'being'}) %><%= [name.first, name.last].join(' ')  %></h2>
+  <% } else { %>
+  <h2><%= JST['app/templates/includes/back.html']({path:'being'}) %>New</h2>
+  <% } %>
   <form>
     <% if (typeof _id != 'undefined') { %>
     <input type="hidden" name="id" value="<%= _id %>"/>
