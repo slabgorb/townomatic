@@ -13,8 +13,11 @@ exports.register_model = (mongoose) ->
       type: String
       enum: ['Male', 'Female', 'Neuter']
     occupation:
-      type: String
-      default: 'None'
+      type: Schema.Types.ObjectId
+      ref: 'Occupation'
+    language:
+      type: Schema.Types.ObjectId
+      ref: 'Language'
     age:
       type: Number
       min: 0
@@ -30,12 +33,15 @@ exports.register_model = (mongoose) ->
 
   Being.methods.marry  = (spouse) ->
     @spouses.push spouse.id
+    @save()
 
   Being.methods.divorce = (spouse) ->
     @spouses = _.filter @spouses, (s) -> s == spouse.id
+    @save()
 
   Being.methods.die = ->
     @living = false
+    @save()
 
   Being.statics.findByName = (first, last, callback) ->
      mongoose.models.Being.findOne { 'name.first': first, 'name.last':last }, callback
@@ -48,6 +54,7 @@ exports.register_model = (mongoose) ->
         first: firstName
         last: parent.name.last
       species: parent.species
+      language: parent.language
       gender: gender
       age: 0
       genes: genes
