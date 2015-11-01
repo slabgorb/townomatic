@@ -6,5 +6,3 @@ class Townomatic.BeingFormView extends Townomatic.FormView
     @languageCollection = new Townomatic.LanguageCollection()
     @communityCollection = new Townomatic.CommunityCollection()
     @occupationCollection = new Townomatic.OccupationCollection()
-
-  render: () ->

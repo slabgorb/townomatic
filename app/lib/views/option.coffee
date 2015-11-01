@@ -7,5 +7,5 @@ class Townomatic.OptionView extends Townomatic.BaseView
 
 
   render: ->
-    @$el.html @template(@model.toJSON())
+    @setElement @template(@model.toJSON())
     return @
