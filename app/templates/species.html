@@ -3,7 +3,13 @@
 
   <h3>Expression</h3>
   <div class="well">
-
+    <% _.each(expression, function(exp, key) { %>
+    <ul>
+      <% _.each(exp, function(v, k) { %>
+      <li><%= k %>: <%= v %></li>
+      <% }); %>
+    </ul>
+    <% }); %>
   </div>
 
 </div>
