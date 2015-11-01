@@ -77,9 +77,9 @@ module.exports = (grunt) ->
             'app/lib/views/base.coffee'
             'app/lib/views/*.coffee'
 
-            'app/models/*.coffee'
-            'app/collections/*.coffee'
-            'app/views/*.coffee'
+            'app/models/**/*.coffee'
+            'app/collections/**/*.coffee'
+            'app/views/**/*.coffee'
             'app/app.coffee'
           ]
     watch:
