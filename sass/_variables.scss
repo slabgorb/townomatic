@@ -5,11 +5,11 @@ $font_button: playfair_display_black,  Palatino Linotype, Book Antiqua, Palatino
 $font_sans: helvetica, arial, sans-serif;
 $font_fixed: saxmonoregular, courier new;
 
-$color_1: #00060D;
-$color_2: #203140;
-$color_3: #707F8C;
-$color_4: #A3B2BF;
-$color_5: #F2F2F2;
+$color_1: #14212B;
+$color_2: #293845;
+$color_3: #4F6373;
+$color_4: #8F8164;
+$color_5: #D9D7AC;
 
 
 $color_lightest:   $color_5;
@@ -17,4 +17,4 @@ $color_light:      $color_4;
 $color_dark:       $color_3;
 $color_darkest:    $color_2;
 $color_text:       $color_1;
-$color_background: #f0f5fd;
+$color_background: $color_5;
