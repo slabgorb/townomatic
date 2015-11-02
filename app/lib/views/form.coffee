@@ -37,5 +37,6 @@ class Townomatic.FormView extends Townomatic.BaseView
       _.each @selections, (selection, key) =>
         $.when(selection.render()).done (view) =>
           @$("##{key}-select").html(view.el)
+          @$("##{key}-select").removeClass('select-spacer')
           @$("##{key}-select .selectpicker").selectpicker()
     return @
