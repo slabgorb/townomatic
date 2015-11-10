@@ -14,10 +14,21 @@ exports.register_model = (mongoose) ->
     icon:
       type: String
       enum: heraldryIcons
+    size:
+      type: String
+      enum: ['Village', 'Town', 'City', 'Keep']
     name:
       type: String
     population:
-      type: [type: Schema.Types.ObjectId, ref: 'Being' ]
+      type: String
+      enum: ['Exodus', 'Shrinking', 'Steady', 'Growing', 'Booming']
+    prosperity:
+      type: String
+      enum: ['Dirt', 'Poor', 'Moderate', 'Wealthy', 'Rich']
+    defenses:
+      type: String
+      enum: ['None', 'Militia', 'Watch', 'Guard', 'Garrison', 'Battalion', 'Legion']
+    tags: [String]
     colors:
       main: String
       secondary: String
