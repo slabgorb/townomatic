@@ -1,3 +1,3 @@
-class Townomatic.CommunityListItemView extends Townomatic.ListItemView
-  templateName: 'community_list_item'
-  className: 'community-item'
+class Townomatic.SteadingListItemView extends Townomatic.ListItemView
+  templateName: 'steading_list_item'
+  className: 'steading-item'

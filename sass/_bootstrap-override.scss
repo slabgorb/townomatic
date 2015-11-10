@@ -9,9 +9,22 @@
     }
   }
 
+  input {
+    background-color: $color_light;
+    color: $color_lightest;
+  }
 
-  .btn {
+  .btn.btn-default, .dropdown-menu {
     font-family: $font_button;
+    background-color: $color_light;
+    color: $color_lightest;
+    li {
+      color: $color_lightest;
+      &.selected  a {
+        background-color: $color_lightest;
+        color: $color_text;
+      }
+    }
   }
 
   .breadcrumb {

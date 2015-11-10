@@ -22,7 +22,7 @@ server.use restify.CORS()
 server.use restify.fullResponse()
 server.pre(restify.pre.sanitizePath());
 
-_.each ['species', 'being', 'community', 'language', 'occupation' ], (file) ->
+_.each ['species', 'being', 'steading', 'language', 'occupation' ], (file) ->
   require("./models/#{file}").register_model(mongoose)
   require("./routes/#{file}").register_routes(mongoose, server)
 

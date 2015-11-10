@@ -1,2 +1,2 @@
-class Townomatic.CommunityView extends Townomatic.DetailView
-  templateName: 'community'
+class Townomatic.SteadingView extends Townomatic.DetailView
+  templateName: 'steading'

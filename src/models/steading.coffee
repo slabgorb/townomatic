@@ -10,7 +10,7 @@ heraldryIcons = _.map fs.readdirSync('public/images/heraldry/360'), (file) ->
 
 exports.register_model = (mongoose) ->
   Schema = mongoose.Schema
-  Community = new Schema
+  Steading = new Schema
     icon:
       type: String
       enum: heraldryIcons
@@ -24,4 +24,4 @@ exports.register_model = (mongoose) ->
     description: String
 
 
-  mongoose.model 'Community', Community
+  mongoose.model 'Steading', Steading

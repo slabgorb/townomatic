@@ -15,10 +15,10 @@ class Townomatic.Router extends Backbone.Router
     "being/new": "beingForm"
     "being/:id": "being"
     "being": "beingList"
-    "community": "communityList"
-    "community/:id": "community"
-    "community/new": "communityForm"
-    "community/edit/:id": "communityForm"
+    "steading": "steadingList"
+    "steading/:id": "steading"
+    "steading/new": "steadingForm"
+    "steading/edit/:id": "steadingForm"
     "corpus": "corpusList"
     "corpus/:id": "corpus"
     "language/:id": "language"
@@ -83,14 +83,14 @@ class Townomatic.Router extends Backbone.Router
   beingForm: (id) ->
     @formPage 'Being', id
 
-  community: (id) ->
-    @detailPage 'Community', id
+  steading: (id) ->
+    @detailPage 'Steading', id
 
-  communityList: () ->
-    @listPage 'Community'
+  steadingList: () ->
+    @listPage 'Steading'
 
-  communityForm: (id) ->
-    @formPage 'Community', id
+  steadingForm: (id) ->
+    @formPage 'Steading', id
 
   corpus: () ->
     @detailPage 'Corpus'

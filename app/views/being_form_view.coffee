@@ -4,6 +4,6 @@ class Townomatic.BeingFormView extends Townomatic.FormView
     @selections =
      species:    new Townomatic.SelectView({collection: new Townomatic.SpeciesCollection()})
      language:   new Townomatic.SelectView({collection: new Townomatic.LanguageCollection()})
-     community:  new Townomatic.SelectView({collection: new Townomatic.CommunityCollection()})
+     steading:  new Townomatic.SelectView({collection: new Townomatic.SteadingCollection()})
      occupation: new Townomatic.SelectView({collection: new Townomatic.OccupationCollection()})
     super
