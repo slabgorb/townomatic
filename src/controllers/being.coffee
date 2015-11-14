@@ -2,16 +2,20 @@ _ = require 'underscore'
 
 exports.getBeings = (Being) ->
   (req, res, next) ->
-    Being.find (err, data) ->
-      res.send data
+    Being.find({})
+      .populate('species', 'name')
+      .populate('language', 'name')
+      .populate('occupation', 'name')
+      .exec (err, data) ->
+        res.send data
 
 exports.getBeing = (Being) ->
   (req, res, next) ->
     Being.findOne {_id: req.params.id }
-      .populate('species')
+      .populate('species', 'name')
+      .populate('language', 'name')
+      .populate('occupation', 'name')
       .exec (err, being) ->
-        being.express()
-        being.setValue('species.name', being.species.name)
         res.send being
 
 exports.deleteBeing = (Being) ->
