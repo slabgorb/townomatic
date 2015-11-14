@@ -59,7 +59,6 @@ describe "models/language", ->
     endings = language.endings()
     endings.length.should.not.equal 0
     filteredEndings = language.endings('a')
-    console.log filteredEndings
     filteredEndings.length.should.not.equal endings.length
 
   it 'translates a phrase', ->

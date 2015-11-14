@@ -1,24 +1,24 @@
 _ = require 'underscore'
 
-exports.getCommunities = (Community) ->
+exports.getSteadings = (Steading) ->
   (req, res, next) ->
-    Community.find (err, data) ->
+    Steading.find (err, data) ->
       res.send data
 
 
-exports.getCommunity = (Community) ->
+exports.getSteading = (Steading) ->
   (req, res, next) ->
-    Community.findOne {_id: req.params.id }, (err, data) ->
+    Steading.findOne {_id: req.params.id }, (err, data) ->
       res.send data
 
-exports.deleteCommunity = (Community) ->
+exports.deleteSteading = (Steading) ->
   (req, res, next) ->
-    Community.remove {_id: req.params.id},  (err, data) ->
+    Steading.remove {_id: req.params.id},  (err, data) ->
       res.send 204
 
-exports.updateCommunity = (Community) ->
+exports.updateSteading = (Steading) ->
   (req, res, next) ->
-    Community.findOneAndUpdate {_id: req.params.id },
+    Steading.findOneAndUpdate {_id: req.params.id },
       name: req.params.name
       "colors.main": req.params.colors.main
       "colors.secondary": req.params.colors.secondary
@@ -28,10 +28,10 @@ exports.updateCommunity = (Community) ->
         res.send data
 
 
-exports.createCommunity = (Community) ->
+exports.createSteading = (Steading) ->
   (req, res, next) ->
     console.log req.params
-    Community.create
+    Steading.create
       name: req.params.name
       "colors.main": req.params.colors.main
       "colors.secondary": req.params.colors.secondary

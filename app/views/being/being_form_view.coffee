@@ -4,5 +4,5 @@ class Townomatic.BeingFormView extends Townomatic.FormView
     @model = options.model
     @speciesCollection = new Townomatic.SpeciesCollection()
     @languageCollection = new Townomatic.LanguageCollection()
-    @communityCollection = new Townomatic.CommunityCollection()
+    @steadingCollection = new Townomatic.SteadingCollection()
     @occupationCollection = new Townomatic.OccupationCollection()

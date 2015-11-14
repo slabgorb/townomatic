@@ -1,4 +1,4 @@
-class Townomatic.CommunityFormView extends Townomatic.FormView
+class Townomatic.SteadingFormView extends Townomatic.FormView
   initialize: (options) ->
     $.getJSON 'icons.json', (data) =>
       @iconList = _.sortBy data.icons, (k,v) -> k

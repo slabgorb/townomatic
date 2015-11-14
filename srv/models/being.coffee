@@ -22,9 +22,9 @@ exports.register_model = (mongoose) ->
       type: Number
       min: 0
       default: 0
-    community:
+    steading:
       type: Schema.Types.ObjectId
-      ref: 'Community'
+      ref: 'Steading'
     genes:
       type: Array
       default: -> (('000000'.replace /0/g, ->  (~ ~(Math.random() * 16)).toString(16).toUpperCase()) for i in [1..128])

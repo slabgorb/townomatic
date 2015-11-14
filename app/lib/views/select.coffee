@@ -12,7 +12,6 @@ class Townomatic.SelectView extends Backbone.View
       _.each @collection.models, (model) =>
         model.set('selected', false)
         option = new Townomatic.OptionView( {model: model}).render().el
-        @logger.debug 'option', option
         @$el.append( option )
       dfd.resolve(@)
     dfd.promise()

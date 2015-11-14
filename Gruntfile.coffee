@@ -60,7 +60,7 @@ module.exports = (grunt) ->
     coffee:
       srv:
         files: [
-          { cwd: 'src', expand: true, ext: '.js', dest: 'dist/', src: '**/*.coffee' }
+          { cwd: 'srv', expand: true, ext: '.js', dest: 'dist/', src: '**/*.coffee' }
         ]
 
       app:
@@ -105,7 +105,7 @@ module.exports = (grunt) ->
         options:
           livereload: true
       coffeesrv:
-        files: [ 'src/**/*.coffee'],
+        files: [ 'srv/**/*.coffee'],
         tasks: 'coffee:srv'
         options:
           livereload: true
@@ -113,7 +113,7 @@ module.exports = (grunt) ->
         files: 'corpora/*.txt'
         tasks: 'prep_corpus'
       mocha:
-        files: ['src/**/*.coffee', 'test/**/*.coffee']
+        files: ['srv/**/*.coffee', 'test/**/*.coffee']
         tasks: 'mochaTest'
 
   grunt.registerMultiTask 'prep_corpus', () ->

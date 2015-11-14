@@ -9,9 +9,22 @@
     }
   }
 
+  input {
+    background-color: $color_light;
+    color: $color_lightest;
+  }
 
-  .btn {
+  .btn.btn-default, .dropdown-menu {
     font-family: $font_button;
+    background-color: $color_light;
+    color: $color_lightest;
+    li {
+      color: $color_lightest;
+      &.selected  a {
+        background-color: $color_lightest;
+        color: $color_text;
+      }
+    }
   }
 
   .breadcrumb {
@@ -33,10 +46,10 @@
 
   }
   .navbar, .breadcrumb {
-    background-color: $color_darkest;
-    color: $color_text;
+    background-color: $color_light;
+    color: $color_dark;
     a {
-      color: $color_lightest;
+      color: $color_darkest;
     }
     a.navbar-brand {
       font-family: $font_title;
@@ -53,7 +66,7 @@
   .navbar-default {
     border: 0px;
 
-    border-bottom: 3px solid $color_light;
+    border-bottom: 2px solid $color_darkest;
   }
   .list-group, .list-group-item {
     background-color: $color_background;

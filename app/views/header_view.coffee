@@ -8,7 +8,7 @@ class Townomatic.HeaderView extends Townomatic.BaseView
     @nav =  [
       { label: "Languages", path: "#language" }
       { label: "Species", path: "#species" }
-      { label: "Communities", path: "#community" }
+      { label: "Steadings", path: "#steading" }
       { label: "Beings", path: "#being" }
     ]
 
